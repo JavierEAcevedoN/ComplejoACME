@@ -1,51 +1,60 @@
 package Modelo;
 
 public class Personal {
-    private int ID;
-    private String Nombre, Direccion, Contacto;
-    private int ID_Rol;
-
-    public Personal(int iD, String nombre, String direccion, String contacto, int iD_Rol) {
-        ID = iD;
-        Nombre = nombre;
-        Direccion = direccion;
-        Contacto = contacto;
-        ID_Rol = iD_Rol;
+    private int id;
+    private String nombre, direccion, contacto;
+    private boolean estado;
+    private int idRol;
+    
+    public Personal(String nombre, String direccion, String contacto, boolean estado, int idRol) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.contacto = contacto;
+        this.estado = estado;
+        this.idRol = idRol;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+        return nombre;
     }
 
     public String getDireccion() {
-        return Direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        Direccion = direccion;
+        return direccion;
     }
 
     public String getContacto() {
-        return Contacto;
+        return contacto;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public int getIdRol() {
+        return idRol;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public void setContacto(String contacto) {
-        Contacto = contacto;
+        this.contacto = contacto;
     }
 
-    public int getID_Rol() {
-        return ID_Rol;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
-    public void setID_Rol(int iD_Rol) {
-        ID_Rol = iD_Rol;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 }
