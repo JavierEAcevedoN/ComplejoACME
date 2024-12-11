@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS LogRegistros (
 CREATE TABLE IF NOT EXISTS LogCambioEstado (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Fecha DATETIME NOT NULL,
+    Nuevo_Estado BOOLEAN NOT NULL,
     Descripcion TEXT NOT NULL,
     Usuario_Responsable VARCHAR(64) NOT NULL,
     ID_Personal INT NOT NULL,
