@@ -1,4 +1,4 @@
-package Controlador;
+package Modelo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,26 +6,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Modelo.ConexionMG;
-import Modelo.NotificarP;
-import Modelo.Personal;
-
-public class CPersonal extends ConexionMG<Personal> implements NotificarP{
-    private static CPersonal instance;
+public class CMGPersonal extends ConexionMG<Personal> {
+    private static CMGPersonal instance;
     private List<Personal> listaPersonal = new ArrayList<>();
 
-    private CPersonal() {
+    private CMGPersonal() {
         super();
     }
 
-    public static CPersonal getInstance() {
+    public static CMGPersonal getInstance() {
         if (instance == null) {
-            instance = new CPersonal();
+            instance = new CMGPersonal();
         }
         return instance;
     }
 
-    @Override
     public void actualizar() {
         listaPersonal.clear();
         mostrar();
@@ -65,7 +60,7 @@ public class CPersonal extends ConexionMG<Personal> implements NotificarP{
                     "INSERT INTO personal(Nombre,Contacto,Direccion,Estado,ID_Rol) VALUES(?,?,?,?,?);");
             pst.setString(1, personal.getNombre());
             pst.setString(2, personal.getContacto());
-            pst.setString(3, personal.getDireccion());
+            pst.setString( 3, personal.getDireccion());
             pst.setBoolean(4, personal.isEstado());
             pst.setInt(5, personal.getIdRol());
             pst.execute();
