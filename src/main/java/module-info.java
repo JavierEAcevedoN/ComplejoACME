@@ -9,6 +9,7 @@ module com.acme.complejoacme {
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens com.acme.complejoacme to javafx.fxml;
     exports com.acme.complejoacme;
