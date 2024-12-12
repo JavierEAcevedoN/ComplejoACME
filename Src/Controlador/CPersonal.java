@@ -5,15 +5,15 @@ import java.sql.SQLException;
 
 import Modelo.*;
 
-public class CPersonal extends Conexion<Personal>{
-    private CPersonal instance;
+public class CPersonal extends Conexion<Personal> {
+    private static CPersonal instance;
 
-    public CPersonal() {
+    private CPersonal() {
         super();
     }
 
-    public CPersonal getInstance() {
-        if (conexionBD == null) {
+    public static CPersonal getInstance() {
+        if (instance == null) {
             instance = new CPersonal();
         }
         return instance;
@@ -28,6 +28,7 @@ public class CPersonal extends Conexion<Personal>{
             pst.setString(3, personal.getDireccion());
             pst.setBoolean(4, personal.isEstado());
             pst.setInt(5, personal.getIdRol());
+            pst.execute();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
         }
