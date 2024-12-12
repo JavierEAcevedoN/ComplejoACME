@@ -9,8 +9,9 @@ public class Main {
         CPersonal cPersonal = CPersonal.getInstance();
         Personal a = new Personal("b", "b", "b", true, 2);
         cPersonal.guardar(a);
+        cPersonal.mostrar();
 
-        DataBaseConection.ejecutarConexion();
         cPersonal.guardar(a);
+        cPersonal.mostrar();
     }
 }

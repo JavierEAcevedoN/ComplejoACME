@@ -6,6 +6,15 @@ public class Personal {
     private boolean estado;
     private int idRol;
     
+    public Personal(int id, String nombre, String direccion, String contacto, boolean estado, int idRol) {
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.contacto = contacto;
+        this.estado = estado;
+        this.idRol = idRol;
+    }
+
     public Personal(String nombre, String direccion, String contacto, boolean estado, int idRol) {
         this.nombre = nombre;
         this.direccion = direccion;

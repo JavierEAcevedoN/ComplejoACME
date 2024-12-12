@@ -42,7 +42,7 @@ public class DataBaseConection {
             Connection conexion = DriverManager.getConnection(cadConex, user, password);
             System.out.println("Conexión exitosa.");
             conexionDB = conexion;
-            Conexion.actualizarConexion();
+            ConexionM.actualizarConexion();
             return;
         } catch (SQLException e) {
             System.err.println("Error al conectarse con la base de datos: " + e.getMessage());

@@ -2,10 +2,10 @@ package Modelo;
 
 import java.sql.Connection;
 
-public abstract class Conexion<T> {
+public abstract class ConexionM {
     protected static Connection conexionBD;
 
-    protected Conexion() {
+    protected ConexionM() {
         actualizarConexion();
     }
 
@@ -13,5 +13,5 @@ public abstract class Conexion<T> {
         conexionBD = DataBaseConection.getConexionDB();
     }
 
-    public abstract void guardar(T t);
+    public abstract void mostrar();
 }
