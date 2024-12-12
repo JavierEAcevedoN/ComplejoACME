@@ -1,16 +1,16 @@
 package Modelo;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class DataBaseConection {
     private static String ruta;
@@ -27,7 +27,7 @@ public class DataBaseConection {
     }
 
     private static void conectar(String host) {
-        String db = "complejoacme";
+        String db = "ComplejoACME";
 
         String cadConex = host + db;
 

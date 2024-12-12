@@ -31,7 +31,7 @@ public class CMGPersonal extends ConexionMG<Personal> {
         if (listaPersonal.size() < 1) {
             listaPersonal.clear();
             try {
-                ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM personal;");
+                ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM Personal;");
                 while (res.next()) {
                     listaPersonal.add(
                             new Personal(
@@ -57,7 +57,7 @@ public class CMGPersonal extends ConexionMG<Personal> {
     public void guardar(Personal personal) {
         try {
             PreparedStatement pst = conexionBD.prepareStatement(
-                    "INSERT INTO personal(Nombre,Contacto,Direccion,Estado,ID_Rol) VALUES(?,?,?,?,?);");
+                    "INSERT INTO Personal(Nombre,Contacto,Direccion,Estado,ID_Rol) VALUES(?,?,?,?,?);");
             pst.setString(1, personal.getNombre());
             pst.setString(2, personal.getContacto());
             pst.setString( 3, personal.getDireccion());

@@ -1,9 +1,5 @@
 package Modelo;
 
-import Modelo.CMGPersonal;
-import Modelo.DataBaseConection;
-import Modelo.Personal;
-
 public class Main {
     public static void main(String[] args) {
         DataBaseConection.ejecutarConexion();

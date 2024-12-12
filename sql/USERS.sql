@@ -39,15 +39,10 @@ GRANT SELECT, INSERT, UPDATE ON ComplejoACME.EmpresasPersonal TO 'FUNCIONARIO';
 
 
 -- CREACION DE USUARIOS DE PRUEBA CON SUS ROLES
-SET GLOBAL validate_password.policy = LOW;
-SET GLOBAL validate_password.length = 0;
-SET GLOBAL validate_password.number_count = 0;
-SET GLOBAL validate_password.mixed_case_count = 0;
-SET GLOBAL validate_password.special_char_count = 0;
 
 
 DROP USER IF EXISTS 'superusuario1'@'127.0.0.1';
-CREATE USER 'superusuario1'@'127.0.0.1';
+CREATE USER 'superusuario1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
 DROP USER IF EXISTS 'supervisor1'@'127.0.0.1';
 CREATE USER 'supervisor1'@'127.0.0.1';
 DROP USER IF EXISTS 'guarda1'@'127.0.0.1';
