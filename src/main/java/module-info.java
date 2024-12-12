@@ -1,4 +1,4 @@
-module complejoacme.complejoacme {
+module com.acme.complejoacme {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -10,6 +10,6 @@ module complejoacme.complejoacme {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens complejoacme.complejoacme to javafx.fxml;
-    exports complejoacme.complejoacme;
+    opens com.acme.complejoacme to javafx.fxml;
+    exports com.acme.complejoacme;
 }

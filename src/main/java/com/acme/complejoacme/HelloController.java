@@ -1,4 +1,4 @@
-package complejoacme.complejoacme;
+package com.acme.complejoacme;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

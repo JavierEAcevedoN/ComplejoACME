@@ -1,4 +1,4 @@
-package complejoacme.complejoacme;
+package com.acme.complejoacme;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
