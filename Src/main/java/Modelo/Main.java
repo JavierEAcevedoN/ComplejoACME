@@ -1,6 +1,4 @@
-import Modelo.CMGPersonal;
-import Modelo.DataBaseConection;
-import Modelo.Personal;
+package Modelo;
 
 public class Main {
     public static void main(String[] args) {

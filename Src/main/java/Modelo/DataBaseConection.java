@@ -58,7 +58,7 @@ public class DataBaseConection {
             return;
         }
 
-        File configuracion = new File("Src\\configuracion.txt");
+        File configuracion = new File("src\\configuracion.txt");
         if (configuracion.isFile() && configuracion.exists()) {
             try (BufferedReader buffer = new BufferedReader(new FileReader(configuracion))) {
                 StringBuilder contenido = new StringBuilder();
