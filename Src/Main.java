@@ -8,10 +8,11 @@ public class Main {
 
         CPersonal cPersonal = CPersonal.getInstance();
         Personal a = new Personal("b", "b", "b", true, 2);
+        cPersonal.mostrar();
         cPersonal.guardar(a);
+
         cPersonal.mostrar();
 
         cPersonal.guardar(a);
-        cPersonal.mostrar();
     }
 }

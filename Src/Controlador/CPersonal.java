@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Modelo.ConexionMG;
+import Modelo.NotificarP;
 import Modelo.Personal;
 
-public class CPersonal extends ConexionMG<Personal> {
+public class CPersonal extends ConexionMG<Personal> implements NotificarP{
     private static CPersonal instance;
     private List<Personal> listaPersonal = new ArrayList<>();
 
@@ -25,6 +26,12 @@ public class CPersonal extends ConexionMG<Personal> {
     }
 
     @Override
+    public void actualizar() {
+        listaPersonal.clear();
+        mostrar();
+    }
+
+    @Override
     public void mostrar() {
         if (listaPersonal.size() < 1) {
             listaPersonal.clear();
@@ -33,12 +40,14 @@ public class CPersonal extends ConexionMG<Personal> {
                 while (res.next()) {
                     listaPersonal.add(
                             new Personal(
-                                    res.getInt("ID"),
-                                    res.getString("Nombre"),
-                                    res.getString("Direccion"),
-                                    res.getString("Contacto"),
-                                    res.getBoolean("Estado"),
-                                    res.getInt("ID_Rol")));
+                                res.getInt("ID"),
+                                res.getString("Nombre"),
+                                res.getString("Direccion"),
+                                res.getString("Contacto"),
+                                res.getBoolean("Estado"),
+                                res.getInt("ID_Rol")
+                        )
+                    );
                 }
             } catch (SQLException e) {
                 System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
@@ -46,7 +55,7 @@ public class CPersonal extends ConexionMG<Personal> {
         }
         listaPersonal.forEach(i -> System.out
                 .println("ID: " + i.getId() + ", Nombre: " + i.getNombre() + ", Direccion: " + i.getDireccion()
-                        + ", Contacto: " + i.getContacto() + ", Estado: " + i.isEstado() + ", Rol: " + i.getIdRol()));
+                        + ", Contacto: " + i.getContacto() + ", Estado: " + i.isEstado() + ", ID Rol: " + i.getIdRol()));
     }
 
     @Override
@@ -63,5 +72,6 @@ public class CPersonal extends ConexionMG<Personal> {
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
         }
+        actualizar();
     };
 }
