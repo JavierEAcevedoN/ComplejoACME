@@ -85,7 +85,7 @@ public class DataBaseConection {
     }
 
     public static boolean actualizarConexion(String host, String user, String password) {
-        File configuracion = new File("Src\\configuracion.txt");
+        File configuracion = new File("src\\configuracion.txt");
 
         if (!conectar(host, user, password)) {
             return false;

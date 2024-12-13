@@ -2388,7 +2388,7 @@
 									"font": "Arial;13;1",
 									"left": 464,
 									"top": 677,
-									"width": 201.68505859375,
+									"width": 252.26318359375,
 									"height": 13,
 									"text": "Personal"
 								},
@@ -2415,7 +2415,7 @@
 											"font": "Arial;13;0",
 											"left": 469,
 											"top": 700,
-											"width": 191.68505859375,
+											"width": 242.26318359375,
 											"height": 13
 										},
 										{
@@ -2431,7 +2431,7 @@
 											"font": "Arial;13;0",
 											"left": 469,
 											"top": 715,
-											"width": 191.68505859375,
+											"width": 242.26318359375,
 											"height": 13
 										},
 										{
@@ -2447,7 +2447,7 @@
 											"font": "Arial;13;0",
 											"left": 469,
 											"top": 730,
-											"width": 191.68505859375,
+											"width": 242.26318359375,
 											"height": 13
 										},
 										{
@@ -2463,7 +2463,7 @@
 											"font": "Arial;13;0",
 											"left": 469,
 											"top": 745,
-											"width": 191.68505859375,
+											"width": 242.26318359375,
 											"height": 13
 										},
 										{
@@ -2479,7 +2479,23 @@
 											"font": "Arial;13;0",
 											"left": 469,
 											"top": 760,
-											"width": 191.68505859375,
+											"width": 242.26318359375,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGTwd4M5IJkJac=",
+											"_parent": {
+												"$ref": "AAAAAAGTsihCbgOBWqM="
+											},
+											"model": {
+												"$ref": "AAAAAAGTwd4M2IJhTng="
+											},
+											"fillColor": "#D8E5FF",
+											"font": "Arial;13;0",
+											"left": 469,
+											"top": 775,
+											"width": 242.26318359375,
 											"height": 13
 										},
 										{
@@ -2494,8 +2510,8 @@
 											"fillColor": "#D8E5FF",
 											"font": "Arial;13;0",
 											"left": 469,
-											"top": 775,
-											"width": 191.68505859375,
+											"top": 790,
+											"width": 242.26318359375,
 											"height": 13
 										}
 									],
@@ -2503,16 +2519,16 @@
 									"font": "Arial;13;0",
 									"left": 464,
 									"top": 695,
-									"width": 201.68505859375,
-									"height": 98
+									"width": 252.26318359375,
+									"height": 113
 								}
 							],
 							"fillColor": "#D8E5FF",
 							"font": "Arial;13;0",
 							"left": 464,
 							"top": 672,
-							"width": 201.68505859375,
-							"height": 121,
+							"width": 252.26318359375,
+							"height": 136,
 							"nameLabel": {
 								"$ref": "AAAAAAGTsihCbQOAJ8I="
 							},
@@ -4414,7 +4430,7 @@
 										"$ref": "AAAAAAGTsihCbgO5qE8="
 									},
 									"font": "Arial;13;0",
-									"left": 691,
+									"left": 741,
 									"top": 707,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -4448,7 +4464,7 @@
 							"tail": {
 								"$ref": "AAAAAAGTsihCbQN/1LY="
 							},
-							"points": "666:728;816:728;816:570",
+							"points": "716:728;816:728;816:570",
 							"nameLabel": {
 								"$ref": "AAAAAAGTsihCbgO6VWE="
 							},
@@ -4575,7 +4591,7 @@
 										"$ref": "AAAAAAGTsihCbgPBLcA="
 									},
 									"font": "Arial;13;0",
-									"left": 691,
+									"left": 741,
 									"top": 707,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -4610,7 +4626,7 @@
 								"$ref": "AAAAAAGTsihCbQN/1LY="
 							},
 							"lineStyle": 2,
-							"points": "666:728;1152:728;1152:585",
+							"points": "716:728;1152:728;1152:585",
 							"nameLabel": {
 								"$ref": "AAAAAAGTsihCbgPCF5w="
 							},
@@ -4738,7 +4754,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 575,
-									"top": 812,
+									"top": 827,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -4771,7 +4787,7 @@
 							"tail": {
 								"$ref": "AAAAAAGTsihCbQN/1LY="
 							},
-							"points": "560:793;560:864;298:864;298:960",
+							"points": "560:808;560:864;298:864;298:960",
 							"nameLabel": {
 								"$ref": "AAAAAAGTsihCbgPKizk="
 							},
@@ -4882,7 +4898,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 574,
-									"top": 869,
+									"top": 877,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -4899,7 +4915,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 575,
-									"top": 812,
+									"top": 827,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -4933,7 +4949,7 @@
 								"$ref": "AAAAAAGTsihCbQN/1LY="
 							},
 							"lineStyle": 2,
-							"points": "560:793;560:960",
+							"points": "560:808;560:960",
 							"nameLabel": {
 								"$ref": "AAAAAAGTsihCbgPSo2c="
 							},
@@ -4980,7 +4996,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 575,
-									"top": 812,
+									"top": 827,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -5013,7 +5029,7 @@
 							"tail": {
 								"$ref": "AAAAAAGTsihCbQN/1LY="
 							},
-							"points": "560:793;560:864;856:864;856:960",
+							"points": "560:808;560:864;856:864;856:960",
 							"nameLabel": {
 								"$ref": "AAAAAAGTsihCbgPWo+A="
 							},
@@ -5407,6 +5423,18 @@
 						},
 						{
 							"_type": "ERDColumn",
+							"_id": "AAAAAAGTwd4M2IJhTng=",
+							"_parent": {
+								"$ref": "AAAAAAGTsihCbgPdev8="
+							},
+							"name": "Usuario_Sistema",
+							"type": "VARCHAR",
+							"length": "64",
+							"nullable": true,
+							"unique": true
+						},
+						{
+							"_type": "ERDColumn",
 							"_id": "AAAAAAGTsjQeLgfRsng=",
 							"_parent": {
 								"$ref": "AAAAAAGTsihCbgPdev8="
@@ -5614,7 +5642,8 @@
 							},
 							"name": "Usuario_Responsable",
 							"type": "VARCHAR",
-							"length": "64"
+							"length": "64",
+							"foreignKey": true
 						},
 						{
 							"_type": "ERDColumn",
@@ -5682,7 +5711,8 @@
 							"name": "Usuario_Creador",
 							"documentation": "Usuario que realizó la operación.",
 							"type": "VARCHAR",
-							"length": "64"
+							"length": "64",
+							"foreignKey": true
 						},
 						{
 							"_type": "ERDColumn",
@@ -5760,7 +5790,8 @@
 							"name": "Usuario_Responsable",
 							"documentation": "Usuario que realizó la operación.",
 							"type": "VARCHAR",
-							"length": "64"
+							"length": "64",
+							"foreignKey": true
 						},
 						{
 							"_type": "ERDColumn",
@@ -6088,7 +6119,8 @@
 							"name": "Usuario_Responsable",
 							"documentation": "Responsable del registro del incidente.",
 							"type": "VARCHAR",
-							"length": "64"
+							"length": "64",
+							"foreignKey": true
 						},
 						{
 							"_type": "ERDColumn",
@@ -6270,7 +6302,8 @@
 							"name": "Usuario_Responsable",
 							"documentation": "Persona que aplicó la restricción.",
 							"type": "VARCHAR",
-							"length": "64"
+							"length": "64",
+							"foreignKey": true
 						},
 						{
 							"_type": "ERDColumn",
