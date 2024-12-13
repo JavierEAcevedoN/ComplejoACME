@@ -50,7 +50,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
                     );
                 }
             } catch (SQLException e) {
-                System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
+                System.err.println("Error al recuperar los datos de la tabla vehiculo: " + e.getMessage());
             }
         }
         listaVehiculos.forEach(i -> System.out.println(i));
@@ -66,7 +66,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
             pst.setInt( 2, vehiculo.getIdDueño());
             pst.execute();
         } catch (SQLException e) {
-            System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
+            System.err.println("Error al ingresar el dato en la tabla vehiculo: " + e.getMessage());
         }
         reiniciarP();
     }
@@ -80,7 +80,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
             pst.setString( 2, vehiculo.getPlaca());
             pst.execute();
         } catch (SQLException e) {
-            System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
+            System.err.println("Error al actualizar el dato en la tabla vehiculo: " + e.getMessage());
         }
         reiniciarP();
     }

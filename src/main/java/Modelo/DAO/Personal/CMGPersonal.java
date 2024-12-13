@@ -46,7 +46,7 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
                     );
                 }
             } catch (SQLException e) {
-                System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
+                System.err.println("Error al recuperar los datos de la tabla personal: " + e.getMessage());
             }
         }
         listaPersonal.forEach(i -> System.out.println(i));
@@ -65,7 +65,7 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             pst.setInt(5, personal.getIdRol());
             pst.execute();
         } catch (SQLException e) {
-            System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
+            System.err.println("Error al ingresar el dato en la tabla personal: " + e.getMessage());
         }
         reiniciarP();
     };
@@ -83,7 +83,7 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             pst.setInt(6, personal.getId());
             pst.execute();
         } catch (SQLException e) {
-            System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
+            System.err.println("Error al actualizar el dato en la tabla personal: " + e.getMessage());
         }
         reiniciarP();
     };

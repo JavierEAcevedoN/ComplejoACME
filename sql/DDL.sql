@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS vehiculo (
     Foreign Key (ID_Personal) REFERENCES personal (ID)
 );
 
-CREATE TABLE IF NOT EXISTS ControlAccesosVehicular (
+CREATE TABLE IF NOT EXISTS controlaccesosvehicular (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Fecha_Entrada DATETIME NOT NULL,
     Fecha_Salida DATETIME,
