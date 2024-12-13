@@ -4,7 +4,7 @@ DELIMITER //
 
 DROP TRIGGER IF EXISTS insertslogregistros;
 
-CREATE TRIGGER insertslogregistros
+CREATE TRIGGER IF NOT EXISTS insertslogregistros
 AFTER INSERT ON personal
 FOR EACH ROW
 BEGIN

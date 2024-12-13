@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CMGPersonal extends ConexionMG<Personal> {
+public class CMGPersonal extends ConexionMG<PersonalO> {
     private static CMGPersonal instance;
-    private List<Personal> listaPersonal = new ArrayList<>();
+    private List<PersonalM> listaPersonal = new ArrayList<>();
 
     private CMGPersonal() {
         super();
@@ -31,16 +31,16 @@ public class CMGPersonal extends ConexionMG<Personal> {
         if (listaPersonal.size() < 1) {
             listaPersonal.clear();
             try {
-                ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM personal;");
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getpersonal;");
                 while (res.next()) {
                     listaPersonal.add(
-                            new Personal(
+                            new PersonalM(
                                 res.getInt("ID"),
                                 res.getString("Nombre"),
                                 res.getString("Direccion"),
                                 res.getString("Contacto"),
                                 res.getBoolean("Estado"),
-                                res.getInt("ID_Rol")
+                                res.getString("Rol")
                         )
                     );
                 }
@@ -50,11 +50,11 @@ public class CMGPersonal extends ConexionMG<Personal> {
         }
         listaPersonal.forEach(i -> System.out
                 .println("ID: " + i.getId() + ", Nombre: " + i.getNombre() + ", Direccion: " + i.getDireccion()
-                        + ", Contacto: " + i.getContacto() + ", Estado: " + i.isEstado() + ", ID Rol: " + i.getIdRol()));
+                        + ", Contacto: " + i.getContacto() + ", Estado: " + i.isEstado() + ", Rol: " + i.getRol()));
     }
 
     @Override
-    public void guardar(Personal personal) {
+    public void guardar(PersonalO personal) {
         try {
             PreparedStatement pst = conexionBD.prepareStatement(
                 "INSERT INTO personal(Nombre,Direccion,Contacto,Estado,ID_Rol) VALUES(?,?,?,?,?);"
@@ -71,7 +71,7 @@ public class CMGPersonal extends ConexionMG<Personal> {
         reiniciarP();
     };
 
-    public void actualizar(Personal personal) {
+    public void actualizar(PersonalO personal) {
         try {
             PreparedStatement pst = conexionBD.prepareStatement(
                 "UPDATE personal SET Nombre = ?, Direccion = ?, Contacto = ?, Estado = ?, ID_Rol = ? WHERE ID = ?;"

@@ -1,26 +1,26 @@
 package Modelo;
 
-public class Personal {
-    private int id;
-    private String nombre, direccion, contacto;
-    private boolean estado;
-    private int idRol;
-    
-    public Personal(int id, String nombre, String direccion, String contacto, boolean estado, int idRol) {
+public class PersonalM {
+    protected int id;
+    protected String nombre, direccion, contacto;
+    protected boolean estado;
+    private String rol;
+
+    protected PersonalM(int id, String nombre, String direccion, String contacto, boolean estado) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.contacto = contacto;
         this.estado = estado;
-        this.idRol = idRol;
     }
 
-    public Personal(String nombre, String direccion, String contacto, boolean estado, int idRol) {
+    public PersonalM(int id, String nombre, String direccion, String contacto, boolean estado, String rol) {
+        this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.contacto = contacto;
         this.estado = estado;
-        this.idRol = idRol;
+        this.rol = rol;
     }
 
     public int getId() {
@@ -43,8 +43,8 @@ public class Personal {
         return estado;
     }
 
-    public int getIdRol() {
-        return idRol;
+    public String getRol() {
+        return rol;
     }
 
     public void setNombre(String nombre) {
@@ -61,9 +61,5 @@ public class Personal {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
     }
 }
