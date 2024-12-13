@@ -5,12 +5,8 @@ public class Main {
         DataBaseConection.ejecutarConexion();
 
         CMGPersonal cPersonal = CMGPersonal.getInstance();
-        Personal a = new Personal("b", "b", "b", true, 2);
+        Personal a = new Personal(39,"Hi", "Tremorton", "*number*", true, 3);
         cPersonal.mostrar();
-        cPersonal.guardar(a);
-
-        cPersonal.mostrar();
-
-        cPersonal.guardar(a);
+        cPersonal.actualizar(a);
     }
 }

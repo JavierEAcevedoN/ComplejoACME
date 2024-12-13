@@ -1,14 +1,14 @@
-USE ComplejoACME;
+USE complejoacme;
 
 DELIMITER //
 
-DROP TRIGGER IF EXISTS InsertsLogRegistros;
+DROP TRIGGER IF EXISTS insertslogregistros;
 
-CREATE TRIGGER InsertsLogRegistros
-AFTER INSERT ON Personal
+CREATE TRIGGER insertslogregistros
+AFTER INSERT ON personal
 FOR EACH ROW
 BEGIN
-    INSERT INTO LogRegistros (
+    INSERT INTO logregistros (
         Fecha,
         Usuario_Creador,
         ID_Personal_Creado

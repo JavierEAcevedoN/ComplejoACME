@@ -6,54 +6,48 @@ DROP ROLE IF EXISTS 'FUNCIONARIO';
 -- CREACION DE ROLES CON SUS PERMISOS A TABLAS
 CREATE ROLE 'SUPERUSUARIO';
 
-GRANT ALL PRIVILEGES ON ComplejoACME.* TO 'SUPERUSUARIO';
+GRANT ALL PRIVILEGES ON complejoacme.* TO 'SUPERUSUARIO';
 
 CREATE ROLE 'SUPERVISOR';
 
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.Personal TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.Restricciones TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.RestriccionesPersonal TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.Incidentes TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.IncidentesPersonal TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.PermisosVisitantes TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.ControlAccesosPersonal TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.Vehiculo TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.ControlAccesosVehicular TO 'SUPERVISOR';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.EmpresasPersonal TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.personal TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.restricciones TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.restriccionespersonal TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.incidentes TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.incidentespersonal TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.permisosvisitantes TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesospersonal TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.vehiculo TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesosvehicular TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.empresaspersonal TO 'SUPERVISOR';
 
 
 CREATE ROLE 'GUARDA';
 
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.ControlAccesosPersonal TO 'GUARDA';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.Vehiculo TO 'GUARDA';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.ControlAccesosVehicular TO 'GUARDA';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesospersonal TO 'GUARDA';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.vehiculo TO 'GUARDA';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesosvehicular TO 'GUARDA';
 
 
-GRANT INSERT ON ComplejoACME.IncidentesPersonal TO 'GUARDA';
+GRANT INSERT ON complejoacme.incidentespersonal TO 'GUARDA';
 
 CREATE ROLE 'FUNCIONARIO';
 
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.Personal TO 'FUNCIONARIO';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.PermisosVisitantes TO 'FUNCIONARIO';
-GRANT SELECT, INSERT, UPDATE ON ComplejoACME.EmpresasPersonal TO 'FUNCIONARIO';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.personal TO 'FUNCIONARIO';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.permisosvisitantes TO 'FUNCIONARIO';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.empresaspersonal TO 'FUNCIONARIO';
 
 
 -- CREACION DE USUARIOS DE PRUEBA CON SUS ROLES
-SET GLOBAL validate_password.policy = LOW;
-SET GLOBAL validate_password.length = 0;
-SET GLOBAL validate_password.number_count = 0;
-SET GLOBAL validate_password.mixed_case_count = 0;
-SET GLOBAL validate_password.special_char_count = 0;
-
 
 DROP USER IF EXISTS 'superusuario1'@'127.0.0.1';
-CREATE USER 'superusuario1'@'127.0.0.1';
+CREATE USER 'superusuario1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
 DROP USER IF EXISTS 'supervisor1'@'127.0.0.1';
-CREATE USER 'supervisor1'@'127.0.0.1';
+CREATE USER 'supervisor1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
 DROP USER IF EXISTS 'guarda1'@'127.0.0.1';
-CREATE USER 'guarda1'@'127.0.0.1';
+CREATE USER 'guarda1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
 DROP USER IF EXISTS 'funcionario1'@'127.0.0.1';
-CREATE USER 'funcionario1'@'127.0.0.1';
+CREATE USER 'funcionario1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
 
 GRANT 'SUPERUSUARIO' TO 'superusuario1'@'127.0.0.1';
 GRANT 'SUPERVISOR' TO 'supervisor1'@'127.0.0.1';

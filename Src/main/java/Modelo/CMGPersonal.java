@@ -21,7 +21,7 @@ public class CMGPersonal extends ConexionMG<Personal> {
         return instance;
     }
 
-    public void actualizar() {
+    public void reiniciarP() {
         listaPersonal.clear();
         mostrar();
     }
@@ -57,16 +57,35 @@ public class CMGPersonal extends ConexionMG<Personal> {
     public void guardar(Personal personal) {
         try {
             PreparedStatement pst = conexionBD.prepareStatement(
-                    "INSERT INTO personal(Nombre,Contacto,Direccion,Estado,ID_Rol) VALUES(?,?,?,?,?);");
+                "INSERT INTO personal(Nombre,Direccion,Contacto,Estado,ID_Rol) VALUES(?,?,?,?,?);"
+            );
             pst.setString(1, personal.getNombre());
-            pst.setString(2, personal.getContacto());
-            pst.setString( 3, personal.getDireccion());
+            pst.setString( 2, personal.getDireccion());
+            pst.setString(3, personal.getContacto());
             pst.setBoolean(4, personal.isEstado());
             pst.setInt(5, personal.getIdRol());
             pst.execute();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
         }
-        actualizar();
+        reiniciarP();
+    };
+
+    public void actualizar(Personal personal) {
+        try {
+            PreparedStatement pst = conexionBD.prepareStatement(
+                "UPDATE personal SET Nombre = ?, Direccion = ?, Contacto = ?, Estado = ?, ID_Rol = ? WHERE ID = ?;"
+            );
+            pst.setString(1, personal.getNombre());
+            pst.setString( 2, personal.getDireccion());
+            pst.setString(3, personal.getContacto());
+            pst.setBoolean(4, personal.isEstado());
+            pst.setInt(5, personal.getIdRol());
+            pst.setInt(6, personal.getId());
+            pst.execute();
+        } catch (SQLException e) {
+            System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
+        }
+        reiniciarP();
     };
 }

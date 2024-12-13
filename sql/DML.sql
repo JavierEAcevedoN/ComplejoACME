@@ -1,15 +1,15 @@
 -- Inserciones para la base de datos ComplejoACME
-
--- Tabla Rol
-INSERT INTO Rol (Rol) VALUES
+USE complejoacme;
+-- Tabla rol
+INSERT INTO rol (Rol) VALUES
 ('Visitante'),
 ('Guarda'),
 ('Supervisor'),
 ('Funcionario'),
 ('Empleado');
 
--- Tabla Restricciones
-INSERT INTO Restricciones (Descripcion) VALUES
+-- Tabla restricciones
+INSERT INTO restricciones (Descripcion) VALUES
 ('Prohibición acceso: 1 Semana'),
 ('Prohibición acceso: 1 mes'),
 ('Prohibición acceso: 3 meses'),
@@ -17,8 +17,8 @@ INSERT INTO Restricciones (Descripcion) VALUES
 ('Prohibición acceso: 1 año'),
 ('Prohibición acceso: Indefinidamente');
 
--- Tabla Personal
-INSERT INTO Personal (Nombre, Direccion, Contacto, Estado, ID_Rol) VALUES
+-- Tabla personal
+INSERT INTO personal (Nombre, Direccion, Contacto, Estado, ID_Rol) VALUES
 ('Juan Perez', 'Av. Siempre Viva 123', '123456789', TRUE, 1),
 ('Maria Gomez', 'Calle Falsa 456', '987654321', FALSE, 3),
 ('Luis Martinez', 'Plaza Central 789', '654321987', TRUE, 4),
@@ -58,8 +58,8 @@ INSERT INTO Personal (Nombre, Direccion, Contacto, Estado, ID_Rol) VALUES
 ('Isabel Perez', 'Av. Primavera 898', '987321654', FALSE, 2),
 ('Juanita Serrano', 'Calle Luna 909', '123456987', TRUE, 1);
 
--- Tabla PermisosVisitantes
-INSERT INTO PermisosVisitantes (Fecha_Inicio, Fecha_Fin, Usuario_Responsable, ID_Personal) VALUES
+-- Tabla permisosvisitantes
+INSERT INTO permisosvisitantes (Fecha_Inicio, Fecha_Fin, Usuario_Responsable, ID_Personal) VALUES
 ('2024-11-01', '2024-11-07', 'funcionario1', 1),
 ('2024-11-02', '2024-11-05', 'funcionario2', 9),
 ('2024-11-03', '2024-11-08', 'funcionario1', 11),
@@ -71,8 +71,8 @@ INSERT INTO PermisosVisitantes (Fecha_Inicio, Fecha_Fin, Usuario_Responsable, ID
 ('2024-11-09', '2024-11-19', 'funcionario4', 9),
 ('2024-11-10', '2024-11-20', 'funcionario6', 11);
 
--- Tabla LogRegistros
-INSERT INTO LogRegistros (Fecha, Usuario_Creador, ID_Personal_Creado) VALUES
+-- Tabla logregistros
+INSERT INTO logregistros (Fecha, Usuario_Creador, ID_Personal_Creado) VALUES
 ('2024-11-01 08:00:00', 'funcionario1', 1),
 ('2024-11-02 09:00:00', 'funcionario2', 2),
 ('2024-11-03 10:30:00', 'supervisor1', 3),
@@ -84,8 +84,8 @@ INSERT INTO LogRegistros (Fecha, Usuario_Creador, ID_Personal_Creado) VALUES
 ('2024-11-09 16:20:00', 'supervisor4', 9),
 ('2024-11-10 17:50:00', 'funcionario6', 10);
 
--- Tabla LogCambioEstado
-INSERT INTO LogCambioEstado (Fecha, Nuevo_Estado, Descripcion, Usuario_Responsable, ID_Personal) VALUES
+-- Tabla logcambioestado
+INSERT INTO logcambioestado (Fecha, Nuevo_Estado, Descripcion, Usuario_Responsable, ID_Personal) VALUES
 ('2024-11-01 08:30:00', TRUE, 'Activación inicial', 'supervisor1', 1),
 ('2024-11-02 09:15:00', FALSE, 'Inactivación por falta', 'supervisor2', 2),
 ('2024-11-03 10:45:00', TRUE, 'Reactivación manual', 'supervisor1', 3),
@@ -97,8 +97,8 @@ INSERT INTO LogCambioEstado (Fecha, Nuevo_Estado, Descripcion, Usuario_Responsab
 ('2024-11-09 17:30:00', TRUE, 'Reactivación programada', 'supervisor4', 9),
 ('2024-11-10 18:00:00', TRUE, 'Activación final', 'supervisor2', 10);
 
--- Tabla ControlAccesosPersonal
-INSERT INTO ControlAccesosPersonal (Fecha_Entrada, Fecha_Salida, ID_Personal) VALUES
+-- Tabla controlaccesospersonal
+INSERT INTO controlaccesospersonal (Fecha_Entrada, Fecha_Salida, ID_Personal) VALUES
 ('2024-11-01 07:00:00', '2024-11-01 17:00:00', 1),
 ('2024-11-02 08:00:00', '2024-11-02 18:00:00', 2),
 ('2024-11-03 09:00:00', '2024-11-03 19:00:00', 3),
@@ -110,8 +110,8 @@ INSERT INTO ControlAccesosPersonal (Fecha_Entrada, Fecha_Salida, ID_Personal) VA
 ('2024-11-09 09:10:00', '2024-11-09 19:10:00', 9),
 ('2024-11-10 07:50:00', '2024-11-10 17:50:00', 10);
 
--- Tabla Vehiculo
-INSERT INTO Vehiculo (Placa, ID_Personal) VALUES
+-- Tabla vehiculo
+INSERT INTO vehiculo (Placa, ID_Personal) VALUES
 ('ABC123', 1),
 ('DEF456', 2),
 ('GHI789', 3),
@@ -123,8 +123,8 @@ INSERT INTO Vehiculo (Placa, ID_Personal) VALUES
 ('YZA567', 9),
 ('BCD890', 10);
 
--- Tabla ControlAccesosVehicular
-INSERT INTO ControlAccesosVehicular (Fecha_Entrada, Fecha_Salida, Placa) VALUES
+-- Tabla controlaccesosvehicular
+INSERT INTO controlaccesosvehicular (Fecha_Entrada, Fecha_Salida, Placa) VALUES
 ('2024-11-01 07:10:00', '2024-11-01 17:10:00', 'ABC123'),
 ('2024-11-02 08:10:00', '2024-11-02 18:10:00', 'DEF456'),
 ('2024-11-03 09:10:00', '2024-11-03 19:10:00', 'GHI789'),
@@ -136,8 +136,8 @@ INSERT INTO ControlAccesosVehicular (Fecha_Entrada, Fecha_Salida, Placa) VALUES
 ('2024-11-09 09:15:00', '2024-11-09 19:15:00', 'YZA567'),
 ('2024-11-10 07:55:00', '2024-11-10 17:55:00', 'BCD890');
 
--- Tabla Empresas
-INSERT INTO Empresas (Nombre, Contacto) VALUES
+-- Tabla empresas
+INSERT INTO empresas (Nombre, Contacto) VALUES
 ('Empresa Alpha', 'alpha@empresa.com'),
 ('Empresa Beta', 'beta@empresa.com'),
 ('Empresa Gamma', 'gamma@empresa.com'),
@@ -149,8 +149,8 @@ INSERT INTO Empresas (Nombre, Contacto) VALUES
 ('Empresa Iota', 'iota@empresa.com'),
 ('Empresa Kappa', 'kappa@empresa.com');
 
--- Tabla EmpresasPersonal
-INSERT INTO EmpresasPersonal (ID_Empresa, ID_Personal) VALUES
+-- Tabla empresaspersonal
+INSERT INTO empresaspersonal (ID_Empresa, ID_Personal) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
@@ -162,8 +162,8 @@ INSERT INTO EmpresasPersonal (ID_Empresa, ID_Personal) VALUES
 (9, 9),
 (10, 10);
 
--- Tabla RestriccionesPersonal
-INSERT INTO RestriccionesPersonal (Fecha, Usuario_Responsable, ID_Restriccion, ID_Personal) VALUES
+-- Tabla restriccionespersonal
+INSERT INTO restriccionespersonal (Fecha, Usuario_Responsable, ID_Restriccion, ID_Personal) VALUES
 ('2024-11-01', 'supervisor1', 1, 1),
 ('2024-11-02', 'supervisor2', 2, 2),
 ('2024-11-03', 'supervisor3', 3, 3),
@@ -175,8 +175,8 @@ INSERT INTO RestriccionesPersonal (Fecha, Usuario_Responsable, ID_Restriccion, I
 ('2024-11-09', 'supervisor1', 3, 9),
 ('2024-11-10', 'supervisor2', 4, 10);
 
--- Tabla Incidentes
-INSERT INTO Incidentes (Descripcion) VALUES
+-- Tabla incidentes
+INSERT INTO incidentes (Descripcion) VALUES
 ('Incidente menor'),
 ('Incidente grave'),
 ('Falla técnica'),
@@ -189,8 +189,8 @@ INSERT INTO Incidentes (Descripcion) VALUES
 ('Falta de cumplimiento de normas'),
 ('Otro');
 
--- Tabla IncidentesPersonal
-INSERT INTO IncidentesPersonal (Fecha, Descripcion, Usuario_Responsable, ID_Incidente, ID_Personal) VALUES
+-- Tabla incidentespersonal
+INSERT INTO incidentespersonal (Fecha, Descripcion, Usuario_Responsable, ID_Incidente, ID_Personal) VALUES
 ('2024-11-01 10:00:00', 'Revisión de conducta', 'supervisor1', 1, 1),
 ('2024-11-02 11:15:00', 'Accidente sin lesiones', 'supervisor2', 6, 2),
 ('2024-11-03 12:30:00', 'Reporte de falla', 'supervisor3', 3, 3),
