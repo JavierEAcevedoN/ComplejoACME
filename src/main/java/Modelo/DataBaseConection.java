@@ -30,7 +30,7 @@ public class DataBaseConection {
     }
 
     public static boolean conectar(String host, String user, String password) {
-        String db = "ComplejoACME";
+        String db = "complejoacme";
 
         String cadConex = host + db;
         try {
@@ -56,7 +56,7 @@ public class DataBaseConection {
             return root;
         }
 
-        File configuracion = new File("Src\\configuracion.txt");
+        File configuracion = new File("src\\configuracion.txt");
         if (configuracion.isFile() && configuracion.exists()) {
             try (BufferedReader buffer = new BufferedReader(new FileReader(configuracion))) {
                 StringBuilder contenido = new StringBuilder();
