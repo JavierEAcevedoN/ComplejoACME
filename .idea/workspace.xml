@@ -5,12 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac459ab8-30a5-44c0-8b4f-0672a4491ec5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/DataBaseConection.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main/java/Modelo/DataBaseConection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/main/java/com/acme/complejoacme/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main/java/com/acme/complejoacme/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/main/java/com/acme/complejoacme/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main/java/com/acme/complejoacme/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/main/resources/com/acme/complejoacme/Superlogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main/resources/com/acme/complejoacme/Superlogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/configuracion.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/ConexionM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/ConexionMG.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/DAO/Personal/CMGPersonal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/DAO/Personal/PersonalM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/DAO/Personal/PersonalO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/DAO/Vehiculo/CMGVehiculo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/DAO/Vehiculo/VehiculoM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/DAO/Vehiculo/VehiculoO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/DataBaseConection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/Modelo/NotificarP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/com/acme/complejoacme/MainApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/com/acme/complejoacme/MainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/main/resources/com/acme/complejoacme/Superlogin.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,22 +40,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.MainApplication.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Javier",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/camper/Documentos/KEJOGO/ComplejoACME/lib/mysql-connector-j-9.1.0.jar",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Javier&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/camper/Documentos/KEJOGO/ComplejoACME/lib/mysql-connector-j-9.1.0.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.acme.complejoacme.MainApplication" />
@@ -77,6 +86,17 @@
       <updated>1734035290463</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />
