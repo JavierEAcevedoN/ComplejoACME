@@ -5,19 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac459ab8-30a5-44c0-8b4f-0672a4491ec5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/Styles/Base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/LoginBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/SuperLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/AbstractLoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/SuperLoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/USERS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/USERS.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/CMGPersonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/CMGPersonal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DataBaseConection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DataBaseConection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/configuracion.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/Styles/Base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/Styles/Base.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/Superlogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/Superlogin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +56,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "JavaFX",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/camper/Documentos/KEJOGO/ComplejoACME/lib/mysql-connector-j-9.1.0.jar",
+    "last_opened_file_path": "/home/camper/Documentos/KEJOGO/ComplejoACME/src/main/resources/com/acme/complejoacme",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -50,9 +64,33 @@
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/Styles" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.acme.complejoacme.MainApplication" />
+      <module name="ComplejoACME" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.acme.complejoacme.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

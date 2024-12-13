@@ -2,6 +2,6 @@
     -fx-background-color: linear-gradient(to top, #320177, #930D70);
 }
 
-.header > *{
-    -fx-display: block;
+.close{
+    -fx-background-color: #FF0000FF;
 }

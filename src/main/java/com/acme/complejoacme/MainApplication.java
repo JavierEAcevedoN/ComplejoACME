@@ -1,18 +1,23 @@
 package com.acme.complejoacme;
 
+import Modelo.DataBaseConection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Superlogin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        AnchorPane loader = DataBaseConection.ejecutarConexion();
+        Scene scene = new Scene(loader);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.setTitle("ComplejoACME");
         stage.setScene(scene);
         stage.show();
     }

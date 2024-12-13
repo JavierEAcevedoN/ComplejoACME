@@ -1,5 +1,12 @@
 package Modelo;
 
+import Vista.Login;
+import Vista.LoginBuilder;
+import Vista.SuperLogin;
+import com.acme.complejoacme.LoginController;
+import com.acme.complejoacme.SuperLoginController;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -26,36 +33,31 @@ public class DataBaseConection {
         return ruta;
     }
 
-    private static void conectar(String host) {
+    public static boolean conectar(String host, String user, String password ) {
         String db = "ComplejoACME";
 
         String cadConex = host + db;
-
-        System.out.print("Ingresa el usuario: ");
-        String user = input.next();
-
-        input.nextLine();
-        System.out.print("Ingresa la contraseña: ");
-        String password = input.nextLine();
-
         try {
             Connection conexion = DriverManager.getConnection(cadConex, user, password);
             System.out.println("Conexión exitosa.");
             conexionDB = conexion;
             ConexionM.actualizarConexion();
-            return;
+            return true;
         } catch (SQLException e) {
             System.err.println("Error al conectarse con la base de datos: " + e.getMessage());
+            return false;
         }
     }
 
-    public static void ejecutarConexion() {
+    public static AnchorPane ejecutarConexion() {
+        AnchorPane root;
+        LoginController loginController = new LoginController();
+        SuperLoginController superLoginController = new SuperLoginController();
         if (ruta != null) {
             System.out.println("Ruta de configuración cargada: " + ruta);
-            // vista de inicio de sesion normal
-            // este metodo se ejecuta con el boton de la vista
-            conectar(ruta);
-            return;
+            Login login = Login.create(loginController);
+            root = login.withLeftPane().withRightPane().build();
+            return root;
         }
 
         File configuracion = new File("Src\\configuracion.txt");
@@ -71,18 +73,17 @@ public class DataBaseConection {
                 } else {
                     ruta = contenido.toString();
                     System.out.println("Ruta de configuración cargada: " + ruta);
-                    // vista de inicio de sesion normal
-                    // este metodo se ejecuta con el boton de la vista
-                    conectar(ruta);
-                    return;
+                    Login login = Login.create(loginController);
+                    root = login.withLeftPane().withRightPane().build();
+                    return root;
                 }
             } catch (IOException e) {
                 System.err.println("Error al leer el archivo de configuración: " + e.getMessage());
             }
         }
-        // vista de inicio de sesion superusuario
-        // este metodo se ejecuta con el boton de la vista
-        actualizarConexion();
+        SuperLogin login = SuperLogin.create(superLoginController);
+        root = login.withLeftPane().withRightPane().build();
+        return root;
     }
 
     public static void actualizarConexion() {
@@ -95,8 +96,7 @@ public class DataBaseConection {
         String puerto = input.next();
 
         String host = "jdbc:mysql://" + ip + ":" + puerto + "/";
-        conectar(host);
-        
+
         if (conexionDB == null) {
             return;
         }

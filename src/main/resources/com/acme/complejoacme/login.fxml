@@ -54,7 +54,7 @@
          </children></AnchorPane>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="309.0" orientation="VERTICAL" prefHeight="494.0" prefWidth="466.0" prefWrapLength="398.0" vgap="10.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-display: block;" text="Conexion a Base de datos" textAlignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-display: block;" text="Iniciar sistema" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -62,18 +62,6 @@
                   <Insets bottom="10.0" />
                </FlowPane.margin>
             </Text>
-            <Text fill="#830000" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-display: block;" text="Superusuario Requerido">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <FlowPane.margin>
-                  <Insets bottom="30.0" />
-               </FlowPane.margin>
-            </Text>
-            <Label alignment="CENTER" contentDisplay="TOP" text="Direccion base de datos" />
-            <TextField fx:id="dbadress" />
-            <Label layoutX="225.0" layoutY="273.0" text="Puerto" />
-            <TextField fx:id="dbport" layoutX="113.0" layoutY="202.0" />
             <Label layoutX="225.0" layoutY="281.0" text="Usuario" />
             <TextField fx:id="user" layoutX="113.0" layoutY="217.0" />
             <Label layoutX="225.0" layoutY="289.0" text="Contraseña" />
@@ -81,7 +69,7 @@
             <FlowPane alignment="BASELINE_CENTER" hgap="20.0" prefHeight="0.0" prefWidth="200.0" rowValignment="TOP">
                <children>
                   <Button fx:id="cancel" cancelButton="true" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #FF0000FF;" styleClass="close" stylesheets="@Styles/Base.css" text="Cancelar" textFill="WHITE" textOverrun="CLIP" wrapText="true" />
-                  <Button fx:id="conect" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#superConect" style="-fx-Halignment: right;" text="Conectar" textAlignment="CENTER" />
+                  <Button fx:id="conect" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#conect" style="-fx-Halignment: right;" text="Conectar" textAlignment="CENTER" />
                </children>
             </FlowPane>
          </children>
