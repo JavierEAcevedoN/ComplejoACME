@@ -1,3 +1,9 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.sourcePaths": [
+        "Src"
+    ],
+    "java.project.referencedLibraries": [
+        "Src\\Librerias\\mysql-connector-j-9.1.0.jar"
+    ]
 }

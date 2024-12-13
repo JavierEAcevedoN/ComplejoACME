@@ -1,0 +1,16 @@
+package Modelo;
+
+public class Main {
+    public static void main(String[] args) {
+        DataBaseConection.ejecutarConexion();
+
+        CMGPersonal cPersonal = CMGPersonal.getInstance();
+        Personal a = new Personal("b", "b", "b", true, 2);
+        cPersonal.mostrar();
+        cPersonal.guardar(a);
+
+        cPersonal.mostrar();
+
+        cPersonal.guardar(a);
+    }
+}
