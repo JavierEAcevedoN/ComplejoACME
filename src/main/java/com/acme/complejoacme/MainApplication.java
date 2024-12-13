@@ -1,10 +1,7 @@
 package com.acme.complejoacme;
 
 import Modelo.DataBaseConection;
-import Modelo.DAO.CAVehiculo.CAVehiculoO;
-import Modelo.DAO.CAVehiculo.CCAVehiculo;
-import Modelo.DAO.Vehiculo.CMGVehiculo;
-import Modelo.DAO.Vehiculo.VehiculoO;
+import Modelo.DAO.Empresas.CMEmpresas;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -12,7 +9,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 public class MainApplication extends Application {
     @Override
@@ -31,14 +27,7 @@ public class MainApplication extends Application {
         launch();
 
         // Prueva
-        CMGVehiculo cmgVehiculo = CMGVehiculo.getInstance();
-        VehiculoO a = new VehiculoO("EASDSAD423424", 23);
-        cmgVehiculo.mostrar();
-        cmgVehiculo.guardar(a);
-
-        CCAVehiculo ccaVehiculo = CCAVehiculo.getInstance();
-        CAVehiculoO b = new CAVehiculoO(12, Timestamp.valueOf("2024-11-01 07:10:00.0"), Timestamp.valueOf("2024-11-01 17:10:00.0"),"EASDSAD423424");
-        ccaVehiculo.mostrar();
-        ccaVehiculo.guardar(b);
+        CMEmpresas cmEmpresas = CMEmpresas.getInstance();
+        cmEmpresas.mostrar();
     }
 }

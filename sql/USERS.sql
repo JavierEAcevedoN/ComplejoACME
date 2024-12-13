@@ -20,6 +20,7 @@ GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesospersonal TO 'SUPERVIS
 GRANT SELECT, INSERT, UPDATE ON complejoacme.vehiculo TO 'SUPERVISOR';
 GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesosvehicular TO 'SUPERVISOR';
 GRANT SELECT, INSERT, UPDATE ON complejoacme.empresaspersonal TO 'SUPERVISOR';
+GRANT SELECT, INSERT, UPDATE ON complejoacme.empresas TO 'SUPERVISOR';
 GRANT EXECUTE ON PROCEDURE getpersonal TO 'SUPERVISOR';
 
 
