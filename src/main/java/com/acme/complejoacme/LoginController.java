@@ -31,10 +31,10 @@ public class LoginController extends AbstractLoginController{
             Stage stage = (Stage) user.getScene().getWindow();
 
             if (Ok) {
-                alert.setAlertType(Alert.AlertType.CONFIRMATION);
+                alert.setAlertType(Alert.AlertType.INFORMATION);
                 alert.setTitle("Enhorabuena");
                 alert.setHeaderText("Conexión exítosa");
-                alert.setContentText("Será redirigído al inicio de sesión.");
+                alert.setContentText("Será redirigído a la ventana principal");
                 alert.showAndWait();
                 stage.close();
             } else {

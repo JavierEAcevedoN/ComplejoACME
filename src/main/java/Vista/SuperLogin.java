@@ -1,8 +1,6 @@
 package Vista;
 
 import com.acme.complejoacme.AbstractLoginController;
-import com.acme.complejoacme.LoginController;
-import com.acme.complejoacme.SuperLoginController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

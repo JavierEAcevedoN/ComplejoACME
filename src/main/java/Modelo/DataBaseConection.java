@@ -1,7 +1,6 @@
 package Modelo;
 
 import Vista.Login;
-import Vista.LoginBuilder;
 import Vista.SuperLogin;
 import com.acme.complejoacme.LoginController;
 import com.acme.complejoacme.SuperLoginController;
@@ -17,13 +16,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class DataBaseConection {
     private static String ruta;
     private static Connection conexionDB;
-
-    static Scanner input = new Scanner(System.in);
     
     public static Connection getConexionDB() {
         return conexionDB;
@@ -33,7 +29,7 @@ public class DataBaseConection {
         return ruta;
     }
 
-    public static boolean conectar(String host, String user, String password ) {
+    public static boolean conectar(String host, String user, String password) {
         String db = "ComplejoACME";
 
         String cadConex = host + db;
@@ -80,25 +76,19 @@ public class DataBaseConection {
             } catch (IOException e) {
                 System.err.println("Error al leer el archivo de configuración: " + e.getMessage());
             }
+        } else {
+            System.out.println("El archivo de configuración no existe.");
         }
         SuperLogin login = SuperLogin.create(superLoginController);
         root = login.withLeftPane().withRightPane().build();
         return root;
     }
 
-    public static void actualizarConexion() {
+    public static boolean actualizarConexion(String host, String user, String password) {
         File configuracion = new File("Src\\configuracion.txt");
 
-        System.out.print("Ingresa la IP de la Base de Datos: ");
-        String ip = input.next();
-
-        System.out.print("Ingresa el puerto de la Base de Datos: ");
-        String puerto = input.next();
-
-        String host = "jdbc:mysql://" + ip + ":" + puerto + "/";
-
-        if (conexionDB == null) {
-            return;
+        if (!conectar(host, user, password)) {
+            return false;
         }
 
         try (ResultSet resultado = conexionDB.createStatement().executeQuery("SELECT CURRENT_ROLE();")) {
@@ -108,14 +98,18 @@ public class DataBaseConection {
 
                 try (PrintWriter pw = new PrintWriter(new FileWriter(configuracion))) {
                     pw.println(ruta);
+                    return true;
                 } catch (IOException e) {
                     System.out.println("Error en la escritura");
+                    return false;
                 }
             } else {
                 System.out.println("No es un superusuario valido");
+                return false;
             }
         } catch (SQLException e) {
             System.err.println("Error al conectarse con la base de datos: " + e.getMessage());
+            return false;
         }
     }
 }

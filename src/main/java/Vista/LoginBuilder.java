@@ -1,7 +1,6 @@
 package Vista;
 import com.acme.complejoacme.AbstractLoginController;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;

@@ -28,7 +28,7 @@ public class SuperLoginController extends AbstractLoginController {
 
         if (Ok) {
             String ruta = "jdbc:mysql://" + dbadress.getText() + ":" + dbport.getText() + "/";
-            Ok = DataBaseConection.conectar(ruta, user.getText(), pass.getText());
+            Ok = DataBaseConection.actualizarConexion(ruta, user.getText(), pass.getText());
 
             Stage stage = (Stage) user.getScene().getWindow();
 
@@ -36,7 +36,7 @@ public class SuperLoginController extends AbstractLoginController {
                 alert.setAlertType(Alert.AlertType.INFORMATION);
                 alert.setTitle("Enhorabuena");
                 alert.setHeaderText("Conexión exítosa");
-                alert.setContentText("Será redirigído al inicio de sesión.");
+                alert.setContentText("Será redirigído a la ventana del superusuario.");
                 alert.showAndWait();
                 stage.close();
             } else {

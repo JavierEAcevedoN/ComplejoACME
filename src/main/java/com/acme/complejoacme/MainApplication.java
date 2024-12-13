@@ -2,7 +2,6 @@ package com.acme.complejoacme;
 
 import Modelo.DataBaseConection;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -13,6 +12,7 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        System.out.println("Ejecutando programa...");
         AnchorPane loader = DataBaseConection.ejecutarConexion();
         Scene scene = new Scene(loader);
         stage.initStyle(StageStyle.UNDECORATED);
