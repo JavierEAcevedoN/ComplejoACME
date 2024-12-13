@@ -64,7 +64,7 @@ public class DataBaseConection {
                 while ((linea = buffer.readLine()) != null) {
                     contenido.append(linea);
                 }
-                if (contenido.length() == 0) {
+                if (contenido.isEmpty()) {
                     System.out.println("El archivo de configuración está vacío.");
                 } else {
                     ruta = contenido.toString();
