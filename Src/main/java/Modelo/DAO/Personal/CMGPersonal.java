@@ -1,10 +1,12 @@
-package Modelo;
+package Modelo.DAO.Personal;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import Modelo.ConexionMG;
 
 public class CMGPersonal extends ConexionMG<PersonalO> {
     private static CMGPersonal instance;
@@ -21,7 +23,7 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
         return instance;
     }
 
-    public void reiniciarP() {
+    private void reiniciarP() {
         listaPersonal.clear();
         mostrar();
     }
@@ -29,18 +31,17 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
     @Override
     public void mostrar() {
         if (listaPersonal.size() < 1) {
-            listaPersonal.clear();
             try {
                 ResultSet res = conexionBD.createStatement().executeQuery("CALL getpersonal;");
                 while (res.next()) {
                     listaPersonal.add(
-                            new PersonalM(
-                                res.getInt("ID"),
-                                res.getString("Nombre"),
-                                res.getString("Direccion"),
-                                res.getString("Contacto"),
-                                res.getBoolean("Estado"),
-                                res.getString("Rol")
+                        new PersonalM(
+                            res.getInt("ID"),
+                            res.getString("Nombre"),
+                            res.getString("Direccion"),
+                            res.getString("Contacto"),
+                            res.getBoolean("Estado"),
+                            res.getString("Rol")
                         )
                     );
                 }
@@ -48,9 +49,7 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
                 System.err.println("Error al ingresar el dato en la tabla Personal: " + e.getMessage());
             }
         }
-        listaPersonal.forEach(i -> System.out
-                .println("ID: " + i.getId() + ", Nombre: " + i.getNombre() + ", Direccion: " + i.getDireccion()
-                        + ", Contacto: " + i.getContacto() + ", Estado: " + i.isEstado() + ", Rol: " + i.getRol()));
+        listaPersonal.forEach(i -> System.out.println(i));
     }
 
     @Override

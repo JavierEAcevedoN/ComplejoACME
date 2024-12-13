@@ -28,6 +28,7 @@ CREATE ROLE 'GUARDA';
 GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesospersonal TO 'GUARDA';
 GRANT SELECT, INSERT, UPDATE ON complejoacme.vehiculo TO 'GUARDA';
 GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesosvehicular TO 'GUARDA';
+GRANT EXECUTE ON PROCEDURE getvehiculos TO 'GUARDA';
 
 
 GRANT INSERT ON complejoacme.incidentespersonal TO 'GUARDA';
@@ -42,13 +43,13 @@ GRANT EXECUTE ON PROCEDURE getpersonal TO 'FUNCIONARIO';
 -- CREACION DE USUARIOS DE PRUEBA CON SUS ROLES
 
 DROP USER IF EXISTS 'superusuario1'@'127.0.0.1';
-CREATE USER 'superusuario1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
+CREATE USER 'superusuario1'@'127.0.0.1' IDENTIFIED BY "";
 DROP USER IF EXISTS 'supervisor1'@'127.0.0.1';
-CREATE USER 'supervisor1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
+CREATE USER 'supervisor1'@'127.0.0.1' IDENTIFIED BY "";
 DROP USER IF EXISTS 'guarda1'@'127.0.0.1';
-CREATE USER 'guarda1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
+CREATE USER 'guarda1'@'127.0.0.1' IDENTIFIED BY "";
 DROP USER IF EXISTS 'funcionario1'@'127.0.0.1';
-CREATE USER 'funcionario1'@'127.0.0.1' IDENTIFIED BY "QwEr_12@";
+CREATE USER 'funcionario1'@'127.0.0.1' IDENTIFIED BY "";
 
 GRANT 'SUPERUSUARIO' TO 'superusuario1'@'127.0.0.1';
 GRANT 'SUPERVISOR' TO 'supervisor1'@'127.0.0.1';

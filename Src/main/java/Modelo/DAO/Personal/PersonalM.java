@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.DAO.Personal;
 
 public class PersonalM {
     protected int id;
@@ -47,6 +47,10 @@ public class PersonalM {
         return rol;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -61,5 +65,15 @@ public class PersonalM {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Nombre: " + nombre + ", Direccion: " + direccion
+                        + ", Contacto: " + contacto + ", Estado: " + estado + ", Rol: " + rol;
     }
 }

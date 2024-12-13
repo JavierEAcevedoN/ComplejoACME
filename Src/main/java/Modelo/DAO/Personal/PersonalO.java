@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.DAO.Personal;
 
 public class PersonalO extends PersonalM{
     private int idRol;
