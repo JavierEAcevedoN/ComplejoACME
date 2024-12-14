@@ -120,12 +120,132 @@ BEGIN
         pc.Contacto AS 'PC_C',
         pc.Estado AS 'PC_E',
         pc.Usuario_Sistema AS 'PC_U',
-        ruc.Rol AS 'PC_R'
+        rpc.Rol AS 'PC_R'
     FROM logregistros lr
     INNER JOIN personal uc ON lr.Usuario_Creador = uc.Usuario_Sistema
     INNER JOIN rol ruc ON uc.ID_Rol = ruc.ID
     INNER JOIN personal pc ON lr.ID_Personal_Creado = pc.ID
     INNER JOIN rol rpc ON pc.ID_Rol = rpc.ID;
+END //
+
+DROP PROCEDURE IF EXISTS getpermisosvisitantes;
+
+CREATE PROCEDURE IF NOT EXISTS getpermisosvisitantes ()
+BEGIN
+    SELECT
+        pv.ID,
+        pv.Fecha_Inicio,
+        pv.Fecha_Fin,
+        ur.ID AS 'ID_UR',
+        ur.Nombre AS 'UR_N',
+        ur.Direccion AS 'UR_D',
+        ur.Contacto AS 'UR_C',
+        ur.Estado AS 'UR_E',
+        ur.Usuario_Sistema AS 'UR_U',
+        rur.Rol AS 'UR_R',
+        p.ID AS 'ID_P',
+        p.Nombre AS 'P_N',
+        p.Direccion AS 'P_D',
+        p.Contacto AS 'P_C',
+        p.Estado AS 'P_E',
+        p.Usuario_Sistema AS 'P_U',
+        rp.Rol AS 'P_R'
+    FROM permisosvisitantes pv
+    INNER JOIN personal ur ON pv.Usuario_Responsable = ur.Usuario_Sistema
+    INNER JOIN rol rur ON ur.ID_Rol = rur.ID
+    INNER JOIN personal p ON pv.ID_Personal = p.ID
+    INNER JOIN rol rp ON p.ID_Rol = rp.ID;
+END //
+
+DROP PROCEDURE IF EXISTS getrestriccionespersonal;
+
+CREATE PROCEDURE IF NOT EXISTS getrestriccionespersonal ()
+BEGIN
+    SELECT
+        rpe.ID,
+        rpe.Fecha,
+        ur.ID AS 'ID_UR',
+        ur.Nombre AS 'UR_N',
+        ur.Direccion AS 'UR_D',
+        ur.Contacto AS 'UR_C',
+        ur.Estado AS 'UR_E',
+        ur.Usuario_Sistema AS 'UR_U',
+        rur.Rol AS 'UR_R',
+        r.Descripcion,
+        p.ID AS 'ID_P',
+        p.Nombre AS 'P_N',
+        p.Direccion AS 'P_D',
+        p.Contacto AS 'P_C',
+        p.Estado AS 'P_E',
+        p.Usuario_Sistema AS 'P_U',
+        rp.Rol AS 'P_R'
+    FROM restriccionespersonal rpe
+    INNER JOIN personal ur ON rpe.Usuario_Responsable = ur.Usuario_Sistema
+    INNER JOIN rol rur ON ur.ID_Rol = rur.ID
+    INNER JOIN restricciones r ON rpe.ID_Restriccion = r.ID
+    INNER JOIN personal p ON rpe.ID_Personal = p.ID
+    INNER JOIN rol rp ON p.ID_Rol = rp.ID;
+END //
+
+DROP PROCEDURE IF EXISTS getlogcambioestado;
+
+CREATE PROCEDURE IF NOT EXISTS getlogcambioestado ()
+BEGIN
+    SELECT
+        lce.ID,
+        lce.Fecha,
+        lce.Nuevo_Estado,
+        lce.Descripcion,
+        ur.ID AS 'ID_UR',
+        ur.Nombre AS 'UR_N',
+        ur.Direccion AS 'UR_D',
+        ur.Contacto AS 'UR_C',
+        ur.Estado AS 'UR_E',
+        ur.Usuario_Sistema AS 'UR_U',
+        rur.Rol AS 'UR_R',
+        p.ID AS 'ID_P',
+        p.Nombre AS 'P_N',
+        p.Direccion AS 'P_D',
+        p.Contacto AS 'P_C',
+        p.Estado AS 'P_E',
+        p.Usuario_Sistema AS 'P_U',
+        rp.Rol AS 'P_R'
+    FROM logcambioestado lce
+    INNER JOIN personal ur ON lce.Usuario_Responsable = ur.Usuario_Sistema
+    INNER JOIN rol rur ON ur.ID_Rol = rur.ID
+    INNER JOIN personal p ON lce.ID_Personal = p.ID
+    INNER JOIN rol rp ON p.ID_Rol = rp.ID;
+END //
+
+DROP PROCEDURE IF EXISTS getincidentespersonal;
+
+CREATE PROCEDURE IF NOT EXISTS getincidentespersonal ()
+BEGIN
+    SELECT
+        ipe.ID,
+        ipe.Fecha,
+        ipe.Descripcion,
+        ur.ID AS 'ID_UR',
+        ur.Nombre AS 'UR_N',
+        ur.Direccion AS 'UR_D',
+        ur.Contacto AS 'UR_C',
+        ur.Estado AS 'UR_E',
+        ur.Usuario_Sistema AS 'UR_U',
+        rur.Rol AS 'UR_R',
+        i.Descripcion AS 'I_D',
+        p.ID AS 'ID_P',
+        p.Nombre AS 'P_N',
+        p.Direccion AS 'P_D',
+        p.Contacto AS 'P_C',
+        p.Estado AS 'P_E',
+        p.Usuario_Sistema AS 'P_U',
+        rp.Rol AS 'P_R'
+    FROM incidentespersonal ipe
+    INNER JOIN personal ur ON ipe.Usuario_Responsable = ur.Usuario_Sistema
+    INNER JOIN rol rur ON ur.ID_Rol = rur.ID
+    INNER JOIN incidentes i ON ipe.ID_Incidente = i.ID
+    INNER JOIN personal p ON ipe.ID_Personal = p.ID
+    INNER JOIN rol rp ON p.ID_Rol = rp.ID;
 END //
 
 DELIMITER ;

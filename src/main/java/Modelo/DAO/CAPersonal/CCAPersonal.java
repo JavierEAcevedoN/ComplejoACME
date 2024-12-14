@@ -53,7 +53,7 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
                     );
                 }
             } catch (SQLException e) {
-                System.err.println("Error al recuparar los datos de la tabla controlaccesospersonal: " + e.getMessage());
+                System.err.println("Error al recuperar los datos de la tabla controlaccesospersonal: " + e.getMessage());
             }
         }
         listaCaPersonal.forEach(i -> System.out.println(i));

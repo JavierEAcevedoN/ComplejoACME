@@ -8,9 +8,17 @@ import Modelo.DAO.CAVehiculo.CCAVehiculo;
 import Modelo.DAO.EmpPersonal.CMGEPersonal;
 import Modelo.DAO.EmpPersonal.EmpPersonalO;
 import Modelo.DAO.Empresas.CMEmpresas;
+import Modelo.DAO.IPersonal.CMGIPersonal;
+import Modelo.DAO.IPersonal.IPersonalO;
+import Modelo.DAO.LCEstado.CMGLCEstado;
+import Modelo.DAO.LCEstado.LCEstadoO;
 import Modelo.DAO.LogRegistros.CMLogRegistros;
+import Modelo.DAO.PVisitantes.CMGPVisitantes;
+import Modelo.DAO.PVisitantes.PVisitantesO;
 import Modelo.DAO.Personal.CMGPersonal;
 import Modelo.DAO.Personal.PersonalO;
+import Modelo.DAO.RPersonal.CMGRPersonal;
+import Modelo.DAO.RPersonal.RPersonalO;
 import Modelo.DAO.Vehiculo.CMGVehiculo;
 import Modelo.DAO.Vehiculo.VehiculoO;
 import javafx.application.Application;
@@ -20,6 +28,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class MainApplication extends Application {
@@ -69,5 +78,25 @@ public class MainApplication extends Application {
 
         CMLogRegistros cmLogRegistros = CMLogRegistros.getInstance();
         cmLogRegistros.mostrar();
+
+        CMGPVisitantes cmgpVisitantes = CMGPVisitantes.getInstance();
+        PVisitantesO pVisitantesO = new PVisitantesO(Date.valueOf("2024-11-10"), Date.valueOf("2024-11-22"), personal.getUsuarioSistema(), personal.getId());
+        cmgpVisitantes.mostrar();
+        cmgpVisitantes.guardar(pVisitantesO);
+
+        CMGRPersonal cmgrPersonal = CMGRPersonal.getInstance();
+        RPersonalO rPersonalO = new RPersonalO(32, Date.valueOf("2024-11-01"), personal.getUsuarioSistema(), 1, personal.getId());
+        cmgrPersonal.mostrar();
+        cmgrPersonal.guardar(rPersonalO);
+
+        CMGLCEstado cmglcEstado = CMGLCEstado.getInstance();
+        LCEstadoO lcEstadoO = new LCEstadoO(32, Timestamp.valueOf("2024-05-10 12:55:00"), false, "Hola como estas", personal.getUsuarioSistema(), personal.getId());
+        cmglcEstado.mostrar();
+        cmglcEstado.guardar(lcEstadoO);
+
+        CMGIPersonal cmgiPersonal = CMGIPersonal.getInstance();
+        IPersonalO iPersonalO = new IPersonalO(21, Timestamp.valueOf("2024-05-09 12:55:00"), "Error en la vida", personal.getUsuarioSistema(), 2, personal.getId());
+        cmgiPersonal.mostrar();
+        cmgiPersonal.guardar(iPersonalO);
     }
 }

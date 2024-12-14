@@ -57,7 +57,7 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
                     );
                 }
             } catch (SQLException e) {
-                System.err.println("Error al recuparar los datos de la tabla controlaccesosvehicular: " + e.getMessage());
+                System.err.println("Error al recuperar los datos de la tabla controlaccesosvehicular: " + e.getMessage());
             }
         }
         listaCaVehiculos.forEach(i -> System.out.println(i));

@@ -57,7 +57,7 @@ public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
                     );
                 }
             } catch (SQLException e) {
-                System.err.println("Error al recuparar los datos de la tabla empresaspersonal: " + e.getMessage());
+                System.err.println("Error al recuperar los datos de la tabla empresaspersonal: " + e.getMessage());
             }
         }
         listaEmpPersonal.forEach(i -> System.out.println(i));
