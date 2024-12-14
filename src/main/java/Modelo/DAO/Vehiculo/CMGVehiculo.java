@@ -44,6 +44,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
                                 res.getString("Direccion"),
                                 res.getString("Contacto"),
                                 res.getBoolean("Estado"),
+                                res.getString("Usuario_Sistema"),
                                 res.getString("Rol")
                             )
                         ) 
@@ -63,7 +64,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
                 "INSERT INTO vehiculo(Placa,ID_Personal) VALUES(?,?);"
             );
             pst.setString(1, vehiculo.getPlaca());
-            pst.setInt( 2, vehiculo.getIdDueño());
+            pst.setLong( 2, vehiculo.getIdDueño());
             pst.execute();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla vehiculo: " + e.getMessage());
@@ -76,7 +77,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
             PreparedStatement pst = conexionBD.prepareStatement(
                 "UPDATE vehiculo SET ID_Personal = ? WHERE Placa = ?;"
             );
-            pst.setInt(1, vehiculo.getIdDueño());
+            pst.setLong(1, vehiculo.getIdDueño());
             pst.setString( 2, vehiculo.getPlaca());
             pst.execute();
         } catch (SQLException e) {

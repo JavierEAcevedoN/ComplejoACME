@@ -1,18 +1,18 @@
 package Modelo.DAO.Vehiculo;
 
 public class VehiculoO extends VehiculoM {
-    private int idDueño;
+    private long idDueño;
 
-    public VehiculoO(String placa, int idDueño) {
+    public VehiculoO(String placa, long idDueño) {
         super(placa);
         this.idDueño = idDueño;
     }
 
-    public void setIdDueño(int idDueño) {
+    public void setIdDueño(long idDueño) {
         this.idDueño = idDueño;
     }
 
-    public int getIdDueño() {
+    public long getIdDueño() {
         return idDueño;
     }
 }

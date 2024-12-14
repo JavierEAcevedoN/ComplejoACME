@@ -1,29 +1,31 @@
 package Modelo.DAO.Personal;
 
 public class PersonalM {
-    protected int id;
-    protected String nombre, direccion, contacto;
+    protected long id;
+    protected String nombre, direccion, contacto, usuarioSistema;
     protected boolean estado;
     private String rol;
 
-    protected PersonalM(int id, String nombre, String direccion, String contacto, boolean estado) {
+    protected PersonalM(long id, String nombre, String direccion, String contacto, boolean estado, String usuarioSistema) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.contacto = contacto;
         this.estado = estado;
+        this.usuarioSistema = usuarioSistema;
     }
 
-    public PersonalM(int id, String nombre, String direccion, String contacto, boolean estado, String rol) {
+    public PersonalM(long id, String nombre, String direccion, String contacto, boolean estado, String usuarioSistema , String rol) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.contacto = contacto;
         this.estado = estado;
+        this.usuarioSistema = usuarioSistema;
         this.rol = rol;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -43,11 +45,15 @@ public class PersonalM {
         return estado;
     }
 
+    public String getUsuarioSistema() {
+        return usuarioSistema;
+    }
+
     public String getRol() {
         return rol;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -67,13 +73,17 @@ public class PersonalM {
         this.estado = estado;
     }
 
+    public void setUsuarioSistema(String usuarioSistema) {
+        this.usuarioSistema = usuarioSistema;
+    }
+
     public void setRol(String rol) {
         this.rol = rol;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Nombre: " + nombre + ", Direccion: " + direccion
-                        + ", Contacto: " + contacto + ", Estado: " + estado + ", Rol: " + rol;
+        return "ID Personal: " + id + ", Nombre: " + nombre + ", Direccion: " + direccion
+                        + ", Contacto: " + contacto + ", Estado: " + estado + ", Usuario Sistema: " + usuarioSistema + ", Rol: " + rol;
     }
 }

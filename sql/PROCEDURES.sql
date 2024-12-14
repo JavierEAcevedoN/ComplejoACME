@@ -12,6 +12,7 @@ BEGIN
         p.Direccion,
         p.Contacto,
         p.Estado,
+        p.Usuario_Sistema,
         r.Rol
     FROM personal p
     INNER JOIN rol r ON p.ID_Rol = r.ID
@@ -29,6 +30,7 @@ BEGIN
         p.Direccion,
         p.Contacto,
         p.Estado,
+        p.Usuario_Sistema,
         r.Rol
     FROM vehiculo v
     INNER JOIN personal p ON p.ID = v.ID_Personal
@@ -50,6 +52,7 @@ BEGIN
         p.Direccion,
         p.Contacto,
         p.Estado,
+        p.Usuario_Sistema,
         r.Rol
     FROM controlaccesosvehicular cav
     INNER JOIN vehiculo v ON cav.Placa = v.Placa

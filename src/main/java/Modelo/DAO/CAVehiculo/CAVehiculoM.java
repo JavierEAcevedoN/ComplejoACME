@@ -55,6 +55,6 @@ public class CAVehiculoM {
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Fecha Entrada: " + fechaEntrada + ", Fecha Salida: " + fechaSalida + ", " + placa.toString(); 
+        return "ID Acceso vehiculo: " + id + ", Fecha Entrada: " + fechaEntrada + ", Fecha Salida: " + fechaSalida + ", " + placa.toString(); 
     }
 }

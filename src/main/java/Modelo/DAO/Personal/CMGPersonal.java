@@ -36,11 +36,12 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
                 while (res.next()) {
                     listaPersonal.add(
                         new PersonalM(
-                            res.getInt("ID"),
+                            res.getLong("ID"),
                             res.getString("Nombre"),
                             res.getString("Direccion"),
                             res.getString("Contacto"),
                             res.getBoolean("Estado"),
+                            res.getString("Usuario_Sistema"),
                             res.getString("Rol")
                         )
                     );
@@ -56,13 +57,15 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
     public void guardar(PersonalO personal) {
         try {
             PreparedStatement pst = conexionBD.prepareStatement(
-                "INSERT INTO personal(Nombre,Direccion,Contacto,Estado,ID_Rol) VALUES(?,?,?,?,?);"
+                "INSERT INTO personal(ID,Nombre,Direccion,Contacto,Estado,Usuario_Sistema,ID_Rol) VALUES(?,?,?,?,?,?,?);"
             );
-            pst.setString(1, personal.getNombre());
-            pst.setString( 2, personal.getDireccion());
-            pst.setString(3, personal.getContacto());
-            pst.setBoolean(4, personal.isEstado());
-            pst.setInt(5, personal.getIdRol());
+            pst.setLong(1, personal.getId());
+            pst.setString(2, personal.getNombre());
+            pst.setString( 3, personal.getDireccion());
+            pst.setString(4, personal.getContacto());
+            pst.setBoolean(5, personal.isEstado());
+            pst.setString(6, personal.getUsuarioSistema());
+            pst.setInt(7, personal.getIdRol());
             pst.execute();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla personal: " + e.getMessage());
@@ -73,14 +76,15 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
     public void actualizar(PersonalO personal) {
         try {
             PreparedStatement pst = conexionBD.prepareStatement(
-                "UPDATE personal SET Nombre = ?, Direccion = ?, Contacto = ?, Estado = ?, ID_Rol = ? WHERE ID = ?;"
+                "UPDATE personal SET Nombre = ?, Direccion = ?, Contacto = ?, Estado = ?, Usuario_Sistema = ?, ID_Rol = ? WHERE ID = ?;"
             );
             pst.setString(1, personal.getNombre());
             pst.setString( 2, personal.getDireccion());
             pst.setString(3, personal.getContacto());
             pst.setBoolean(4, personal.isEstado());
-            pst.setInt(5, personal.getIdRol());
-            pst.setInt(6, personal.getId());
+            pst.setString(5, personal.getUsuarioSistema());
+            pst.setInt(6, personal.getIdRol());
+            pst.setLong(7, personal.getId());
             pst.execute();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla personal: " + e.getMessage());

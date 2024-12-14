@@ -49,6 +49,7 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
                                     res.getString("Direccion"),
                                     res.getString("Contacto"),
                                     res.getBoolean("Estado"),
+                                    res.getString("Usuario_Sistema"),
                                     res.getString("Rol")
                                 )
                             )
