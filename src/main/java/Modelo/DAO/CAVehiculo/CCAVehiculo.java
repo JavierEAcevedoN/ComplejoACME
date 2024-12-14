@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
@@ -31,36 +32,48 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
     }
 
     @Override
-    public void mostrar() {
-        if (listaCaVehiculos.size() < 1) {
-            try {
-                ResultSet res = conexionBD.createStatement().executeQuery("CALL getcavehiculo;");
-                while (res.next()) {
-                    listaCaVehiculos.add(
-                        new CAVehiculoM(
-                            res.getInt("ID_CAV"),
-                            res.getTimestamp("Fecha_Entrada"),
-                            res.getTimestamp("Fecha_Salida"),
-                            new VehiculoM(
-                                res.getString("Placa"),
-                                new PersonalM(
-                                    res.getLong("ID_P"),
-                                    res.getString("Nombre"),
-                                    res.getString("Direccion"),
-                                    res.getString("Contacto"),
-                                    res.getBoolean("Estado"),
-                                    res.getString("Usuario_Sistema"),
-                                    res.getString("Rol")
-                                )
+    public void getLista() {
+        try {
+            ResultSet res = conexionBD.createStatement().executeQuery("CALL getcavehiculo;");
+            while (res.next()) {
+                listaCaVehiculos.add(
+                    new CAVehiculoM(
+                        res.getInt("ID_CAV"),
+                        res.getTimestamp("Fecha_Entrada"),
+                        res.getTimestamp("Fecha_Salida"),
+                        new VehiculoM(
+                            res.getString("Placa"),
+                            new PersonalM(
+                                res.getLong("ID_P"),
+                                res.getString("Nombre"),
+                                res.getString("Direccion"),
+                                res.getString("Contacto"),
+                                res.getBoolean("Estado"),
+                                res.getString("Usuario_Sistema"),
+                                res.getString("Rol")
                             )
                         )
-                    );
-                }
-            } catch (SQLException e) {
-                System.err.println("Error al recuperar los datos de la tabla controlaccesosvehicular: " + e.getMessage());
+                    )
+                );
             }
+        } catch (SQLException e) {
+            System.err.println("Error al recuperar los datos de la tabla controlaccesosvehicular: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void mostrar() {
+        if (listaCaVehiculos.size() < 1) {
+            getLista();
         }
         listaCaVehiculos.forEach(i -> System.out.println(i));
+    }
+
+    public void mostrarF(Predicate<CAVehiculoM> filtro) {
+        if (listaCaVehiculos.size() < 1) {
+            getLista();
+        }
+        listaCaVehiculos.stream().filter(filtro).forEach(i -> System.out.println(i));
     }
 
     @Override

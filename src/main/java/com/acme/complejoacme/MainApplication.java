@@ -50,53 +50,53 @@ public class MainApplication extends Application {
         // Prueva
         CMGPersonal cmgPersonal = CMGPersonal.getInstance();
         PersonalO personal = new PersonalO(263132, "JAVIER", "TAYRONA1", "3012151197", true, "superusuario1", 3);
-        cmgPersonal.mostrar();
-        cmgPersonal.guardar(personal);
+        cmgPersonal.mostrarF(i -> i.getRol().equals("Guarda"));
+        // cmgPersonal.guardar(personal);
 
         CMGVehiculo cmgVehiculo = CMGVehiculo.getInstance();
         VehiculoO vehiculo = new VehiculoO("FDETRE543421EQ", personal.getId());
-        cmgVehiculo.mostrar();
-        cmgVehiculo.guardar(vehiculo);
+        cmgVehiculo.mostrarF(i -> i.getPlaca().equals("YZA567"));
+        // cmgVehiculo.guardar(vehiculo);
 
         CCAVehiculo ccaVehiculo = CCAVehiculo.getInstance();
         CAVehiculoO caVehiculo = new CAVehiculoO(231, Timestamp.valueOf("2024-11-10 07:55:00"), Timestamp.valueOf("2024-11-10 17:55:00"), vehiculo.getPlaca());
-        ccaVehiculo.mostrar();
-        ccaVehiculo.guardar(caVehiculo);
+        ccaVehiculo.mostrarF(i -> i.getPlaca().getDueño().getDireccion().equals("Calle Sol 707"));
+        // ccaVehiculo.guardar(caVehiculo);
 
         CMEmpresas cmEmpresas = CMEmpresas.getInstance();
-        cmEmpresas.mostrar();
+        cmEmpresas.mostrarF(i -> i.getNombre().equals("ACME Security"));
 
         CMGEPersonal cmgePersonal = CMGEPersonal.getInstance();
         EmpPersonalO empPersonalO = new EmpPersonalO(3123, 1, personal.getId());
-        cmgePersonal.mostrar();
-        cmgePersonal.guardar(empPersonalO);
+        cmgePersonal.mostrarF(i -> i.getPersonalM().getNombre().equals("Ana Lopez"));
+        // cmgePersonal.guardar(empPersonalO);
 
         CCAPersonal ccaPersonal = CCAPersonal.getInstance();
         CAPersonalO caPersonalO = new CAPersonalO(312, Timestamp.valueOf("2024-11-10 07:55:00"), Timestamp.valueOf("2024-11-10 17:55:00"), personal.getId());
-        ccaPersonal.mostrar();
-        ccaPersonal.guardar(caPersonalO);
+        ccaPersonal.mostrarF(i -> i.getPersonal().getContacto().equals("654987123"));
+        // ccaPersonal.guardar(caPersonalO);
 
         CMLogRegistros cmLogRegistros = CMLogRegistros.getInstance();
-        cmLogRegistros.mostrar();
+        cmLogRegistros.mostrarF(i -> i.getUsuarioCreador().getUsuarioSistema().equals("funcionario1"));
 
         CMGPVisitantes cmgpVisitantes = CMGPVisitantes.getInstance();
         PVisitantesO pVisitantesO = new PVisitantesO(Date.valueOf("2024-11-10"), Date.valueOf("2024-11-22"), personal.getUsuarioSistema(), personal.getId());
-        cmgpVisitantes.mostrar();
-        cmgpVisitantes.guardar(pVisitantesO);
+        cmgpVisitantes.mostrarF(i -> i.getFechaFin().equals(Date.valueOf("2024-11-07")));
+        // cmgpVisitantes.guardar(pVisitantesO);
 
         CMGRPersonal cmgrPersonal = CMGRPersonal.getInstance();
         RPersonalO rPersonalO = new RPersonalO(32, Date.valueOf("2024-11-01"), personal.getUsuarioSistema(), 1, personal.getId());
-        cmgrPersonal.mostrar();
-        cmgrPersonal.guardar(rPersonalO);
+        cmgrPersonal.mostrarF(i -> i.getRestriccionS().equals("Prohibición acceso: 1 año"));
+        // cmgrPersonal.guardar(rPersonalO);
 
         CMGLCEstado cmglcEstado = CMGLCEstado.getInstance();
         LCEstadoO lcEstadoO = new LCEstadoO(32, Timestamp.valueOf("2024-05-10 12:55:00"), false, "Hola como estas", personal.getUsuarioSistema(), personal.getId());
-        cmglcEstado.mostrar();
-        cmglcEstado.guardar(lcEstadoO);
+        cmglcEstado.mostrarF(i -> i.getFecha().equals(Timestamp.valueOf("2024-11-09 17:30:00")));
+        // cmglcEstado.guardar(lcEstadoO);
 
         CMGIPersonal cmgiPersonal = CMGIPersonal.getInstance();
         IPersonalO iPersonalO = new IPersonalO(21, Timestamp.valueOf("2024-05-09 12:55:00"), "Error en la vida", personal.getUsuarioSistema(), 2, personal.getId());
-        cmgiPersonal.mostrar();
-        cmgiPersonal.guardar(iPersonalO);
+        cmgiPersonal.mostrarF(i -> i.getIncidente().equals("Robo menor"));
+        // cmgiPersonal.guardar(iPersonalO);
     }
 }

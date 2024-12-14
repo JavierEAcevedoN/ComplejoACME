@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
@@ -30,31 +31,43 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
     }
 
     @Override
+    public void getLista() {
+        try {
+            ResultSet res = conexionBD.createStatement().executeQuery("CALL getvehiculos;");
+            while (res.next()) {
+                listaVehiculos.add(
+                    new VehiculoM(
+                        res.getString("Placa"),
+                        new PersonalM(
+                            res.getLong("ID"),
+                            res.getString("Nombre"),
+                            res.getString("Direccion"),
+                            res.getString("Contacto"),
+                            res.getBoolean("Estado"),
+                            res.getString("Usuario_Sistema"),
+                            res.getString("Rol")
+                        )
+                    ) 
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al recuperar los datos de la tabla vehiculo: " + e.getMessage());
+        }
+    }
+
+    @Override
     public void mostrar() {
         if (listaVehiculos.size() < 1) {
-            try {
-                ResultSet res = conexionBD.createStatement().executeQuery("CALL getvehiculos;");
-                while (res.next()) {
-                    listaVehiculos.add(
-                        new VehiculoM(
-                            res.getString("Placa"),
-                            new PersonalM(
-                                res.getLong("ID"),
-                                res.getString("Nombre"),
-                                res.getString("Direccion"),
-                                res.getString("Contacto"),
-                                res.getBoolean("Estado"),
-                                res.getString("Usuario_Sistema"),
-                                res.getString("Rol")
-                            )
-                        ) 
-                    );
-                }
-            } catch (SQLException e) {
-                System.err.println("Error al recuperar los datos de la tabla vehiculo: " + e.getMessage());
-            }
+            getLista();
         }
         listaVehiculos.forEach(i -> System.out.println(i));
+    }
+
+    public void mostrarF(Predicate<VehiculoM> filtro) {
+        if (listaVehiculos.size() < 1) {
+            getLista();
+        }
+        listaVehiculos.stream().filter(filtro).forEach(i -> System.out.println(i));
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
@@ -30,43 +31,55 @@ public class CMGLCEstado extends ConexionMG<LCEstadoO> {
     }
 
     @Override
+    public void getLista() {
+        try {
+            ResultSet res = conexionBD.createStatement().executeQuery("CALL getlogcambioestado;");
+            while (res.next()) {
+                listaCaPersonal.add(
+                    new LCEstadoM(
+                        res.getInt("ID"),
+                        res.getTimestamp("Fecha"),
+                        res.getBoolean("Nuevo_Estado"),
+                        res.getString("Descripcion"),
+                        new PersonalM(
+                            res.getLong("ID_UR"),
+                            res.getString("UR_N"),
+                            res.getString("UR_D"),
+                            res.getString("UR_C"),
+                            res.getBoolean("UR_E"),
+                            res.getString("UR_U"),
+                            res.getString("UR_R")
+                        ),
+                        new PersonalM(
+                            res.getLong("ID_P"),
+                            res.getString("P_N"),
+                            res.getString("P_D"),
+                            res.getString("P_C"),
+                            res.getBoolean("P_E"),
+                            res.getString("P_U"),
+                            res.getString("P_R")
+                        )
+                    )
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al recuperar los datos de la tabla logcambioestado: " + e.getMessage());
+        }
+    }
+
+    @Override
     public void mostrar() {
         if (listaCaPersonal.size() < 1) {
-            try {
-                ResultSet res = conexionBD.createStatement().executeQuery("CALL getlogcambioestado;");
-                while (res.next()) {
-                    listaCaPersonal.add(
-                        new LCEstadoM(
-                            res.getInt("ID"),
-                            res.getTimestamp("Fecha"),
-                            res.getBoolean("Nuevo_Estado"),
-                            res.getString("Descripcion"),
-                            new PersonalM(
-                                res.getLong("ID_UR"),
-                                res.getString("UR_N"),
-                                res.getString("UR_D"),
-                                res.getString("UR_C"),
-                                res.getBoolean("UR_E"),
-                                res.getString("UR_U"),
-                                res.getString("UR_R")
-                            ),
-                            new PersonalM(
-                                res.getLong("ID_P"),
-                                res.getString("P_N"),
-                                res.getString("P_D"),
-                                res.getString("P_C"),
-                                res.getBoolean("P_E"),
-                                res.getString("P_U"),
-                                res.getString("P_R")
-                            )
-                        )
-                    );
-                }
-            } catch (SQLException e) {
-                System.err.println("Error al recuperar los datos de la tabla logcambioestado: " + e.getMessage());
-            }
+            getLista();
         }
         listaCaPersonal.forEach(i -> System.out.println(i));
+    }
+
+    public void mostrarF(Predicate<LCEstadoM> filtro) {
+        if (listaCaPersonal.size() < 1) {
+            getLista();
+        }
+        listaCaPersonal.stream().filter(filtro).forEach(i -> System.out.println(i));
     }
 
     @Override

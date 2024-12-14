@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 
@@ -29,28 +30,40 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
     }
 
     @Override
+    public void getLista() {
+        try {
+            ResultSet res = conexionBD.createStatement().executeQuery("CALL getpersonal;");
+            while (res.next()) {
+                listaPersonal.add(
+                    new PersonalM(
+                        res.getLong("ID"),
+                        res.getString("Nombre"),
+                        res.getString("Direccion"),
+                        res.getString("Contacto"),
+                        res.getBoolean("Estado"),
+                        res.getString("Usuario_Sistema"),
+                        res.getString("Rol")
+                    )
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al recuperar los datos de la tabla personal: " + e.getMessage());
+        }
+    }
+
+    @Override
     public void mostrar() {
         if (listaPersonal.size() < 1) {
-            try {
-                ResultSet res = conexionBD.createStatement().executeQuery("CALL getpersonal;");
-                while (res.next()) {
-                    listaPersonal.add(
-                        new PersonalM(
-                            res.getLong("ID"),
-                            res.getString("Nombre"),
-                            res.getString("Direccion"),
-                            res.getString("Contacto"),
-                            res.getBoolean("Estado"),
-                            res.getString("Usuario_Sistema"),
-                            res.getString("Rol")
-                        )
-                    );
-                }
-            } catch (SQLException e) {
-                System.err.println("Error al recuperar los datos de la tabla personal: " + e.getMessage());
-            }
+            getLista();
         }
         listaPersonal.forEach(i -> System.out.println(i));
+    }
+
+    public void mostrarF(Predicate<PersonalM> filtro) {
+        if (listaPersonal.size() < 1) {
+            getLista();
+        }
+        listaPersonal.stream().filter(filtro).forEach(i -> System.out.println(i));
     }
 
     @Override

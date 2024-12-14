@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Empresas.EmpresasM;
@@ -31,36 +32,48 @@ public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
     }
 
     @Override
+    public void getLista() {
+        try {
+            ResultSet res = conexionBD.createStatement().executeQuery("CALL getempresapersonal;");
+            while (res.next()) {
+                listaEmpPersonal.add(
+                    new EmpPersonalM(
+                        new EmpresasM(
+                            res.getInt("ID_E"),
+                            res.getString("N_E"),
+                            res.getString("E_C")
+                        ),
+                        res.getInt("ID_EP"),
+                        new PersonalM(
+                            res.getLong("ID_P"),
+                            res.getString("N_P"),
+                            res.getString("Direccion"),
+                            res.getString("P_C"),
+                            res.getBoolean("Estado"),
+                            res.getString("Usuario_Sistema"),
+                            res.getString("Rol")
+                        )
+                    )
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al recuperar los datos de la tabla empresaspersonal: " + e.getMessage());
+        }
+    }
+
+    @Override
     public void mostrar() {
         if (listaEmpPersonal.size() < 1) {
-            try {
-                ResultSet res = conexionBD.createStatement().executeQuery("CALL getempresapersonal;");
-                while (res.next()) {
-                    listaEmpPersonal.add(
-                        new EmpPersonalM(
-                            new EmpresasM(
-                                res.getInt("ID_E"),
-                                res.getString("N_E"),
-                                res.getString("E_C")
-                            ),
-                            res.getInt("ID_EP"),
-                            new PersonalM(
-                                res.getLong("ID_P"),
-                                res.getString("N_P"),
-                                res.getString("Direccion"),
-                                res.getString("P_C"),
-                                res.getBoolean("Estado"),
-                                res.getString("Usuario_Sistema"),
-                                res.getString("Rol")
-                            )
-                        )
-                    );
-                }
-            } catch (SQLException e) {
-                System.err.println("Error al recuperar los datos de la tabla empresaspersonal: " + e.getMessage());
-            }
+            getLista();
         }
         listaEmpPersonal.forEach(i -> System.out.println(i));
+    }
+
+    public void mostrarF(Predicate<EmpPersonalM> filtro) {
+        if (listaEmpPersonal.size() < 1) {
+            getLista();
+        }
+        listaEmpPersonal.stream().filter(filtro).forEach(i -> System.out.println(i));
     }
 
     @Override

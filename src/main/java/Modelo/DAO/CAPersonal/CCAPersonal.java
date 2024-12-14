@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
@@ -30,33 +31,45 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
     }
 
     @Override
+    public void getLista() {
+        try {
+            ResultSet res = conexionBD.createStatement().executeQuery("CALL getcapersonal;");
+            while (res.next()) {
+                listaCaPersonal.add(
+                    new CAPersonalM(
+                        res.getInt("ID_CAP"),
+                        res.getTimestamp("Fecha_Entrada"),
+                        res.getTimestamp("Fecha_Salida"),
+                        new PersonalM(
+                            res.getLong("ID_P"),
+                            res.getString("Nombre"),
+                            res.getString("Direccion"),
+                            res.getString("Contacto"),
+                            res.getBoolean("Estado"),
+                            res.getString("Usuario_Sistema"),
+                            res.getString("Rol")
+                        )
+                    )
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al recuperar los datos de la tabla controlaccesospersonal: " + e.getMessage());
+        }
+    }
+
+    @Override
     public void mostrar() {
         if (listaCaPersonal.size() < 1) {
-            try {
-                ResultSet res = conexionBD.createStatement().executeQuery("CALL getcapersonal;");
-                while (res.next()) {
-                    listaCaPersonal.add(
-                        new CAPersonalM(
-                            res.getInt("ID_CAP"),
-                            res.getTimestamp("Fecha_Entrada"),
-                            res.getTimestamp("Fecha_Salida"),
-                            new PersonalM(
-                                res.getLong("ID_P"),
-                                res.getString("Nombre"),
-                                res.getString("Direccion"),
-                                res.getString("Contacto"),
-                                res.getBoolean("Estado"),
-                                res.getString("Usuario_Sistema"),
-                                res.getString("Rol")
-                            )
-                        )
-                    );
-                }
-            } catch (SQLException e) {
-                System.err.println("Error al recuperar los datos de la tabla controlaccesospersonal: " + e.getMessage());
-            }
+            getLista();
         }
         listaCaPersonal.forEach(i -> System.out.println(i));
+    }
+
+    public void mostrarF(Predicate<CAPersonalM> filtro) {
+        if (listaCaPersonal.size() < 1) {
+            getLista();
+        }
+        listaCaPersonal.stream().filter(filtro).forEach(i -> System.out.println(i));
     }
 
     @Override
