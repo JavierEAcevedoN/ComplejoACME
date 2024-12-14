@@ -27,6 +27,6 @@ public class LoginController extends AbstractLoginController{
 
     @Override
     public void nextWindow() {
-        MainApplication.startScene(ManagerInvoker.getManager("Funcion de javier"));
+        MainApplication.startScene(ManagerInvoker.getManager(DataBaseConection.getCurrentRole()));
     }
 }

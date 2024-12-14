@@ -1,5 +1,6 @@
 package Vista.Manager.Builds;
 
+import Modelo.DataBaseConection;
 import Vista.utils.DraggableWindow;
 import com.acme.complejoacme.Manager.AbstractManagerController;
 import javafx.geometry.Insets;
@@ -48,7 +49,7 @@ public abstract class ManagerBuilder {
         DraggableWindow.init(topBar);
         topBar.setPrefSize(553.0, 70.0);
         topBar.getStyleClass().add("brand-color-right");
-        topBar.getStylesheets().add(getClass().getResource("/Styles/Base.css").toExternalForm());
+        topBar.getStylesheets().add(getClass().getResource("/com/acme/complejoacme/Styles/Base.css").toExternalForm());
 
         // TextFlow for "ACME"
         TextFlow acmeTextFlow = new TextFlow();
@@ -65,7 +66,7 @@ public abstract class ManagerBuilder {
         roleTextFlow.setPrefSize(200.0, 70.0);
         roleTextFlow.setTextAlignment(TextAlignment.CENTER);
         roleTextFlow.setPadding(new Insets(18.0));
-        Text roleText = new Text("");
+        Text roleText = new Text(DataBaseConection.getCurrentRole());
         roleText.setFill(javafx.scene.paint.Color.WHITE);
         roleText.setFont(new Font("Mallanna", 28.0));
         roleTextFlow.getChildren().add(roleText);

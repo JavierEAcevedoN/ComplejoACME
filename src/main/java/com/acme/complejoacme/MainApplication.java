@@ -52,11 +52,18 @@ public class MainApplication extends Application {
     }
 
     public static void startScene(Parent element) {
-        Scene scene = new Scene(element);
-        Stage stage = (Stage) element.getScene().getWindow();
+        Scene scene = element.getScene();
+        Stage stage;
+
+        if (scene == null) {
+            stage = new Stage();
+        } else {
+            stage = (Stage) scene.getWindow();
+        }
+
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
-        stage.setScene(scene);
+        stage.setScene(new Scene(element));
         stage.show();
     }
 

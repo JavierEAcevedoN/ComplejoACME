@@ -45,7 +45,7 @@ public class DataBaseConection {
             conexionDB = conexion;
             ResultSet resultado = conexionDB.createStatement().executeQuery("SELECT SUBSTRING_INDEX(CURRENT_ROLE(), '@', 1);");
             resultado.next();
-            currentRole = resultado.getString(1);
+            currentRole = resultado.getString(1).substring(1,resultado.getString(1).length()-1);
             ConexionM.actualizarConexion();
             return true;
         } catch (SQLException e) {
