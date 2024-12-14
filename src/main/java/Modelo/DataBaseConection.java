@@ -21,7 +21,12 @@ import java.sql.SQLException;
 public class DataBaseConection {
     private static String ruta;
     private static Connection conexionDB;
+    private static String currentRole;
     
+    public static String getCurrentRole() {
+        return currentRole;
+    }
+
     public static Connection getConexionDB() {
         return conexionDB;
     }
@@ -35,9 +40,12 @@ public class DataBaseConection {
 
         String cadConex = host + db;
         try {
-            Connection conexion = DriverManager.getConnection(cadConex, user, password);
+            Connection conexion = DriverManager.getConnection(cadConex, user, password); 
             System.out.println("Conexión exitosa.");
             conexionDB = conexion;
+            ResultSet resultado = conexionDB.createStatement().executeQuery("SELECT SUBSTRING_INDEX(CURRENT_ROLE(), '@', 1);");
+            resultado.next();
+            currentRole = resultado.getString(1);
             ConexionM.actualizarConexion();
             return true;
         } catch (SQLException e) {
@@ -90,24 +98,18 @@ public class DataBaseConection {
             return false;
         }
 
-        try (ResultSet resultado = conexionDB.createStatement().executeQuery("SELECT CURRENT_ROLE();")) {
-            resultado.next();
-            if (resultado.getString(1).contains("SUPERUSUARIO")) {
-                ruta = host;
+        if (currentRole.contains("SUPERUSUARIO")) {
+            ruta = host;
 
-                try (PrintWriter pw = new PrintWriter(new FileWriter(configuracion))) {
-                    pw.println(ruta);
-                    return true;
-                } catch (IOException e) {
-                    System.out.println("Error en la escritura");
-                    return false;
-                }
-            } else {
-                System.out.println("No es un superusuario valido");
+            try (PrintWriter pw = new PrintWriter(new FileWriter(configuracion))) {
+                pw.println(ruta);
+                return true;
+            } catch (IOException e) {
+                System.out.println("Error en la escritura");
                 return false;
             }
-        } catch (SQLException e) {
-            System.err.println("Error al conectarse con la base de datos: " + e.getMessage());
+        } else {
+            System.out.println("No es un superusuario valido");
             return false;
         }
     }

@@ -3,8 +3,8 @@ package Modelo.DAO.Personal;
 public class PersonalO extends PersonalM{
     private int idRol;
 
-    public PersonalO(int id, String nombre, String direccion, String contacto, boolean estado, int idRol) {
-        super(id, nombre, direccion, contacto, estado);
+    public PersonalO(long id, String nombre, String direccion, String contacto, boolean estado, String usuarioSistema, int idRol) {
+        super(id, nombre, direccion, contacto, estado, usuarioSistema);
         this.idRol = idRol;
     }
 

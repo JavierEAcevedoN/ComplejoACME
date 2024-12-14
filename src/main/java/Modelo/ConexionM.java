@@ -13,5 +13,6 @@ public abstract class ConexionM {
         conexionBD = DataBaseConection.getConexionDB();
     }
 
+    public abstract void getLista();
     public abstract void mostrar();
 }

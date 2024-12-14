@@ -59,13 +59,13 @@ public abstract class LoginBuilder {
         ImageView logo = new ImageView(new Image("https://www.giantbomb.com/a/uploads/square_small/3/34651/3461096-wile-e.-coyote.png"));
         logo.setFitHeight(152.0);
         logo.setFitWidth(144.0);
-        logo.setLayoutX(98.0);
-        logo.setLayoutY(67.0);
+        logo.setLayoutX(90.0);
+        logo.setLayoutY(78.0);
         logo.setPreserveRatio(true);
 
         // Crear el segundo TextFlow con el texto "E"
         TextFlow textFlowE = new TextFlow();
-        textFlowE.setLayoutX(29.0);
+        textFlowE.setLayoutX(16.0);
         textFlowE.setLayoutY(168.0);
         textFlowE.setPrefHeight(84.0);
         textFlowE.setPrefWidth(230.0);
