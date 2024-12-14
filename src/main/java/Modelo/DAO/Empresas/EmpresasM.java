@@ -36,6 +36,6 @@ public class EmpresasM {
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Nombre: " + nombre + ", Contacto: " + contacto;
+        return "ID Empresas: " + id + ", Nombre: " + nombre + ", Contacto: " + contacto;
     }
 }

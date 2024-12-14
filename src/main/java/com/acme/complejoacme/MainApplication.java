@@ -1,9 +1,14 @@
 package com.acme.complejoacme;
 
 import Modelo.DataBaseConection;
+import Modelo.DAO.CAPersonal.CAPersonalO;
+import Modelo.DAO.CAPersonal.CCAPersonal;
 import Modelo.DAO.CAVehiculo.CAVehiculoO;
 import Modelo.DAO.CAVehiculo.CCAVehiculo;
+import Modelo.DAO.EmpPersonal.CMGEPersonal;
+import Modelo.DAO.EmpPersonal.EmpPersonalO;
 import Modelo.DAO.Empresas.CMEmpresas;
+import Modelo.DAO.LogRegistros.CMLogRegistros;
 import Modelo.DAO.Personal.CMGPersonal;
 import Modelo.DAO.Personal.PersonalO;
 import Modelo.DAO.Vehiculo.CMGVehiculo;
@@ -35,7 +40,7 @@ public class MainApplication extends Application {
 
         // Prueva
         CMGPersonal cmgPersonal = CMGPersonal.getInstance();
-        PersonalO personal = new PersonalO(263132, "JAVIER", "TAYRONA1", "3012151197", true, null, 3);
+        PersonalO personal = new PersonalO(263132, "JAVIER", "TAYRONA1", "3012151197", true, "superusuario1", 3);
         cmgPersonal.mostrar();
         cmgPersonal.guardar(personal);
 
@@ -51,5 +56,18 @@ public class MainApplication extends Application {
 
         CMEmpresas cmEmpresas = CMEmpresas.getInstance();
         cmEmpresas.mostrar();
+
+        CMGEPersonal cmgePersonal = CMGEPersonal.getInstance();
+        EmpPersonalO empPersonalO = new EmpPersonalO(3123, 1, personal.getId());
+        cmgePersonal.mostrar();
+        cmgePersonal.guardar(empPersonalO);
+
+        CCAPersonal ccaPersonal = CCAPersonal.getInstance();
+        CAPersonalO caPersonalO = new CAPersonalO(312, Timestamp.valueOf("2024-11-10 07:55:00"), Timestamp.valueOf("2024-11-10 17:55:00"), personal.getId());
+        ccaPersonal.mostrar();
+        ccaPersonal.guardar(caPersonalO);
+
+        CMLogRegistros cmLogRegistros = CMLogRegistros.getInstance();
+        cmLogRegistros.mostrar();
     }
 }

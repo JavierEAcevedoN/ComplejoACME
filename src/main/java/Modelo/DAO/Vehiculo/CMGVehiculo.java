@@ -39,7 +39,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
                         new VehiculoM(
                             res.getString("Placa"),
                             new PersonalM(
-                                res.getInt("ID"),
+                                res.getLong("ID"),
                                 res.getString("Nombre"),
                                 res.getString("Direccion"),
                                 res.getString("Contacto"),

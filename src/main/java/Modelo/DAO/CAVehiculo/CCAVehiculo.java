@@ -38,13 +38,13 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
                 while (res.next()) {
                     listaCaVehiculos.add(
                         new CAVehiculoM(
-                            res.getInt("ID"),
+                            res.getInt("ID_CAV"),
                             res.getTimestamp("Fecha_Entrada"),
                             res.getTimestamp("Fecha_Salida"),
                             new VehiculoM(
                                 res.getString("Placa"),
                                 new PersonalM(
-                                    res.getInt("ID_Personal"),
+                                    res.getLong("ID_P"),
                                     res.getString("Nombre"),
                                     res.getString("Direccion"),
                                     res.getString("Contacto"),

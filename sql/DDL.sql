@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS logregistros (
     Fecha DATETIME NOT NULL,
     Usuario_Creador VARCHAR(64) NOT NULL,
     ID_Personal_Creado BIGINT NOT NULL,
+    Foreign Key (Usuario_Creador) REFERENCES personal (Usuario_Sistema),
     Foreign Key (ID_Personal_Creado) REFERENCES personal (ID)
 );
 

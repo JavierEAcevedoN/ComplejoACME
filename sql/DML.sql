@@ -80,11 +80,11 @@ INSERT INTO logregistros (Fecha, Usuario_Creador, ID_Personal_Creado) VALUES
 ('2024-11-03 10:30:00', 'supervisor1', 6541239871),
 ('2024-11-04 11:15:00', 'funcionario3', 7891239871),
 ('2024-11-05 12:45:00', 'supervisor2', 7893214561),
-('2024-11-06 13:00:00', 'funcionario4', 1239874560),
+('2024-11-06 13:00:00', 'funcionario3', 1239874560),
 ('2024-11-07 14:30:00', 'supervisor3', 3219876540),
-('2024-11-08 15:00:00', 'funcionario5', 3216549870),
-('2024-11-09 16:20:00', 'supervisor4', 1234567890),
-('2024-11-10 17:50:00', 'funcionario6', 3219876541);
+('2024-11-08 15:00:00', 'funcionario2', 3216549870),
+('2024-11-09 16:20:00', 'supervisor1', 1234567890),
+('2024-11-10 17:50:00', 'funcionario1', 3219876541);
 
 -- Tabla logcambioestado
 INSERT INTO logcambioestado (Fecha, Nuevo_Estado, Descripcion, Usuario_Responsable, ID_Personal) VALUES

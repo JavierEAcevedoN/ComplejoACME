@@ -15,7 +15,7 @@ BEGIN
     ) 
     VALUES (
         CURRENT_TIMESTAMP(),
-        USER(),
+        SUBSTRING_INDEX(USER(), '@', 1),
         NEW.ID
     );
 END //
