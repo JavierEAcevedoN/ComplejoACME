@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac459ab8-30a5-44c0-8b4f-0672a4491ec5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/IPersonal/CMGIPersonal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/IPersonal/IPersonalM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/IPersonal/IPersonalO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/LCEstado/CMGLCEstado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/LCEstado/LCEstadoM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/LCEstado/LCEstadoO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/PVisitantes/CMGPVisitantes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/PVisitantes/PVisitantesM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/PVisitantes/PVisitantesO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/RPersonal/CMGRPersonal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/RPersonal/RPersonalM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/RPersonal/RPersonalO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/PROCEDURES.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/PROCEDURES.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/USERS.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/USERS.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DAO/CAPersonal/CCAPersonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/CAPersonal/CCAPersonal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DAO/CAVehiculo/CCAVehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/CAVehiculo/CCAVehiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DAO/EmpPersonal/CMGEPersonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/EmpPersonal/CMGEPersonal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainApplication.java" afterDir="false" />
-    </list>
+    <list default="true" id="ac459ab8-30a5-44c0-8b4f-0672a4491ec5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -20,10 +20,10 @@ import java.sql.SQLException;
 public class DataBaseConection {
     private static String ruta;
     private static Connection conexionDB;
-    private static String currentUser;
+    private static String currentRole;
     
-    public static String getCurrentUser() {
-        return currentUser;
+    public static String getCurrentRole() {
+        return currentRole;
     }
 
     public static Connection getConexionDB() {
@@ -42,9 +42,9 @@ public class DataBaseConection {
             Connection conexion = DriverManager.getConnection(cadConex, user, password); 
             System.out.println("Conexión exitosa.");
             conexionDB = conexion;
-            ResultSet resultado = conexionDB.createStatement().executeQuery("SELECT CURRENT_ROLE();");
+            ResultSet resultado = conexionDB.createStatement().executeQuery("SELECT SUBSTRING_INDEX(CURRENT_ROLE(), '@', 1);");
             resultado.next();
-            currentUser = resultado.getString(1);
+            currentRole = resultado.getString(1);
             ConexionM.actualizarConexion();
             return true;
         } catch (SQLException e) {
@@ -99,7 +99,7 @@ public class DataBaseConection {
             return false;
         }
 
-        if (currentUser.contains("SUPERUSUARIO")) {
+        if (currentRole.contains("SUPERUSUARIO")) {
             ruta = host;
 
             try (PrintWriter pw = new PrintWriter(new FileWriter(configuracion))) {
