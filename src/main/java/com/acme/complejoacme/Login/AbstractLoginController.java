@@ -38,6 +38,7 @@ public abstract class AbstractLoginController {
             if (Ok) {
                 AlertaLogin.Info();
                 stage.close();
+                nextWindow();
             } else {
                 AlertaLogin.Error();
             }
@@ -49,4 +50,6 @@ public abstract class AbstractLoginController {
     public abstract boolean validarInputs();
 
     public abstract boolean dbconection();
+
+    public abstract void nextWindow();
 }

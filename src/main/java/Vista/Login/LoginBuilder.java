@@ -14,9 +14,9 @@ public abstract class LoginBuilder {
 
     protected final AnchorPane root;
 
-    AbstractLoginController controller;
+    protected AbstractLoginController controller;
 
-    protected LoginBuilder(AbstractLoginController controller) {
+    public LoginBuilder(AbstractLoginController controller) {
         this.root = new AnchorPane();
         this.controller = controller;
         root.setPrefSize(775, 494);

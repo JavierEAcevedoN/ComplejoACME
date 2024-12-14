@@ -25,7 +25,6 @@ public class AlertaLogin{
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Enhorabuena");
         alert.setHeaderText("Conexión exítosa");
-        alert.setContentText("Será redirigído a la ventana del superusuario.");
         alert.showAndWait();
     }
 }

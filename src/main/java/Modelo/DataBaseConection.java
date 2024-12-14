@@ -4,6 +4,7 @@ import Vista.Login.Login;
 import Vista.Login.SuperLogin;
 import com.acme.complejoacme.Login.LoginController;
 import com.acme.complejoacme.Login.SuperLoginController;
+import com.acme.complejoacme.MainController;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.BufferedReader;
@@ -47,11 +48,9 @@ public class DataBaseConection {
 
     public static AnchorPane ejecutarConexion() {
         AnchorPane root;
-        LoginController loginController = new LoginController();
-        SuperLoginController superLoginController = new SuperLoginController();
         if (ruta != null) {
             System.out.println("Ruta de configuración cargada: " + ruta);
-            Login login = Login.create(loginController);
+            Login login = Login.create(MainController.Login);
             root = login.withLeftPane().withRightPane().build();
             return root;
         }
@@ -69,7 +68,7 @@ public class DataBaseConection {
                 } else {
                     ruta = contenido.toString();
                     System.out.println("Ruta de configuración cargada: " + ruta);
-                    Login login = Login.create(loginController);
+                    Login login = Login.create(MainController.Login);
                     root = login.withLeftPane().withRightPane().build();
                     return root;
                 }
@@ -79,7 +78,7 @@ public class DataBaseConection {
         } else {
             System.out.println("El archivo de configuración no existe.");
         }
-        SuperLogin login = SuperLogin.create(superLoginController);
+        SuperLogin login = SuperLogin.create(MainController.Superlogin);
         root = login.withLeftPane().withRightPane().build();
         return root;
     }

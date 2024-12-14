@@ -1,5 +1,7 @@
-package Vista.Manager;
+package Vista.Manager.Builds;
 
+import Vista.utils.DraggableWindow;
+import com.acme.complejoacme.Manager.AbstractManagerController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
@@ -19,6 +21,15 @@ import javafx.scene.text.TextFlow;
 import java.util.ArrayList;
 
 public abstract class ManagerBuilder {
+    protected final FlowPane root;
+
+    protected AbstractManagerController controller;
+
+    public ManagerBuilder(AbstractManagerController controller) {
+        this.root = buildMainLayout();
+        this.controller = controller;
+    }
+
     public FlowPane buildMainLayout() {
         FlowPane mainLayout = new FlowPane();
         mainLayout.setPrefSize(553.0, 611.0);
@@ -34,6 +45,7 @@ public abstract class ManagerBuilder {
 
     private HBox buildTopBar() {
         HBox topBar = new HBox();
+        DraggableWindow.init(topBar);
         topBar.setPrefSize(553.0, 70.0);
         topBar.getStyleClass().add("brand-color-right");
         topBar.getStylesheets().add(getClass().getResource("/Styles/Base.css").toExternalForm());
@@ -53,7 +65,7 @@ public abstract class ManagerBuilder {
         roleTextFlow.setPrefSize(200.0, 70.0);
         roleTextFlow.setTextAlignment(TextAlignment.CENTER);
         roleTextFlow.setPadding(new Insets(18.0));
-        Text roleText = new Text(getCurrentUser());
+        Text roleText = new Text("");
         roleText.setFill(javafx.scene.paint.Color.WHITE);
         roleText.setFont(new Font("Mallanna", 28.0));
         roleTextFlow.getChildren().add(roleText);
@@ -86,9 +98,9 @@ public abstract class ManagerBuilder {
         return tabPane;
     }
 
-    protected String getCurrentUser() {
-        return "JAVIER";
-    };
+    public FlowPane build() {
+        return root;
+    }
 
     protected abstract ArrayList<Tab> getTabs();
 }
