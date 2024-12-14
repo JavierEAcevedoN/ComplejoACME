@@ -5,10 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac459ab8-30a5-44c0-8b4f-0672a4491ec5" name="Changes" comment="pruebas de conexion">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/creatorRole.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/ManagerBui.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/ManagerBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/ManagerFuncionario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/ManagerGuarda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/ManagerSuperUsuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/ManagerSupervisor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesoPersonalTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesoVehiculoTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesosTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AplicarRestriccionTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ControlIngresosTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ControlSalidasTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/CrearUsuarioTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/DisciplinarioTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/EstadoPersonalTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/IncidentesTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/LevantarRestriccionTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/MonitorTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/NuevoRegistroTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/PermisoTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/PersonalEmpresasTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RegistrarPersonalTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RegistrarVehiculoTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ReportesTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RestriccionesTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/SalidaPersonalTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/SalidaVehiculoTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/TabBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/Alerts/AlertaLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/DraggableWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/createLabeledField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/AbstractManagerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DataBaseConection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DataBaseConection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Login/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/LoginBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Login/LoginBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/SuperLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Login/SuperLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/AbstractLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Login/AbstractLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Login/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/SuperLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Login/SuperLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/Superlogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/Superlogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/creatorRole.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/creatorRole.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +63,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -46,19 +92,28 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "JavaFX",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/camper/Documentos/KEJOGO/ComplejoACME/lib/mysql-connector-j-9.1.0.jar",
+    "last_opened_file_path": "/home/camper/Documentos/KEJOGO/ComplejoACME/src/main/java/com/acme/complejoacme",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.editor"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/acme/complejoacme" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Vista.Manager" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.acme.complejoacme.MainApplication" />
       <module name="ComplejoACME" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.acme.complejoacme.*" />
+          <option name="PATTERN" value="com.acme.complejoacme.GraphicInterfaces.Login.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

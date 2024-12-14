@@ -14,11 +14,11 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         System.out.println("Ejecutando programa...");
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("creatorRole.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-//        AnchorPane loader = DataBaseConection.ejecutarConexion();
-//        Scene scene = new Scene(loader);
-//        stage.initStyle(StageStyle.UNDECORATED);
+//        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("creatorRole.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load());
+        AnchorPane loader = DataBaseConection.ejecutarConexion();
+        Scene scene = new Scene(loader);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         stage.setTitle("ComplejoACME");
         stage.setScene(scene);

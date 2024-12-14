@@ -1,5 +1,7 @@
-package com.acme.complejoacme;
+package com.acme.complejoacme.Login;
 
+import Modelo.DataBaseConection;
+import Vista.utils.Alerts.AlertaLogin;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -25,7 +27,26 @@ public abstract class AbstractLoginController {
         stage.close();
     }
 
+    public void Conect() {
+        boolean Ok = validarInputs();
+
+        if (Ok) {
+            Ok = dbconection();
+
+            Stage stage = (Stage) user.getScene().getWindow();
+
+            if (Ok) {
+                AlertaLogin.Info();
+                stage.close();
+            } else {
+                AlertaLogin.Error();
+            }
+        } else {
+            AlertaLogin.Ad();
+        }
+    };
+
     public abstract boolean validarInputs();
 
-    public abstract void Conect();
+    public abstract boolean dbconection();
 }

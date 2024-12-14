@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.acme.complejoacme.AbstractLoginController">
+<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.acme.complejoacme.Login.AbstractLoginController">
    <children>
       <AnchorPane prefHeight="494.0" prefWidth="309.0" styleClass="brand-color" stylesheets="@Styles/Base.css">
          <children>
@@ -69,7 +69,7 @@
             <FlowPane alignment="BASELINE_CENTER" hgap="20.0" prefHeight="0.0" prefWidth="200.0" rowValignment="TOP">
                <children>
                   <Button fx:id="cancel" cancelButton="true" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #FF0000FF;" styleClass="close" stylesheets="@Styles/Base.css" text="Cancelar" textFill="WHITE" textOverrun="CLIP" wrapText="true" />
-                  <Button fx:id="conect" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#conect" style="-fx-Halignment: right;" text="Conectar" textAlignment="CENTER" />
+                  <Button fx:id="conect" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" style="-fx-Halignment: right;" text="Conectar" textAlignment="CENTER" />
                </children>
             </FlowPane>
          </children>

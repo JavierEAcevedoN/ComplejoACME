@@ -1,9 +1,9 @@
 package Modelo;
 
-import Vista.Login;
-import Vista.SuperLogin;
-import com.acme.complejoacme.LoginController;
-import com.acme.complejoacme.SuperLoginController;
+import Vista.Login.Login;
+import Vista.Login.SuperLogin;
+import com.acme.complejoacme.Login.LoginController;
+import com.acme.complejoacme.Login.SuperLoginController;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.BufferedReader;
@@ -56,7 +56,7 @@ public class DataBaseConection {
             return root;
         }
 
-        File configuracion = new File("src\\configuracion.txt");
+        File configuracion = new File("src/configuracion.txt");
         if (configuracion.isFile() && configuracion.exists()) {
             try (BufferedReader buffer = new BufferedReader(new FileReader(configuracion))) {
                 StringBuilder contenido = new StringBuilder();
@@ -85,7 +85,7 @@ public class DataBaseConection {
     }
 
     public static boolean actualizarConexion(String host, String user, String password) {
-        File configuracion = new File("src\\configuracion.txt");
+        File configuracion = new File("src/configuracion.txt");
 
         if (!conectar(host, user, password)) {
             return false;

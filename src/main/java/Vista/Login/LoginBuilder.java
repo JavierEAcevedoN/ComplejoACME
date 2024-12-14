@@ -1,5 +1,6 @@
-package Vista;
-import com.acme.complejoacme.AbstractLoginController;
+package Vista.Login;
+import Vista.utils.DraggableWindow;
+import com.acme.complejoacme.Login.AbstractLoginController;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,6 +35,7 @@ public abstract class LoginBuilder {
     public LoginBuilder withLeftPane() {
         // Crear AnchorPane principal
         AnchorPane leftPane = new AnchorPane();
+        DraggableWindow.init(leftPane);
         leftPane.setPrefHeight(494.0);
         leftPane.setPrefWidth(309.0);
         leftPane.getStyleClass().add("brand-color");

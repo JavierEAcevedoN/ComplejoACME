@@ -13,4 +13,6 @@ module com.acme.complejoacme {
 
     opens com.acme.complejoacme to javafx.fxml;
     exports com.acme.complejoacme;
+    exports com.acme.complejoacme.Login;
+    opens com.acme.complejoacme.Login to javafx.fxml;
 }
