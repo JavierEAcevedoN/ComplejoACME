@@ -1,6 +1,9 @@
 package Vista.Manager.Tab;
 
+import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
+import com.acme.complejoacme.Manager.ManagerController;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -12,28 +15,58 @@ import javafx.scene.layout.VBox;
 public class RegistrarVehiculoTab implements TabBuilder{
 
     @Override
-    public Tab Crear() {
+    public Tab Crear(ManagerController controller) {
+        // Crear el Tab
         Tab registrarVehiculoTab = new Tab("Registrar Vehiculo");
+        registrarVehiculoTab.setId("crearVehiculo");
 
-        FlowPane vehiculoContent = new FlowPane();
-        vehiculoContent.setAlignment(Pos.CENTER);
+        // Crear el FlowPane principal
+        FlowPane flowPane = new FlowPane();
+        flowPane.setAlignment(Pos.CENTER);
+        flowPane.setColumnHalignment(HPos.CENTER);
 
-        VBox vehiculoForm = new VBox();
-        vehiculoForm.setAlignment(Pos.CENTER_RIGHT);
-        vehiculoForm.setSpacing(40.0);
-        vehiculoForm.setPrefSize(280.0, 541.0);
+        // Crear el VBox principal
+        VBox mainVBox = new VBox();
+        mainVBox.setAlignment(Pos.CENTER_RIGHT);
+        mainVBox.setPrefSize(280, 541);
+        mainVBox.setSpacing(40);
 
-        vehiculoForm.getChildren().addAll(
-                createLabeledField.create("Usuario Responsable", new TextField()),
-                createLabeledField.create("Placa del Vehiculo", new TextField()),
-                new Button("Guardar") {{
-                    setDefaultButton(true);
-                    setCursor(Cursor.HAND);
-                }}
-        );
+        VBox usuarioField = createLabeledField.create("Usuario Responsable", new TextField(), "crearVehiculo_Id");
+        TextField usuarioTextField = (TextField) usuarioField.getChildren().get(1);
+        controller.crearVehiculo_Id = usuarioTextField;
 
-        vehiculoContent.getChildren().add(vehiculoForm);
-        registrarVehiculoTab.setContent(vehiculoContent);
+        usuarioTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            controller.crearVehiculo_Id.setText(newValue);
+        });
+
+        VBox placaField = createLabeledField.create("Placa del Vehículo", new TextField(), "crearVehiculo_Placa");
+        TextField placaTextField = (TextField) placaField.getChildren().get(1);
+        controller.crearVehiculo_Placa = placaTextField;
+
+        placaTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            controller.crearVehiculo_Placa.setText(newValue);
+        });
+
+        controller.setInputsRegistrarVehiculoTab(controller.getInputsRegistrarVehiculoTab());
+
+        // Crear el botón "Guardar"
+        Button guardarButton = new Button("Guardar");
+        guardarButton.setId("crearVehiculo_button");
+        guardarButton.setOnAction(e -> controller.procedimiento(controller.registrarVehiculo_Inputs,() -> {
+            AlertaTab.Test();}));
+        controller.crearVehiculo_button = guardarButton;
+        guardarButton.setDefaultButton(true);
+        guardarButton.setMnemonicParsing(false);
+        guardarButton.setCursor(Cursor.HAND);
+
+        // Agregar los elementos al VBox principal
+        mainVBox.getChildren().addAll(usuarioField, placaField, guardarButton);
+
+        // Agregar el VBox principal al FlowPane
+        flowPane.getChildren().add(mainVBox);
+
+        // Configurar el contenido del Tab
+        registrarVehiculoTab.setContent(flowPane);
 
         return registrarVehiculoTab;
     }

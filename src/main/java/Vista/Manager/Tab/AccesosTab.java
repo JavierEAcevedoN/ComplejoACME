@@ -1,5 +1,6 @@
 package Vista.Manager.Tab;
 
+import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
@@ -9,7 +10,7 @@ import javafx.scene.layout.VBox;
 public class AccesosTab implements TabBuilder{
 
     @Override
-    public Tab Crear() {
+    public Tab Crear(ManagerController controller) {
         // Crear el Tab "ReporteAccesos"
         Tab reporteAccesosTab = new Tab();
         reporteAccesosTab.setText("Accesos");
@@ -38,6 +39,12 @@ public class AccesosTab implements TabBuilder{
         Label inicioLabel = new Label("Fecha de inicio");
         DatePicker inicioDatePicker = new DatePicker();
         inicioDatePicker.setId("ReporteAccesos_Inicio");
+
+        controller.ReporteAccesos_Inicio = inicioDatePicker;
+
+        inicioDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            controller.ReporteAccesos_Inicio.setValue(newValue);
+        });
         inicioVBox.getChildren().addAll(inicioLabel, inicioDatePicker);
 
         // Crear el VBox para el DatePicker "Fecha de fin"
@@ -48,14 +55,24 @@ public class AccesosTab implements TabBuilder{
         Label finLabel = new Label("Fecha de fin");
         DatePicker finDatePicker = new DatePicker();
         finDatePicker.setId("ReporteAccesos_Fin");
+
+        controller.ReporteAccesos_Fin = finDatePicker;
+
+        finDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            controller.ReporteAccesos_Fin.setValue(newValue);
+        });
         finVBox.getChildren().addAll(finLabel, finDatePicker);
 
         // Añadir los VBoxes al HBox
         hbox.getChildren().addAll(inicioVBox, finVBox);
 
+        controller.setInputsAccesosTab(controller.getInputsAccesosTab());
+
+
         // Crear la TableView para mostrar los datos
         TableView<String> tableView = new TableView<>();
         tableView.setId("ReporteAccesos_Tabla");
+        controller.ReporteAccesos_Tabla = tableView;
         tableView.setPrefHeight(574.0);
         tableView.setPrefWidth(491.0);
 

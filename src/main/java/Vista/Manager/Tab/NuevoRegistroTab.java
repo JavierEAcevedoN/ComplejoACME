@@ -1,15 +1,14 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.createLabeledField;
+import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 public class NuevoRegistroTab implements TabBuilder {
     @Override
-    public Tab Crear() {
+    public Tab Crear(ManagerController controller) {
         Tab nuevoRegistroTab = new Tab("Nuevo Registro");
 
         FlowPane mainContent = new FlowPane();
@@ -18,14 +17,14 @@ public class NuevoRegistroTab implements TabBuilder {
         mainContent.setPrefWrapLength(10.0);
 
         TabPane innerTabPane = new TabPane();
-        innerTabPane.setPrefSize(522.0, 541.0);
+        innerTabPane.setPrefSize(525,536);
         innerTabPane.setSide(Side.RIGHT);
         innerTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         // Usar clases creadoras para agregar los tabs internos
         innerTabPane.getTabs().addAll(
-                new RegistrarPersonalTab().Crear(),
-                new RegistrarVehiculoTab().Crear()
+                new RegistrarPersonalTab().Crear(controller),
+                new RegistrarVehiculoTab().Crear(controller)
         );
 
         mainContent.getChildren().add(innerTabPane);
@@ -34,4 +33,3 @@ public class NuevoRegistroTab implements TabBuilder {
         return nuevoRegistroTab;
     }
 }
-

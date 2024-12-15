@@ -1,5 +1,6 @@
 package Vista.Manager.Tab;
 
+import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
@@ -11,7 +12,7 @@ import javafx.scene.layout.VBox;
 
 public class EstadoPersonalTab implements TabBuilder{
     @Override
-    public Tab Crear() {
+    public Tab Crear(ManagerController controller) {
         Tab estadoPersonalTab = new Tab("Estado Personal Autorizado");
         estadoPersonalTab.setId("ReporteEstado");
 
@@ -33,8 +34,22 @@ public class EstadoPersonalTab implements TabBuilder{
         estado.setPrefHeight(200.0);
         estado.setPrefWidth(100.0);
 
+
         CheckBox activos = new CheckBox("Activos");
+        controller.ReporteEstado_Activos = activos;
+        activos.setSelected(true);
+
+        activos.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            controller.ReporteEstado_Activos.setSelected(newValue);
+        });
+
         CheckBox inactivos = new CheckBox("Inactivos");
+        controller.ReporteEstado_Inactivos = inactivos;
+        inactivos.setSelected(false);
+
+        inactivos.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            controller.ReporteEstado_Inactivos.setSelected(newValue);
+        });
 
         estado.getChildren().addAll(activos, inactivos);
 
@@ -45,14 +60,36 @@ public class EstadoPersonalTab implements TabBuilder{
         roles.setPrefWidth(377.0);
 
         CheckBox supervisores = new CheckBox("Supervisores");
+        controller.ReporteEstado_Superv = supervisores;
+
+        supervisores.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            controller.ReporteEstado_Superv.setSelected(newValue);
+        });
+
         CheckBox guardas = new CheckBox("Guardas");
+        controller.ReporteEstado_Guardas = guardas;
+
+        guardas.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            controller.ReporteEstado_Guardas.setSelected(newValue);
+        });
+
         CheckBox funcionarios = new CheckBox("Funcionarios");
+        controller.ReporteEstado_Funcion = funcionarios;
+
+        funcionarios.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            controller.ReporteEstado_Funcion.setSelected(newValue);
+        });
 
         roles.getChildren().addAll(supervisores, guardas, funcionarios);
 
         header.getChildren().addAll(estado, roles);
 
+        controller.setInputsEstadoPersonalTab(controller.getInputsEstadoPersonalTab());
+
+
         TableView<String> tableView = new TableView<>();
+        controller.ReporteEstado_Tabla = tableView;
+
         tableView.setPrefHeight(574.0);
         tableView.setPrefWidth(491.0);
 

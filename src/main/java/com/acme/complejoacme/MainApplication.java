@@ -34,13 +34,14 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class MainApplication extends Application {
+    private static Stage primaryStage;
+
     @Override
     public void start(Stage stage) throws IOException {
+        primaryStage = stage;
         System.out.println("Ejecutando programa...");
-//        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("creatorRole.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load());
         AnchorPane loader = DataBaseConection.ejecutarConexion();
-        startScene(loader,stage);
+        startScene(loader, stage);
     }
 
     public static void startScene(Parent element, Stage stage) {
@@ -49,6 +50,16 @@ public class MainApplication extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void restartApplication() {
+        if (primaryStage != null) {
+            primaryStage.close();
+        }
+        Stage newStage = new Stage();
+        System.out.println("Reiniciando programa...");
+        AnchorPane loader = DataBaseConection.ejecutarConexion();
+        startScene(loader, newStage);
     }
 
     public static void startScene(Parent element) {
@@ -66,7 +77,6 @@ public class MainApplication extends Application {
         stage.setScene(new Scene(element));
         stage.show();
     }
-
 
     public static void main(String[] args) {
         launch();
