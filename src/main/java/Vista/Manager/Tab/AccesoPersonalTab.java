@@ -1,6 +1,9 @@
 package Vista.Manager.Tab;
 
+import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
+import com.acme.complejoacme.Manager.ManagerController;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -11,23 +14,53 @@ import javafx.scene.layout.VBox;
 
 public class AccesoPersonalTab implements TabBuilder{
     @Override
-    public Tab Crear() {
-        Tab accesoPersonalTab = new Tab();
-        accesoPersonalTab.setText("Acceso Personal");
+    public Tab Crear(ManagerController controller) {
+        // Crear el Tab
+        Tab accesoPersonalTab = new Tab("Acceso Personal");
+        accesoPersonalTab.setId("accesoPersonal");
 
+        // Crear el FlowPane principal
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
+        flowPane.setColumnHalignment(HPos.CENTER);
 
-        VBox vbox = new VBox(20);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(createLabeledField.create("Identificador del personal", new TextField()));
+        // Crear el VBox principal
+        VBox mainVBox = new VBox();
+        mainVBox.setAlignment(Pos.CENTER);
+        mainVBox.setPrefSize(230, 540);
+        mainVBox.setSpacing(20);
 
+        VBox identificadorField = createLabeledField.create("Identificador del personal", new TextField(), "accesoPersonal_Id");
+
+        TextField identificadorTextField = (TextField) identificadorField.getChildren().get(1);
+
+        controller.accesoPersonal_Id = identificadorTextField;
+
+        identificadorTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            controller.accesoPersonal_Id.setText(newValue);
+        });
+
+
+        controller.setInputsAccesoPersonalTab(controller.getInputsAccesoPersonalTab());
+
+
+        // Crear el botón "Permitir acceso"
         Button permitirAccesoButton = new Button("Permitir acceso");
+        permitirAccesoButton.setId("accesoPersonal_button");
+        permitirAccesoButton.setOnAction(e -> controller.procedimiento(controller.accesoPersonal_Inputs,() -> {AlertaTab.Test();}));
+        controller.accesoPersonal_button = permitirAccesoButton;
+
         permitirAccesoButton.setDefaultButton(true);
+        permitirAccesoButton.setMnemonicParsing(false);
         permitirAccesoButton.setCursor(Cursor.HAND);
 
-        vbox.getChildren().add(permitirAccesoButton);
-        flowPane.getChildren().add(vbox);
+        // Agregar los elementos al VBox principal
+        mainVBox.getChildren().addAll(identificadorField, permitirAccesoButton);
+
+        // Agregar el VBox principal al FlowPane
+        flowPane.getChildren().add(mainVBox);
+
+        // Configurar el contenido del Tab
         accesoPersonalTab.setContent(flowPane);
 
         return accesoPersonalTab;

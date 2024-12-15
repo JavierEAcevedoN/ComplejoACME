@@ -1,5 +1,6 @@
 package Vista.Manager.Tab;
 
+import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -10,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class PersonalEmpresasTab implements TabBuilder {
     @Override
-    public Tab Crear() {
+    public Tab Crear(ManagerController controller) {
         // Crear el Tab "ReportePersonal"
         Tab reportePersonalTab = new Tab();
         reportePersonalTab.setText("Personal Empresas");
@@ -53,6 +54,12 @@ public class PersonalEmpresasTab implements TabBuilder {
 
         ChoiceBox<String> empresaChoiceBox = new ChoiceBox<>();
         empresaChoiceBox.setId("ReportePersonal_Empresa");
+
+        controller.ReportePersonal_Empresa = empresaChoiceBox;
+
+        empresaChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            controller.ReportePersonal_Empresa.getSelectionModel().select(newValue);
+        });
         empresaChoiceBox.setPrefHeight(24.0);
         empresaChoiceBox.setPrefWidth(331.0);
         flowPaneChoiceBox.getChildren().add(empresaChoiceBox);
@@ -60,9 +67,12 @@ public class PersonalEmpresasTab implements TabBuilder {
         // Añadir VBox y FlowPane al HBox
         hbox.getChildren().addAll(labelVBox, flowPaneChoiceBox);
 
+        controller.setInputsPersonalEmpresasTab(controller.getInputsPersonalEmpresasTab());
+
         // Crear la TableView para mostrar los datos
         TableView<String> tableView = new TableView<>();
         tableView.setId("ReportePersonal_Tabla");
+        controller.ReportePersonal_Tabla = tableView;
         tableView.setPrefHeight(574.0);
         tableView.setPrefWidth(491.0);
 

@@ -1,6 +1,8 @@
 package Vista.Manager.Tab;
 
+import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
+import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -14,42 +16,77 @@ import javafx.scene.layout.VBox;
 public class PermisoTab implements TabBuilder{
 
     @Override
-    public Tab Crear() {
-        Tab permisoTab = new Tab();
-        permisoTab.setText("Permiso Visitante");
+    public Tab Crear(ManagerController controller) {
+        Tab permisoTab = new Tab("Permiso Visitante");
+        permisoTab.setId("permiso");
 
-        // Crear el FlowPane
+        // Crear el FlowPane principal
         FlowPane flowPane = new FlowPane();
-        flowPane.setVgap(10);
 
-        // Crear VBox principal
-        VBox vbox = new VBox(10);
-        vbox.setAlignment(Pos.CENTER);
+        // Crear el VBox principal
+        VBox mainVBox = new VBox();
+        mainVBox.setAlignment(Pos.CENTER);
+        mainVBox.setPrefSize(523, 541);
 
-        // Crear el primer HBox con el campo de Identificador
-        HBox hbox1 = new HBox(10);
-        hbox1.setAlignment(Pos.CENTER);
-        hbox1.getChildren().add(createLabeledField.create("Identificador", new TextField()));
+        // Crear el primer HBox para el identificador
+        HBox identificadorHBox = new HBox();
+        identificadorHBox.setAlignment(Pos.CENTER);
+        identificadorHBox.setPrefSize(200, 100);
+        VBox identificadorField = createLabeledField.create("Identificador", new TextField(), "permiso_Id");
+        TextField permisoIdTextField = (TextField) identificadorField.getChildren().get(1);
+        controller.permiso_Id = permisoIdTextField;
 
-        // Crear el segundo HBox con las fechas de inicio y fin
-        HBox hbox2 = new HBox(25);
-        hbox2.setAlignment(Pos.CENTER);
-        hbox2.getChildren().addAll(createLabeledField.create("Fecha de inicio", new DatePicker()),
-                createLabeledField.create("Fecha de fin", new DatePicker()));
+        permisoIdTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            controller.permiso_Id.setText(newValue);
+        });
 
-        // Crear el botón Guardar
-        HBox hbox3 = new HBox();
-        hbox3.setAlignment(Pos.CENTER);
+        identificadorHBox.getChildren().add(identificadorField);
+
+        // Crear el segundo HBox para las fechas
+        HBox fechasHBox = new HBox();
+        fechasHBox.setAlignment(Pos.CENTER);
+        fechasHBox.setSpacing(25.0);
+        fechasHBox.setPrefSize(200, 100);
+        VBox fechaInicioField = createLabeledField.create("Fecha de inicio", new DatePicker(), "permiso_FechaInicio");
+        DatePicker permisoFechaInicioPicker = (DatePicker) fechaInicioField.getChildren().get(1);
+        controller.permiso_FechaInicio = permisoFechaInicioPicker;
+
+        permisoFechaInicioPicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            controller.permiso_FechaInicio.setValue(newValue);
+        });
+
+        VBox fechaFinField = createLabeledField.create("Fecha de fin", new DatePicker(), "permiso_FechaFin");
+        DatePicker permisoFechaFinPicker = (DatePicker) fechaFinField.getChildren().get(1);
+        controller.permiso_FechaFin = permisoFechaFinPicker;
+
+        permisoFechaFinPicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            controller.permiso_FechaFin.setValue(newValue);
+        });
+        fechasHBox.getChildren().addAll(fechaInicioField, fechaFinField);
+
+        controller.setInputsPermisoTab(controller.getInputsPermisoTab());
+
+        // Crear el tercer HBox para el botón
+        HBox botonHBox = new HBox();
+        botonHBox.setAlignment(Pos.CENTER);
+        botonHBox.setPrefSize(200, 100);
         Button guardarButton = new Button("Guardar");
+        guardarButton.setId("permiso_Button");
+        guardarButton.setOnAction(e -> controller.procedimiento(controller.permisoVisitante_Inputs,() -> {
+            AlertaTab.Test();}));
+        controller.permiso_Button = guardarButton;
         guardarButton.setDefaultButton(true);
+        guardarButton.setMnemonicParsing(false);
         guardarButton.setCursor(Cursor.HAND);
-        hbox3.getChildren().add(guardarButton);
+        botonHBox.getChildren().add(guardarButton);
 
-        // Agregar todos los HBox al VBox principal
-        vbox.getChildren().addAll(hbox1, hbox2, hbox3);
-        flowPane.getChildren().add(vbox);
+        // Agregar los HBox al VBox principal
+        mainVBox.getChildren().addAll(identificadorHBox, fechasHBox, botonHBox);
 
-        // Agregar el FlowPane a la pestaña
+        // Agregar el VBox principal al FlowPane
+        flowPane.getChildren().add(mainVBox);
+
+        // Configurar el contenido del Tab
         permisoTab.setContent(flowPane);
 
         return permisoTab;

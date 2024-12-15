@@ -1,29 +1,27 @@
 package Vista.Manager.Builds;
 
 import Vista.Manager.Tab.*;
-import com.acme.complejoacme.Manager.AbstractManagerController;
+import com.acme.complejoacme.Manager.ManagerController;
 import javafx.scene.control.Tab;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerFuncionario extends ManagerBuilder{
-    public ManagerFuncionario(AbstractManagerController controller) {
+    public ManagerFuncionario(ManagerController controller) {
         super(controller);
     }
 
-    public static ManagerFuncionario create(AbstractManagerController controller) {
+    public static ManagerFuncionario create(ManagerController controller) {
         return new ManagerFuncionario(controller);
     }
 
     @Override
     protected ArrayList<Tab> getTabs() {
-        Tab nuevoRegistro = new NuevoRegistroTab().Crear();
-        Tab permisoVisitante = new PermisoTab().Crear();
-        Tab reportes = new ReportesTab().Crear();
+        Tab nuevoRegistro = new NuevoRegistroTab().Crear(controller);
+        Tab permisoVisitante = new PermisoTab().Crear(controller);
+        Tab monitor = new MonitorTab().Crear(controller);
 
-        ArrayList<Tab> tabs = new ArrayList<>(List.of(nuevoRegistro, permisoVisitante,reportes));
-
-        return tabs;
+        return new ArrayList<>(List.of(nuevoRegistro, permisoVisitante,monitor));
     }
 }

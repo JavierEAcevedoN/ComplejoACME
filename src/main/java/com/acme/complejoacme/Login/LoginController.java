@@ -12,7 +12,6 @@ public class LoginController extends AbstractLoginController{
         boolean Ok = true;
         inputs = new TextField[]{user, pass};
         for (TextField input : inputs) {
-            System.out.println(input.getText());
             if (input.getText().isEmpty()) {
                 Ok = false;
             }
@@ -27,6 +26,7 @@ public class LoginController extends AbstractLoginController{
 
     @Override
     public void nextWindow() {
-        MainApplication.startScene(ManagerInvoker.getManager(DataBaseConection.getCurrentRole()));
+//        MainApplication.startScene(ManagerInvoker.getManager(DataBaseConection.getCurrentRole()));
+        MainApplication.startScene(ManagerInvoker.getManager(""));
     }
 }

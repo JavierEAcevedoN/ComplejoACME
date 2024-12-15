@@ -1,6 +1,9 @@
 package Vista.Manager.Tab;
 
+import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
+import com.acme.complejoacme.Manager.ManagerController;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -11,23 +14,52 @@ import javafx.scene.layout.VBox;
 
 public class AccesoVehiculoTab implements TabBuilder{
     @Override
-    public Tab Crear() {
-        Tab accesoVehiculoTab = new Tab();
-        accesoVehiculoTab.setText("Acceso Vehicular");
+    public Tab Crear(ManagerController controller) {
+        // Crear el Tab
+        Tab accesoVehiculoTab = new Tab("Acceso Vehicular");
+        accesoVehiculoTab.setId("accesoVehiculo");
 
+        // Crear el FlowPane principal
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
+        flowPane.setColumnHalignment(HPos.CENTER);
 
-        VBox vbox = new VBox(20);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(createLabeledField.create("Placa", new TextField()));
+        // Crear el VBox principal
+        VBox mainVBox = new VBox();
+        mainVBox.setAlignment(Pos.CENTER);
+        mainVBox.setPrefSize(230, 540);
+        mainVBox.setSpacing(20);
 
+        // Crear los campos etiquetados
+        VBox placaField = createLabeledField.create("Placa", new TextField(), "accesoVehiculo_Placa");
+
+        TextField placaTextField = (TextField) placaField.getChildren().get(1);
+
+        controller.accesoVehiculo_Placa = placaTextField;
+
+        placaTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            controller.accesoVehiculo_Placa.setText(newValue);
+        });
+
+        controller.setInputsAccesoVehiculoTab(controller.getInputsAccesoVehiculoTab());
+
+        // Crear el botón "Permitir acceso"
         Button permitirAccesoButton = new Button("Permitir acceso");
+        permitirAccesoButton.setId("accesoVehiculo_button");
+        permitirAccesoButton.setOnAction(e -> controller.procedimiento(controller.accesoVehicular_Inputs,() -> {
+            AlertaTab.Test();}));
+        controller.accesoVehiculo_button = permitirAccesoButton;
         permitirAccesoButton.setDefaultButton(true);
+        permitirAccesoButton.setMnemonicParsing(false);
         permitirAccesoButton.setCursor(Cursor.HAND);
 
-        vbox.getChildren().add(permitirAccesoButton);
-        flowPane.getChildren().add(vbox);
+        // Agregar los elementos al VBox principal
+        mainVBox.getChildren().addAll(placaField, permitirAccesoButton);
+
+        // Agregar el VBox principal al FlowPane
+        flowPane.getChildren().add(mainVBox);
+
+        // Configurar el contenido del Tab
         accesoVehiculoTab.setContent(flowPane);
 
         return accesoVehiculoTab;

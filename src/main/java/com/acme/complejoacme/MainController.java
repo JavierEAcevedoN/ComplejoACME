@@ -11,8 +11,5 @@ public class MainController {
     public static AbstractLoginController Superlogin = new SuperLoginController();
 
     // Manager
-    public static AbstractManagerController Superusuario = new ManagerSuperusuarioController();
-    public static AbstractManagerController Supervisor = new ManagerSupervisorController();
-    public static AbstractManagerController Funcionario = new ManagerFuncionarioController();
-    public static AbstractManagerController Guarda = new ManagerGuardaController();
+    public static ManagerController Manager = new ManagerController();
 }

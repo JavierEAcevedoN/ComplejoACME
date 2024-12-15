@@ -15,7 +15,7 @@
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ACME" textAlignment="CENTER" wrappingWidth="186.11572265625">
                      <font>
-                        <Font name="DejaVu Sans Bold" size="49.0" />
+                        <Font name="Arial Black" size="49.0" />
                      </font>
                   </Text>
                </children>
@@ -38,7 +38,7 @@
                <children>
                   <Text fx:id="roleDisplay" blendMode="DIFFERENCE" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SuperUsuario" textAlignment="CENTER" wrappingWidth="8.02874755859375">
                      <font>
-                        <Font name="Mallanna" size="28.0" />
+                        <Font name="Inter Regular" size="23.0" />
                      </font>
                   </Text>
                </children>
@@ -62,7 +62,7 @@
                </children>
             </VBox>
          </children></HBox>
-      <TabPane prefHeight="541.0" prefWidth="553.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="532.0" prefWidth="554.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab fx:id="crearUsuario" text="Crear Usuario">
                <content>
@@ -109,7 +109,7 @@
                 <content>
                     <FlowPane>
                         <children>
-                            <TabPane prefHeight="541.0" prefWidth="522.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                            <TabPane prefHeight="536.0" prefWidth="525.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                     <Tab fx:id="crearPersonal" text="Registrar Personal">
                                         <content>
@@ -471,7 +471,7 @@
                                     <content>
                                        <FlowPane>
                                          <children>
-                                            <TabPane prefHeight="541.0" prefWidth="496.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                                            <TabPane prefHeight="533.0" prefWidth="496.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
                                               <tabs>
                                                   <Tab fx:id="aplicarRest" text="Aplicar Restriccion">
                                                       <content>

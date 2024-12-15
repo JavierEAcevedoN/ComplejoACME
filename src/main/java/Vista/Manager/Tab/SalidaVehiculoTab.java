@@ -1,6 +1,9 @@
 package Vista.Manager.Tab;
 
+import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
+import com.acme.complejoacme.Manager.ManagerController;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -12,23 +15,49 @@ import javafx.scene.layout.VBox;
 public class SalidaVehiculoTab implements TabBuilder{
 
     @Override
-    public Tab Crear() {
-        Tab salidaVehiculoTab = new Tab();
-        salidaVehiculoTab.setText("Salida Vehicular");
+    public Tab Crear(ManagerController controller) {
+        // Crear el Tab
+        Tab salidaVehiculoTab = new Tab("Salida Vehicular");
+        salidaVehiculoTab.setId("salidaVehiculo");
 
+        // Crear el FlowPane principal
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
+        flowPane.setColumnHalignment(HPos.CENTER);
 
-        VBox vbox = new VBox(20);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(createLabeledField.create("Placa", new TextField()));
+        // Crear el VBox principal
+        VBox mainVBox = new VBox();
+        mainVBox.setAlignment(Pos.CENTER);
+        mainVBox.setPrefSize(230, 540);
+        mainVBox.setSpacing(20);
 
+        VBox placaField = createLabeledField.create("Placa", new TextField(), "salidaVehiculo_Placa");
+        TextField placaTextField = (TextField) placaField.getChildren().get(1);
+        controller.salidaVehiculo_Placa = placaTextField;
+
+        placaTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            controller.salidaVehiculo_Placa.setText(newValue);
+        });
+
+        controller.setInputsSalidaVehiculoTab(controller.getInputsSalidaVehiculoTab());
+
+        // Crear el botón "Registrar Salida"
         Button registrarSalidaButton = new Button("Registrar Salida");
+        registrarSalidaButton.setId("salidaVehiculo_button");
+        registrarSalidaButton.setOnAction(e -> controller.procedimiento(controller.salidaVehicular_Inputs,() -> {
+            AlertaTab.Test();}));
+        controller.salidaVehiculo_button = registrarSalidaButton;
         registrarSalidaButton.setDefaultButton(true);
+        registrarSalidaButton.setMnemonicParsing(false);
         registrarSalidaButton.setCursor(Cursor.HAND);
 
-        vbox.getChildren().add(registrarSalidaButton);
-        flowPane.getChildren().add(vbox);
+        // Agregar los elementos al VBox principal
+        mainVBox.getChildren().addAll(placaField, registrarSalidaButton);
+
+        // Agregar el VBox principal al FlowPane
+        flowPane.getChildren().add(mainVBox);
+
+        // Configurar el contenido del Tab
         salidaVehiculoTab.setContent(flowPane);
 
         return salidaVehiculoTab;
