@@ -32,7 +32,7 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
     }
 
     @Override
-    public void getLista() {
+    public List<CAVehiculoM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("CALL getcavehiculo;");
             while (res.next()) {
@@ -59,6 +59,7 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla controlaccesosvehicular: " + e.getMessage());
         }
+        return listaCaVehiculos;
     }
 
     @Override

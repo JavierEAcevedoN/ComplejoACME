@@ -31,7 +31,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
     }
 
     @Override
-    public void getLista() {
+    public List<VehiculoM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("CALL getvehiculos;");
             while (res.next()) {
@@ -53,6 +53,7 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla vehiculo: " + e.getMessage());
         }
+        return listaVehiculos;
     }
 
     @Override

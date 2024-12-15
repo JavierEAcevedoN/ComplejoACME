@@ -31,7 +31,7 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
     }
 
     @Override
-    public void getLista() {
+    public List<IPersonalM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("CALL getincidentespersonal;");
             while (res.next()) {
@@ -65,6 +65,7 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla incidentespersonal: " + e.getMessage());
         }
+        return listaCaPersonal;
     }
 
     @Override

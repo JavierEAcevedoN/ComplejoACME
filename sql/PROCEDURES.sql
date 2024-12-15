@@ -248,4 +248,31 @@ BEGIN
     INNER JOIN rol rp ON p.ID_Rol = rp.ID;
 END //
 
+DROP PROCEDURE IF EXISTS creausuario;
+
+CREATE PROCEDURE IF NOT EXISTS creausuario (
+    IN usuario VARCHAR(50),
+    IN host VARCHAR(50),
+    IN contrasena VARCHAR(50),
+    IN rol VARCHAR(20)
+)
+BEGIN
+    -- crear usuario
+    SET @query_crear_usuario = CONCAT('CREATE USER "', usuario, '"@"', host, '" IDENTIFIED BY "', contrasena, '";');
+    PREPARE stmt_crear FROM @query_crear_usuario;
+    EXECUTE stmt_crear;
+    DEALLOCATE PREPARE stmt_crear;
+
+    -- Asignar permisos
+    SET @query_permisos = CONCAT('GRANT ', rol, ' TO "', usuario, '"@"', host, '";');
+    PREPARE stmt_permisos FROM @query_permisos;
+    EXECUTE stmt_permisos;
+    DEALLOCATE PREPARE stmt_permisos;
+
+    SET @default_role = CONCAT('SET DEFAULT ROLE ALL TO "', usuario, '"@"', host, '";');
+    PREPARE stmt_defaultrole FROM @default_role;
+    EXECUTE stmt_defaultrole;
+    DEALLOCATE PREPARE stmt_defaultrole;
+END //
+
 DELIMITER ;

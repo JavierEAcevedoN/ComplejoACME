@@ -83,7 +83,7 @@ public class MainApplication extends Application {
         launch();
 
         // Prueva
-        CMGPersonal cmgPersonal = CMGPersonal.getInstance();
+        /* CMGPersonal cmgPersonal = CMGPersonal.getInstance();
         PersonalO personal = new PersonalO(263132, "JAVIER", "TAYRONA1", "3012151197", true, "superusuario1", 3);
         cmgPersonal.mostrarF(i -> i.getRol().equals("Guarda"));
         // cmgPersonal.guardar(personal);
@@ -138,6 +138,6 @@ public class MainApplication extends Application {
         cmRetricciones.mostrarF(i -> i.getId() == 1);
 
         CMIncidentes cmIncidentes = CMIncidentes.getInstance();
-        cmIncidentes.mostrarF(i -> i.getDescripcion().equals("Incidente menor"));
+        cmIncidentes.mostrarF(i -> i.getDescripcion().equals("Incidente menor")); */
     }
 }

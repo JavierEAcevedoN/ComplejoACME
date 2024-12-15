@@ -24,7 +24,7 @@ public class CMEmpresas extends ConexionM{
     }
 
     @Override
-    public void getLista() {
+    public List<EmpresasM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM empresas;");
             while (res.next()) {
@@ -39,6 +39,7 @@ public class CMEmpresas extends ConexionM{
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla empresas: " + e.getMessage());
         }
+        return listaEmpresas;
     }
 
     @Override

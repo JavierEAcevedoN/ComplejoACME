@@ -18,8 +18,8 @@ public class ManagerGuarda extends ManagerBuilder{
 
     @Override
     protected ArrayList<Tab> getTabs() {
-        Tab controlIngreso = new CrearUsuarioTab().Crear(controller);
-        Tab controlSalida = new NuevoRegistroTab().Crear(controller);
+        Tab controlIngreso = new ControlIngresosTab().Crear(controller);
+        Tab controlSalida = new ControlSalidasTab().Crear(controller);
         Tab disciplinario = new DisciplinarioTab().Crear(controller);
 
         return new ArrayList<>(List.of(controlIngreso,controlSalida,disciplinario));

@@ -25,7 +25,7 @@ public class CMLogRegistros extends ConexionM{
     }
 
     @Override
-    public void getLista() {
+    public List<LogRegistrosM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("call getlogregistros;");
             while (res.next()) {
@@ -57,6 +57,7 @@ public class CMLogRegistros extends ConexionM{
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla logregistros: " + e.getMessage());
         }
+        return listaLogRegistros;
     }
 
     @Override

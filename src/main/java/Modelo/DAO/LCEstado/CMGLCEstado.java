@@ -31,7 +31,7 @@ public class CMGLCEstado extends ConexionMG<LCEstadoO> {
     }
 
     @Override
-    public void getLista() {
+    public List<LCEstadoM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("CALL getlogcambioestado;");
             while (res.next()) {
@@ -65,6 +65,7 @@ public class CMGLCEstado extends ConexionMG<LCEstadoO> {
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla logcambioestado: " + e.getMessage());
         }
+        return listaCaPersonal;
     }
 
     @Override

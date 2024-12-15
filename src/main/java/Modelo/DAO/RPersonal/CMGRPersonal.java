@@ -31,7 +31,7 @@ public class CMGRPersonal extends ConexionMG<RPersonalO> {
     }
 
     @Override
-    public void getLista() {
+    public List<RPersonalM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("CALL getrestriccionespersonal;");
             while (res.next()) {
@@ -64,6 +64,7 @@ public class CMGRPersonal extends ConexionMG<RPersonalO> {
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla restriccionespersonal: " + e.getMessage());
         }
+        return listaPersonal;
     }
 
     @Override

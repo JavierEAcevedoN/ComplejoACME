@@ -32,7 +32,7 @@ public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
     }
 
     @Override
-    public void getLista() {
+    public List<EmpPersonalM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("CALL getempresapersonal;");
             while (res.next()) {
@@ -59,6 +59,7 @@ public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla empresaspersonal: " + e.getMessage());
         }
+        return listaEmpPersonal;
     }
 
     @Override

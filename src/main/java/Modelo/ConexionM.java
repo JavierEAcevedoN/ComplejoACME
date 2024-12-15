@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.sql.Connection;
+import java.util.List;
 
 public abstract class ConexionM {
     protected static Connection conexionBD;
@@ -13,6 +14,6 @@ public abstract class ConexionM {
         conexionBD = DataBaseConection.getConexionDB();
     }
 
-    public abstract void getLista();
+    public abstract List getLista();
     public abstract void mostrar();
 }

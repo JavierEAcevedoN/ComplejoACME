@@ -24,7 +24,7 @@ public class CMRetricciones extends ConexionM {
     }
 
     @Override
-    public void getLista() {
+    public List<RetriccionesM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM restricciones;");
             while (res.next()) {
@@ -38,6 +38,7 @@ public class CMRetricciones extends ConexionM {
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla restricciones: " + e.getMessage());
         }
+        return listaRestricciones;
     }
 
     @Override

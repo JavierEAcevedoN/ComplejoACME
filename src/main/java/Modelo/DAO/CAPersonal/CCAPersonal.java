@@ -31,7 +31,7 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
     }
 
     @Override
-    public void getLista() {
+    public List<CAPersonalM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("CALL getcapersonal;");
             while (res.next()) {
@@ -55,6 +55,7 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla controlaccesospersonal: " + e.getMessage());
         }
+        return listaCaPersonal;
     }
 
     @Override

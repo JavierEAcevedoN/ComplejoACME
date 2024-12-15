@@ -24,7 +24,7 @@ public class CMIncidentes extends ConexionM{
     }
 
     @Override
-    public void getLista() {
+    public List<IncidentesM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM incidentes;");
             while (res.next()) {
@@ -38,6 +38,7 @@ public class CMIncidentes extends ConexionM{
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla incidentes: " + e.getMessage());
         }
+        return listaIncidentes;
     }
 
     @Override

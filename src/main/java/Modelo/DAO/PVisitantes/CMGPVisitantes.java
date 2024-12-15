@@ -31,7 +31,7 @@ public class CMGPVisitantes extends ConexionMG<PVisitantesO> {
     }
 
     @Override
-    public void getLista() {
+    public List<PVisitantesM> getLista() {
         try {
             ResultSet res = conexionBD.createStatement().executeQuery("CALL getpermisosvisitantes;");
             while (res.next()) {
@@ -64,6 +64,7 @@ public class CMGPVisitantes extends ConexionMG<PVisitantesO> {
         } catch (SQLException e) {
             System.err.println("Error al recuperar los datos de la tabla permisosvisitantes: " + e.getMessage());
         }
+        return listaCaPersonal;
     }
 
     @Override
