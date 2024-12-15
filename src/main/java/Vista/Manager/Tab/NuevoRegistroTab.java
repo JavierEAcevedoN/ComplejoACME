@@ -1,9 +1,7 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.createLabeledField;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 

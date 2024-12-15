@@ -2,8 +2,6 @@ package Modelo;
 
 import Vista.Login.Login;
 import Vista.Login.SuperLogin;
-import com.acme.complejoacme.Login.LoginController;
-import com.acme.complejoacme.Login.SuperLoginController;
 import com.acme.complejoacme.MainController;
 import javafx.scene.layout.AnchorPane;
 

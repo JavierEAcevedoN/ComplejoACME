@@ -93,6 +93,4 @@ public abstract class AbstractManagerController{
 
     // Monitor
     public TableView Monitor;
-
-
 }
