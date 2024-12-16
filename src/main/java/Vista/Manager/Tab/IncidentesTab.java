@@ -1,15 +1,38 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.Alerts.AlertaTab;
-import Vista.utils.createLabeledField;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DataBaseConection;
+import Modelo.DAO.IPersonal.CMGIPersonal;
+import Modelo.DAO.IPersonal.IPersonalO;
+import Modelo.DAO.Incidentes.CMIncidentes;
+import Vista.utils.createLabeledField;
+import Vista.utils.Alerts.AlertaTab;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class IncidentesTab implements TabBuilder{
+    CMGIPersonal cmgiPersonal = CMGIPersonal.getInstance();
+    CMIncidentes cmIncidentes = CMIncidentes.getInstance();
+    IPersonalO iPersonalO;
+    private Timestamp fecha;
+    private String descripcion;
+    private int idIncidente;
+    private long idPersonal;
+
     @Override
     public Tab Crear(ManagerController controller) {
         Tab incidentesTab = new Tab();
@@ -34,8 +57,11 @@ public class IncidentesTab implements TabBuilder{
         firstHBox.setSpacing(20.0);
 
         // Crear el primer VBox con un ChoiceBox
-        VBox vbox1 = createLabeledField.create("Seleccionar Incidente", new ChoiceBox<>(), "incidentes_Tipo");
-        ChoiceBox<?> incidentesTipoChoiceBox = (ChoiceBox<?>) vbox1.getChildren().get(1);
+        ChoiceBox<String> incidentesTipoChoiceBox = new ChoiceBox<>();
+        List<String> listIncidentes = cmIncidentes.getLista().stream().map(i -> i.getDescripcion()).collect(Collectors.toList());
+        incidentesTipoChoiceBox.getItems().setAll(listIncidentes);
+        incidentesTipoChoiceBox.setValue(listIncidentes.get(0));
+        VBox vbox1 = createLabeledField.create("Seleccionar Incidente", incidentesTipoChoiceBox, "incidentes_Tipo");
         controller.incidentes_Tipo = incidentesTipoChoiceBox;
         vbox1.setPrefHeight(100.0);
         vbox1.setPrefWidth(201.0);
@@ -106,7 +132,15 @@ public class IncidentesTab implements TabBuilder{
         Button buttonRegistrar = new Button("Registrar Incidente");
         buttonRegistrar.setId("incidentes_buttonRegistrar");
         buttonRegistrar.setOnAction(e -> controller.procedimiento(controller.incidentes_Inputs,() -> {
-            AlertaTab.Test();}));
+            fecha = Timestamp.valueOf(LocalDateTime.now());
+            descripcion = textArea.getText();
+            idPersonal = Long.parseLong(incidentesIdTextField.getText());
+            idIncidente = cmIncidentes.getLista().stream().filter(i->i.getDescripcion().equals(incidentesTipoChoiceBox.getValue())).map(i->i.getId())
+            .collect(Collectors.toList()).get(0);
+
+            iPersonalO = new IPersonalO(0, fecha, descripcion, DataBaseConection.getCurrentUser(), idIncidente, idPersonal);
+            cmgiPersonal.guardar(iPersonalO);
+        }));
         controller.incidentes_buttonRegistrar = buttonRegistrar;
         buttonRegistrar.setMnemonicParsing(false);
         buttonRegistrar.setCursor(javafx.scene.Cursor.HAND);

@@ -43,14 +43,15 @@ CREATE ROLE 'GUARDA';
 GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesospersonal TO 'GUARDA';
 GRANT SELECT, INSERT, UPDATE ON complejoacme.vehiculo TO 'GUARDA';
 GRANT SELECT, INSERT, UPDATE ON complejoacme.controlaccesosvehicular TO 'GUARDA';
+GRANT INSERT, INSERT, UPDATE ON complejoacme.incidentespersonal TO 'GUARDA';
 GRANT SELECT ON complejoacme.empresas TO 'GUARDA';
+GRANT SELECT ON complejoacme.incidentes TO 'GUARDA';
 GRANT EXECUTE ON PROCEDURE getvehiculos TO 'GUARDA';
 GRANT EXECUTE ON PROCEDURE getcavehiculo TO 'GUARDA';
 GRANT EXECUTE ON PROCEDURE getcapersonal TO 'GUARDA';
 GRANT EXECUTE ON PROCEDURE creausuario TO 'GUARDA';
 
 
-GRANT INSERT ON complejoacme.incidentespersonal TO 'GUARDA';
 
 CREATE ROLE 'FUNCIONARIO';
 

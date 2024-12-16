@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.Alerts.AlertaTab;
 
 public class CMGIPersonal extends ConexionMG<IPersonalO> {
     private static CMGIPersonal instance;
@@ -98,8 +99,10 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
             pst.setLong(5, iPersonal.getIdPersonal());
             pst.execute();
             reiniciarP();
+            AlertaTab.Exito();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla incidentespersonal: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 
@@ -116,8 +119,10 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
             pst.setInt(6, iPersonal.getId());
             pst.execute();
             reiniciarP();
+            AlertaTab.Exito();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla incidentespersonal: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 }

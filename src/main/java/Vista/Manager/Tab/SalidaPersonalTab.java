@@ -1,6 +1,5 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
 
 import java.sql.Timestamp;
