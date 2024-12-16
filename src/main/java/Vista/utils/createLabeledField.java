@@ -5,8 +5,6 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-import java.util.function.Consumer;
-
 public class createLabeledField {
     public static VBox create(String labelText, Control inputControl, String id) {
         VBox container = new VBox();

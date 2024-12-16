@@ -1,6 +1,8 @@
 package Vista.Manager.Tab;
 
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DataBaseConection;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.control.*;
@@ -22,10 +24,10 @@ public class NuevoRegistroTab implements TabBuilder {
         innerTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         // Usar clases creadoras para agregar los tabs internos
-        innerTabPane.getTabs().addAll(
-                new RegistrarPersonalTab().Crear(controller),
-                new RegistrarVehiculoTab().Crear(controller)
-        );
+        innerTabPane.getTabs().add(new RegistrarPersonalTab().Crear(controller));
+        if (!DataBaseConection.getCurrentRole().contains("SUPERUSUARIO")) {
+            innerTabPane.getTabs().add(new RegistrarVehiculoTab().Crear(controller));
+        }
 
         mainContent.getChildren().add(innerTabPane);
         nuevoRegistroTab.setContent(mainContent);

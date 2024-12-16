@@ -1,6 +1,5 @@
 package com.acme.complejoacme.Login;
 
-import Modelo.DataBaseConection;
 import Vista.utils.Alerts.AlertaLogin;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;

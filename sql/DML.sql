@@ -6,7 +6,8 @@ INSERT INTO rol (Rol) VALUES
 ('Guarda'),
 ('Supervisor'),
 ('Funcionario'),
-('Empleado');
+('Empleado'),
+('SuperUsuario');
 
 -- Tabla restricciones
 INSERT INTO restricciones (Descripcion) VALUES
@@ -58,7 +59,8 @@ INSERT INTO personal (ID, Nombre, Direccion, Contacto, Estado, Usuario_Sistema, 
 (9876547891, 'Luis Vega', 'Plaza Sur 323', '987654789', TRUE, "funcionario2", 4),
 (4563219871, 'Carla Ruiz', 'Av. Norte 444', '456321987', FALSE, "guarda3", 2),
 (7894563211, 'Emilio Castro', 'Calle Sol 565', '789456321', TRUE, "supervisor3", 3),
-(3216547891, 'Cecilia Reyes', 'Pasaje Oeste 676', '321654789', TRUE, "funcionario3", 4);
+(3216547891, 'Cecilia Reyes', 'Pasaje Oeste 676', '321654789', TRUE, "funcionario3", 4),
+(3242123212, 'Javier Acevedo', 'Colombia', '32412321223', TRUE, "superusuario1", 6);
 
 -- Tabla permisosvisitantes
 INSERT INTO permisosvisitantes (Fecha_Inicio, Fecha_Fin, Usuario_Responsable, ID_Personal) VALUES

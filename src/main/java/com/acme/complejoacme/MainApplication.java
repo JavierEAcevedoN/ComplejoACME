@@ -10,6 +10,7 @@ import Modelo.DAO.EmpPersonal.EmpPersonalO;
 import Modelo.DAO.Empresas.CMEmpresas;
 import Modelo.DAO.IPersonal.CMGIPersonal;
 import Modelo.DAO.IPersonal.IPersonalO;
+import Modelo.DAO.Incidentes.CMIncidentes;
 import Modelo.DAO.LCEstado.CMGLCEstado;
 import Modelo.DAO.LCEstado.LCEstadoO;
 import Modelo.DAO.LogRegistros.CMLogRegistros;
@@ -19,10 +20,10 @@ import Modelo.DAO.Personal.CMGPersonal;
 import Modelo.DAO.Personal.PersonalO;
 import Modelo.DAO.RPersonal.CMGRPersonal;
 import Modelo.DAO.RPersonal.RPersonalO;
+import Modelo.DAO.Restricciones.CMRetricciones;
 import Modelo.DAO.Vehiculo.CMGVehiculo;
 import Modelo.DAO.Vehiculo.VehiculoO;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -82,7 +83,7 @@ public class MainApplication extends Application {
         launch();
 
         // Prueva
-        CMGPersonal cmgPersonal = CMGPersonal.getInstance();
+        /* CMGPersonal cmgPersonal = CMGPersonal.getInstance();
         PersonalO personal = new PersonalO(263132, "JAVIER", "TAYRONA1", "3012151197", true, "superusuario1", 3);
         cmgPersonal.mostrarF(i -> i.getRol().equals("Guarda"));
         // cmgPersonal.guardar(personal);
@@ -132,5 +133,11 @@ public class MainApplication extends Application {
         IPersonalO iPersonalO = new IPersonalO(21, Timestamp.valueOf("2024-05-09 12:55:00"), "Error en la vida", personal.getUsuarioSistema(), 2, personal.getId());
         cmgiPersonal.mostrarF(i -> i.getIncidente().equals("Robo menor"));
         // cmgiPersonal.guardar(iPersonalO);
+
+        CMRetricciones cmRetricciones = CMRetricciones.getInstance();
+        cmRetricciones.mostrarF(i -> i.getId() == 1);
+
+        CMIncidentes cmIncidentes = CMIncidentes.getInstance();
+        cmIncidentes.mostrarF(i -> i.getDescripcion().equals("Incidente menor")); */
     }
 }

@@ -271,7 +271,6 @@ public class ManagerController {
 
     private boolean respuestaValidacion(boolean Ok) {
         if (Ok) {
-            AlertaTab.Exito();
             return true;
         }
         AlertaTab.Incompletos();

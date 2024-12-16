@@ -12,7 +12,7 @@ import Modelo.DAO.Personal.PersonalM;
 
 public class CMGRPersonal extends ConexionMG<RPersonalO> {
     private static CMGRPersonal instance;
-    private List<RPersonalM> listaPersonal = new ArrayList<>();
+    private List<RPersonalM> listaRPersonal = new ArrayList<>();
 
     private CMGRPersonal() {
         super();
@@ -26,59 +26,62 @@ public class CMGRPersonal extends ConexionMG<RPersonalO> {
     }
 
     private void reiniciarP() {
-        listaPersonal.clear();
+        listaRPersonal.clear();
         mostrar();
     }
 
     @Override
-    public void getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("CALL getrestriccionespersonal;");
-            while (res.next()) {
-                listaPersonal.add(
-                    new RPersonalM(
-                        res.getInt("ID"),
-                        res.getDate("Fecha"),
-                        new PersonalM(
-                            res.getLong("ID_UR"),
-                            res.getString("UR_N"),
-                            res.getString("UR_D"),
-                            res.getString("UR_C"),
-                            res.getBoolean("UR_E"),
-                            res.getString("UR_U"),
-                            res.getString("UR_R")
-                        ),
-                        res.getString("Descripcion"),
-                        new PersonalM(
-                            res.getLong("ID_P"),
-                            res.getString("P_N"),
-                            res.getString("P_D"),
-                            res.getString("P_C"),
-                            res.getBoolean("P_E"),
-                            res.getString("P_U"),
-                            res.getString("P_R")
+    public List<RPersonalM> getLista() {
+        if (listaRPersonal.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getrestriccionespersonal;");
+                while (res.next()) {
+                    listaRPersonal.add(
+                        new RPersonalM(
+                            res.getInt("ID"),
+                            res.getDate("Fecha"),
+                            new PersonalM(
+                                res.getLong("ID_UR"),
+                                res.getString("UR_N"),
+                                res.getString("UR_D"),
+                                res.getString("UR_C"),
+                                res.getBoolean("UR_E"),
+                                res.getString("UR_U"),
+                                res.getString("UR_R")
+                            ),
+                            res.getString("Descripcion"),
+                            new PersonalM(
+                                res.getLong("ID_P"),
+                                res.getString("P_N"),
+                                res.getString("P_D"),
+                                res.getString("P_C"),
+                                res.getBoolean("P_E"),
+                                res.getString("P_U"),
+                                res.getString("P_R")
+                            )
                         )
-                    )
-                );
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla restriccionespersonal: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla restriccionespersonal: " + e.getMessage());
         }
+        return listaRPersonal;
     }
 
     @Override
     public void mostrar() {
-        if (listaPersonal.size() < 1) {
+        if (listaRPersonal.size() < 1) {
             getLista();
         }
-        listaPersonal.forEach(i -> System.out.println(i));
+        listaRPersonal.forEach(i -> System.out.println(i));
     }
 
     public void mostrarF(Predicate<RPersonalM> filtro) {
-        if (listaPersonal.size() < 1) {
+        if (listaRPersonal.size() < 1) {
             getLista();
         }
-        listaPersonal.stream().filter(filtro).forEach(i -> System.out.println(i));
+        listaRPersonal.stream().filter(filtro).forEach(i -> System.out.println(i));
     }
 
     @Override
@@ -92,10 +95,10 @@ public class CMGRPersonal extends ConexionMG<RPersonalO> {
             pst.setInt(3, rPersonal.getRestriccion());
             pst.setLong(4, rPersonal.getIdPersonal());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla restriccionespersonal: " + e.getMessage());
         }
-        reiniciarP();
     };
 
     public void actualizar(RPersonalO rPersonal) {
@@ -109,9 +112,9 @@ public class CMGRPersonal extends ConexionMG<RPersonalO> {
             pst.setLong(4, rPersonal.getIdPersonal());
             pst.setInt(5, rPersonal.getId());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla restriccionespersonal: " + e.getMessage());
         }
-        reiniciarP();
     };
 }

@@ -32,33 +32,36 @@ public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
     }
 
     @Override
-    public void getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("CALL getempresapersonal;");
-            while (res.next()) {
-                listaEmpPersonal.add(
-                    new EmpPersonalM(
-                        new EmpresasM(
-                            res.getInt("ID_E"),
-                            res.getString("N_E"),
-                            res.getString("E_C")
-                        ),
-                        res.getInt("ID_EP"),
-                        new PersonalM(
-                            res.getLong("ID_P"),
-                            res.getString("N_P"),
-                            res.getString("Direccion"),
-                            res.getString("P_C"),
-                            res.getBoolean("Estado"),
-                            res.getString("Usuario_Sistema"),
-                            res.getString("Rol")
+    public List<EmpPersonalM> getLista() {
+        if (listaEmpPersonal.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getempresapersonal;");
+                while (res.next()) {
+                    listaEmpPersonal.add(
+                        new EmpPersonalM(
+                            new EmpresasM(
+                                res.getInt("ID_E"),
+                                res.getString("N_E"),
+                                res.getString("E_C")
+                            ),
+                            res.getInt("ID_EP"),
+                            new PersonalM(
+                                res.getLong("ID_P"),
+                                res.getString("N_P"),
+                                res.getString("Direccion"),
+                                res.getString("P_C"),
+                                res.getBoolean("Estado"),
+                                res.getString("Usuario_Sistema"),
+                                res.getString("Rol")
+                            )
                         )
-                    )
-                );
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla empresaspersonal: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla empresaspersonal: " + e.getMessage());
         }
+        return listaEmpPersonal;
     }
 
     @Override
@@ -85,10 +88,10 @@ public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
             pst.setInt(1, empPersonal.getIdEmpresa());
             pst.setLong( 2, empPersonal.getIdPersonal());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla empresaspersonal: " + e.getMessage());
         }
-        reiniciarP();
     };
 
     public void actualizar(EmpPersonalO empPersonal) {
@@ -100,9 +103,9 @@ public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
             pst.setLong( 2, empPersonal.getIdPersonal());
             pst.setInt(3, empPersonal.getId());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla empresaspersonal: " + e.getMessage());
         }
-        reiniciarP();
     };
 }

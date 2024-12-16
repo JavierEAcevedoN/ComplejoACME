@@ -20,9 +20,19 @@ public class DataBaseConection {
     private static String ruta;
     private static Connection conexionDB;
     private static String currentRole;
+    private static String currentUser;
+    private static String currentHost;
     
     public static String getCurrentRole() {
         return currentRole;
+    }
+
+    public static String getCurrentHost() {
+        return currentHost;
+    }
+
+    public static String getCurrentUser() {
+        return currentUser;
     }
 
     public static Connection getConexionDB() {
@@ -41,9 +51,11 @@ public class DataBaseConection {
             Connection conexion = DriverManager.getConnection(cadConex, user, password); 
             System.out.println("Conexión exitosa.");
             conexionDB = conexion;
-            ResultSet resultado = conexionDB.createStatement().executeQuery("SELECT SUBSTRING_INDEX(CURRENT_ROLE(), '@', 1);");
+            ResultSet resultado = conexionDB.createStatement().executeQuery("SELECT SUBSTRING_INDEX(CURRENT_ROLE(), '@', 1), CURRENT_USER()");
             resultado.next();
             currentRole = resultado.getString(1).substring(1,resultado.getString(1).length()-1);
+            currentUser = resultado.getString(2).split("@")[0];
+            currentHost = resultado.getString(2).split("@")[1];
             ConexionM.actualizarConexion();
             return true;
         } catch (SQLException e) {

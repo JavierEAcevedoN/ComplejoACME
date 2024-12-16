@@ -17,6 +17,7 @@ public class AlertaTab {
         alert.setAlertType(Alert.AlertType.ERROR);
         alert.setTitle("Campo Vacío");
         alert.setHeaderText("Ningún campo puede estar vacío.");
+        alert.setContentText("Intente nuevamente.");
         alert.showAndWait();
     }
 
@@ -24,6 +25,7 @@ public class AlertaTab {
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Procedimiento Realizado");
         alert.setHeaderText("Hecho!");
+        alert.setContentText("Ejecucion correcta");
         alert.showAndWait();
     }
 
@@ -31,7 +33,6 @@ public class AlertaTab {
         alert.setAlertType(Alert.AlertType.WARNING);
         alert.setHeaderText("AQUI YA VA UNA FUNCION");
         alert.setContentText("En consola más intrucciones");
-
         alert.showAndWait();
     }
 }

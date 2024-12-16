@@ -24,21 +24,24 @@ public class CMEmpresas extends ConexionM{
     }
 
     @Override
-    public void getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM empresas;");
-            while (res.next()) {
-                listaEmpresas.add(
-                    new EmpresasM(
-                        res.getInt("ID"),
-                        res.getString("Nombre"),
-                        res.getString("Contacto")
-                    )
-                );
+    public List<EmpresasM> getLista() {
+        if (listaEmpresas.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM empresas;");
+                while (res.next()) {
+                    listaEmpresas.add(
+                        new EmpresasM(
+                            res.getInt("ID"),
+                            res.getString("Nombre"),
+                            res.getString("Contacto")
+                        )
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla empresas: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla empresas: " + e.getMessage());
         }
+        return listaEmpresas;
     }
 
     @Override

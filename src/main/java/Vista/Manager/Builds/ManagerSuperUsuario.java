@@ -1,6 +1,8 @@
 package Vista.Manager.Builds;
 
 import Vista.Manager.Tab.CrearUsuarioTab;
+import Vista.Manager.Tab.NuevoRegistroTab;
+
 import com.acme.complejoacme.Manager.ManagerController;
 import javafx.scene.control.Tab;
 import java.util.ArrayList;
@@ -18,7 +20,8 @@ public class ManagerSuperUsuario extends ManagerBuilder {
     @Override
     protected ArrayList<Tab> getTabs() {
         Tab tab = new CrearUsuarioTab().Crear(controller);
+        Tab nuevoRegistro = new NuevoRegistroTab().Crear(controller);
 
-        return new ArrayList<>(List.of(tab));
+        return new ArrayList<>(List.of(tab, nuevoRegistro));
     }
 }

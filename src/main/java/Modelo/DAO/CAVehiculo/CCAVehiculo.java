@@ -32,33 +32,36 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
     }
 
     @Override
-    public void getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("CALL getcavehiculo;");
-            while (res.next()) {
-                listaCaVehiculos.add(
-                    new CAVehiculoM(
-                        res.getInt("ID_CAV"),
-                        res.getTimestamp("Fecha_Entrada"),
-                        res.getTimestamp("Fecha_Salida"),
-                        new VehiculoM(
-                            res.getString("Placa"),
-                            new PersonalM(
-                                res.getLong("ID_P"),
-                                res.getString("Nombre"),
-                                res.getString("Direccion"),
-                                res.getString("Contacto"),
-                                res.getBoolean("Estado"),
-                                res.getString("Usuario_Sistema"),
-                                res.getString("Rol")
+    public List<CAVehiculoM> getLista() {
+        if (listaCaVehiculos.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getcavehiculo;");
+                while (res.next()) {
+                    listaCaVehiculos.add(
+                        new CAVehiculoM(
+                            res.getInt("ID_CAV"),
+                            res.getTimestamp("Fecha_Entrada"),
+                            res.getTimestamp("Fecha_Salida"),
+                            new VehiculoM(
+                                res.getString("Placa"),
+                                new PersonalM(
+                                    res.getLong("ID_P"),
+                                    res.getString("Nombre"),
+                                    res.getString("Direccion"),
+                                    res.getString("Contacto"),
+                                    res.getBoolean("Estado"),
+                                    res.getString("Usuario_Sistema"),
+                                    res.getString("Rol")
+                                )
                             )
                         )
-                    )
-                );
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla controlaccesosvehicular: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla controlaccesosvehicular: " + e.getMessage());
         }
+        return listaCaVehiculos;
     }
 
     @Override
@@ -86,10 +89,10 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
             pst.setTimestamp( 2, CAVehiculo.getFechaSalida());
             pst.setString(3, CAVehiculo.getsPlaca());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla controlaccesosvehicular: " + e.getMessage());
         }
-        reiniciarP();
     };
 
     public void actualizar(CAVehiculoO CAVehiculo) {
@@ -102,9 +105,9 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
             pst.setString(3, CAVehiculo.getsPlaca());
             pst.setInt(4, CAVehiculo.getId());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla controlaccesosvehicular: " + e.getMessage());
         }
-        reiniciarP();
     };
 }
