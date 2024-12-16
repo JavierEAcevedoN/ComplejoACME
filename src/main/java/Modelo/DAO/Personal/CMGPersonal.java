@@ -80,7 +80,7 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             pst.setString(2, personal.getNombre());
             pst.setString( 3, personal.getDireccion());
             pst.setString(4, personal.getContacto());
-            pst.setBoolean(5, personal.isEstado());
+            pst.setBoolean(5, personal.getEstado());
             pst.setString(6, personal.getUsuarioSistema());
             pst.setInt(7, personal.getIdRol());
             AlertaTab.Exito();
@@ -100,7 +100,7 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             pst.setString(1, personal.getNombre());
             pst.setString( 2, personal.getDireccion());
             pst.setString(3, personal.getContacto());
-            pst.setBoolean(4, personal.isEstado());
+            pst.setBoolean(4, personal.getEstado());
             pst.setString(5, personal.getUsuarioSistema());
             pst.setInt(6, personal.getIdRol());
             pst.setLong(7, personal.getId());

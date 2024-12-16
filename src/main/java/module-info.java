@@ -15,4 +15,5 @@ module com.acme.complejoacme {
     exports com.acme.complejoacme;
     exports com.acme.complejoacme.Login;
     opens com.acme.complejoacme.Login to javafx.fxml;
+    opens Modelo.DAO.Personal to javafx.base;
 }

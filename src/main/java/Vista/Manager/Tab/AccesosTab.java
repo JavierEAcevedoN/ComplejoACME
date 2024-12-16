@@ -1,5 +1,12 @@
 package Vista.Manager.Tab;
 
+import Modelo.DAO.CAPersonal.CAPersonalM;
+import Modelo.DAO.CAPersonal.CCAPersonal;
+import Modelo.DAO.Personal.CMGPersonal;
+import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.Alerts.AlertaTab;
+import Vista.utils.DatePickerObserver;
+import Vista.utils.TableViewConfigurator;
 import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -7,8 +14,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class AccesosTab implements TabBuilder{
+import java.util.List;
 
+public class AccesosTab implements TabBuilder{
     @Override
     public Tab Crear(ManagerController controller) {
         // Crear el Tab "ReporteAccesos"
@@ -68,20 +76,18 @@ public class AccesosTab implements TabBuilder{
 
         controller.setInputsAccesosTab(controller.getInputsAccesosTab());
 
-
         // Crear la TableView para mostrar los datos
-        TableView<String> tableView = new TableView<>();
+        TableView<PersonalM> tableView = new TableView<>();
         tableView.setId("ReporteAccesos_Tabla");
         controller.ReporteAccesos_Tabla = tableView;
         tableView.setPrefHeight(574.0);
         tableView.setPrefWidth(491.0);
 
-        // Crear las columnas de la tabla
-        TableColumn<String, String> column1 = new TableColumn<>("C1");
-        column1.setPrefWidth(75.0);
-        TableColumn<String, String> column2 = new TableColumn<>("C2");
-        column2.setPrefWidth(75.0);
-        tableView.getColumns().addAll(column1, column2);
+        DatePickerObserver.init(inicioDatePicker,finDatePicker, () -> {controller.procedimiento(controller.accesos_Inputs,() -> {
+            // TODO
+            List<PersonalM> res = CCAPersonal.getInstance().obtenerPersonalPorRangoFechas(controller.ReporteAccesos_Inicio,controller.ReporteAccesos_Fin);
+            TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"),  res);
+        });});
 
         // Añadir el HBox y la TableView al VBox principal
         mainVBox.getChildren().addAll(hbox, tableView);

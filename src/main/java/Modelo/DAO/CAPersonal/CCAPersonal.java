@@ -3,13 +3,17 @@ package Modelo.DAO.CAPersonal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
 import Vista.utils.Alerts.AlertaTab;
+import Vista.utils.DateUtils;
+import javafx.scene.control.DatePicker;
 
 public class CCAPersonal extends ConexionMG<CAPersonalO> {
     private static CCAPersonal instance;
@@ -60,6 +64,27 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
         }
         return listaCaPersonal;
     }
+
+    public List<PersonalM> obtenerPersonalPorRangoFechas(DatePicker fechaInicio, DatePicker fechaFin) {
+        Timestamp inicio = DateUtils.convertDatePickerToTimestamp(fechaInicio);
+        Timestamp fin = DateUtils.convertDatePickerToTimestamp(fechaFin);
+
+        if (inicio == null || fin == null) {
+            System.err.println("Por favor, seleccione ambas fechas.");
+            return new ArrayList<>();
+        } else if (listaCaPersonal.isEmpty()) {
+            getInstance();
+        }
+
+        return listaCaPersonal.stream()
+                .filter(persona ->
+                        (persona.getFechaEntrada().after(inicio) || persona.getFechaEntrada().equals(inicio)) &&
+                                (persona.getFechaSalida().before(fin) || persona.getFechaSalida().equals(fin))
+                )
+                .map(CAPersonalM::getPersonal)
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public void mostrar() {
