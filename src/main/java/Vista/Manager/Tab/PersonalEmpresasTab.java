@@ -81,7 +81,6 @@ public class PersonalEmpresasTab implements TabBuilder {
 
         empresaChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
-            //TODO
             controller.ReportePersonal_Empresa.getSelectionModel().select(newValue);
             TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"),  cmgPersonal.getLista());
         });
