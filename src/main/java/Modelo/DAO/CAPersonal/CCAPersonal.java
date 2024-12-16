@@ -32,28 +32,30 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
 
     @Override
     public List<CAPersonalM> getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("CALL getcapersonal;");
-            while (res.next()) {
-                listaCaPersonal.add(
-                    new CAPersonalM(
-                        res.getInt("ID_CAP"),
-                        res.getTimestamp("Fecha_Entrada"),
-                        res.getTimestamp("Fecha_Salida"),
-                        new PersonalM(
-                            res.getLong("ID_P"),
-                            res.getString("Nombre"),
-                            res.getString("Direccion"),
-                            res.getString("Contacto"),
-                            res.getBoolean("Estado"),
-                            res.getString("Usuario_Sistema"),
-                            res.getString("Rol")
+        if (listaCaPersonal.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getcapersonal;");
+                while (res.next()) {
+                    listaCaPersonal.add(
+                        new CAPersonalM(
+                            res.getInt("ID_CAP"),
+                            res.getTimestamp("Fecha_Entrada"),
+                            res.getTimestamp("Fecha_Salida"),
+                            new PersonalM(
+                                res.getLong("ID_P"),
+                                res.getString("Nombre"),
+                                res.getString("Direccion"),
+                                res.getString("Contacto"),
+                                res.getBoolean("Estado"),
+                                res.getString("Usuario_Sistema"),
+                                res.getString("Rol")
+                            )
                         )
-                    )
-                );
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla controlaccesospersonal: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla controlaccesospersonal: " + e.getMessage());
         }
         return listaCaPersonal;
     }

@@ -32,37 +32,39 @@ public class CMGPVisitantes extends ConexionMG<PVisitantesO> {
 
     @Override
     public List<PVisitantesM> getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("CALL getpermisosvisitantes;");
-            while (res.next()) {
-                listaCaPersonal.add(
-                    new PVisitantesM(
-                        res.getInt("ID"),
-                        res.getDate("Fecha_Inicio"),
-                        res.getDate("Fecha_Fin"),
-                        new PersonalM(
-                            res.getLong("ID_UR"),
-                            res.getString("UR_N"),
-                            res.getString("UR_D"),
-                            res.getString("UR_C"),
-                            res.getBoolean("UR_E"),
-                            res.getString("UR_U"),
-                            res.getString("UR_R")
-                        ),
-                        new PersonalM(
-                            res.getLong("ID_P"),
-                            res.getString("P_N"),
-                            res.getString("P_D"),
-                            res.getString("P_C"),
-                            res.getBoolean("P_E"),
-                            res.getString("P_U"),
-                            res.getString("P_R")
+        if (listaCaPersonal.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getpermisosvisitantes;");
+                while (res.next()) {
+                    listaCaPersonal.add(
+                        new PVisitantesM(
+                            res.getInt("ID"),
+                            res.getDate("Fecha_Inicio"),
+                            res.getDate("Fecha_Fin"),
+                            new PersonalM(
+                                res.getLong("ID_UR"),
+                                res.getString("UR_N"),
+                                res.getString("UR_D"),
+                                res.getString("UR_C"),
+                                res.getBoolean("UR_E"),
+                                res.getString("UR_U"),
+                                res.getString("UR_R")
+                            ),
+                            new PersonalM(
+                                res.getLong("ID_P"),
+                                res.getString("P_N"),
+                                res.getString("P_D"),
+                                res.getString("P_C"),
+                                res.getBoolean("P_E"),
+                                res.getString("P_U"),
+                                res.getString("P_R")
+                            )
                         )
-                    )
-                );
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla permisosvisitantes: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla permisosvisitantes: " + e.getMessage());
         }
         return listaCaPersonal;
     }
@@ -93,9 +95,9 @@ public class CMGPVisitantes extends ConexionMG<PVisitantesO> {
             pst.setString(3, pVisitantes.getUsuarioResponsable());
             pst.setLong(4, pVisitantes.getIdPersonal());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla permisosvisitantes: " + e.getMessage());
         }
-        reiniciarP();
     };
 }

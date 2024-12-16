@@ -25,18 +25,20 @@ public class CMIncidentes extends ConexionM{
 
     @Override
     public List<IncidentesM> getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM incidentes;");
-            while (res.next()) {
-                listaIncidentes.add(
-                    new IncidentesM(
-                        res.getInt("ID"),
-                        res.getString("Descripcion")
-                    )
-                );
+        if (listaIncidentes.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("SELECT * FROM incidentes;");
+                while (res.next()) {
+                    listaIncidentes.add(
+                        new IncidentesM(
+                            res.getInt("ID"),
+                            res.getString("Descripcion")
+                        )
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla incidentes: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla incidentes: " + e.getMessage());
         }
         return listaIncidentes;
     }

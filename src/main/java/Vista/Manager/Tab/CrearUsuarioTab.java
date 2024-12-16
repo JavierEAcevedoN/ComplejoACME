@@ -1,6 +1,7 @@
 package Vista.Manager.Tab;
 
 import Vista.utils.createLabeledField;
+import Vista.utils.Alerts.AlertaTab;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -115,8 +116,10 @@ public class CrearUsuarioTab implements TabBuilder{
                     pst.setString( 3, sPassword);
                     pst.setString( 4, sRol);
                     pst.execute();
+                    AlertaTab.Exito();
                 } catch (SQLException i) {
                     System.err.println("Error al crear el usuario: " + i.getMessage());
+                    AlertaTab.Error();
                 }
         }));
         controller.crearUsuario_button = guardarButton;

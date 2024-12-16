@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
+import Vista.utils.Alerts.AlertaTab;
 
 public class CMGPersonal extends ConexionMG<PersonalO> {
     private static CMGPersonal instance;
@@ -31,23 +32,25 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
 
     @Override
     public List<PersonalM> getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("CALL getpersonal;");
-            while (res.next()) {
-                listaPersonal.add(
-                    new PersonalM(
-                        res.getLong("ID"),
-                        res.getString("Nombre"),
-                        res.getString("Direccion"),
-                        res.getString("Contacto"),
-                        res.getBoolean("Estado"),
-                        res.getString("Usuario_Sistema"),
-                        res.getString("Rol")
-                    )
-                );
+        if (listaPersonal.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getpersonal;");
+                while (res.next()) {
+                    listaPersonal.add(
+                        new PersonalM(
+                            res.getLong("ID"),
+                            res.getString("Nombre"),
+                            res.getString("Direccion"),
+                            res.getString("Contacto"),
+                            res.getBoolean("Estado"),
+                            res.getString("Usuario_Sistema"),
+                            res.getString("Rol")
+                        )
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla personal: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla personal: " + e.getMessage());
         }
         return listaPersonal;
     }
@@ -81,10 +84,11 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             pst.setString(6, personal.getUsuarioSistema());
             pst.setInt(7, personal.getIdRol());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla personal: " + e.getMessage());
+            AlertaTab.Error();
         }
-        reiniciarP();
     };
 
     public void actualizar(PersonalO personal) {
@@ -100,9 +104,9 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             pst.setInt(6, personal.getIdRol());
             pst.setLong(7, personal.getId());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla personal: " + e.getMessage());
         }
-        reiniciarP();
     };
 }

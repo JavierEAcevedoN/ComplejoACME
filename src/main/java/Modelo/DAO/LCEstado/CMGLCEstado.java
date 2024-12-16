@@ -32,38 +32,40 @@ public class CMGLCEstado extends ConexionMG<LCEstadoO> {
 
     @Override
     public List<LCEstadoM> getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("CALL getlogcambioestado;");
-            while (res.next()) {
-                listaCaPersonal.add(
-                    new LCEstadoM(
-                        res.getInt("ID"),
-                        res.getTimestamp("Fecha"),
-                        res.getBoolean("Nuevo_Estado"),
-                        res.getString("Descripcion"),
-                        new PersonalM(
-                            res.getLong("ID_UR"),
-                            res.getString("UR_N"),
-                            res.getString("UR_D"),
-                            res.getString("UR_C"),
-                            res.getBoolean("UR_E"),
-                            res.getString("UR_U"),
-                            res.getString("UR_R")
-                        ),
-                        new PersonalM(
-                            res.getLong("ID_P"),
-                            res.getString("P_N"),
-                            res.getString("P_D"),
-                            res.getString("P_C"),
-                            res.getBoolean("P_E"),
-                            res.getString("P_U"),
-                            res.getString("P_R")
+        if (listaCaPersonal.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getlogcambioestado;");
+                while (res.next()) {
+                    listaCaPersonal.add(
+                        new LCEstadoM(
+                            res.getInt("ID"),
+                            res.getTimestamp("Fecha"),
+                            res.getBoolean("Nuevo_Estado"),
+                            res.getString("Descripcion"),
+                            new PersonalM(
+                                res.getLong("ID_UR"),
+                                res.getString("UR_N"),
+                                res.getString("UR_D"),
+                                res.getString("UR_C"),
+                                res.getBoolean("UR_E"),
+                                res.getString("UR_U"),
+                                res.getString("UR_R")
+                            ),
+                            new PersonalM(
+                                res.getLong("ID_P"),
+                                res.getString("P_N"),
+                                res.getString("P_D"),
+                                res.getString("P_C"),
+                                res.getBoolean("P_E"),
+                                res.getString("P_U"),
+                                res.getString("P_R")
+                            )
                         )
-                    )
-                );
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla logcambioestado: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla logcambioestado: " + e.getMessage());
         }
         return listaCaPersonal;
     }
@@ -95,9 +97,9 @@ public class CMGLCEstado extends ConexionMG<LCEstadoO> {
             pst.setString(4, lcEstado.getUsuarioResponsable());
             pst.setLong(5, lcEstado.getIdPersonal());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla logcambioestado: " + e.getMessage());
         }
-        reiniciarP();
     };
 }

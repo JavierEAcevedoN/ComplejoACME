@@ -1,9 +1,15 @@
 package Vista.Manager.Tab;
 
-import Modelo.DataBaseConection;
-import Vista.utils.Alerts.AlertaTab;
-import Vista.utils.createLabeledField;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DataBaseConection;
+import Modelo.DAO.Personal.CMGPersonal;
+import Modelo.DAO.Personal.PersonalO;
+import Modelo.DAO.Rol.CMRol;
+import Vista.utils.createLabeledField;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -11,9 +17,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 
-public class RegistrarPersonalTab implements TabBuilder{
+public class RegistrarPersonalTab implements TabBuilder {
+    private CMGPersonal personal = CMGPersonal.getInstance();
+    private CMRol rol = CMRol.getInstance();
+    private String pIdentificacion, pNombre, pDireccion, pContacto, pUsuario, pRol;
+    private PersonalO personalO;
 
     @Override
     public Tab Crear(ManagerController controller) {
@@ -66,7 +81,7 @@ public class RegistrarPersonalTab implements TabBuilder{
         GridPane.setHalignment(identificacionField, HPos.CENTER);
         gridPane.add(identificacionField, 0, 0);
 
-// Crear Nombre
+        // Crear Nombre
         VBox nombreField = createLabeledField.create("Nombre de la persona", new TextField(), "crearPersonal_Nombre");
         TextField nombreTextField = (TextField) nombreField.getChildren().get(1);
         controller.crearPersonal_Nombre = nombreTextField;
@@ -77,8 +92,9 @@ public class RegistrarPersonalTab implements TabBuilder{
         GridPane.setHalignment(nombreField, HPos.CENTER);
         gridPane.add(nombreField, 1, 0);
 
-// Crear Dirección
-        VBox direccionField = createLabeledField.create("Dirección de residencia", new TextField(), "crearPersonal_Dir");
+        // Crear Dirección
+        VBox direccionField = createLabeledField.create("Dirección de residencia", new TextField(),
+                "crearPersonal_Dir");
         TextField direccionTextField = (TextField) direccionField.getChildren().get(1);
         controller.crearPersonal_Dir = direccionTextField;
 
@@ -88,7 +104,7 @@ public class RegistrarPersonalTab implements TabBuilder{
         GridPane.setHalignment(direccionField, HPos.CENTER);
         gridPane.add(direccionField, 0, 1);
 
-// Crear Contacto
+        // Crear Contacto
         VBox contactoField = createLabeledField.create("Contacto Telefónico", new TextField(), "crearPersonal_Cont");
         TextField contactoTextField = (TextField) contactoField.getChildren().get(1);
         controller.crearPersonal_Cont = contactoTextField;
@@ -99,24 +115,30 @@ public class RegistrarPersonalTab implements TabBuilder{
         GridPane.setHalignment(contactoField, HPos.CENTER);
         gridPane.add(contactoField, 1, 1);
 
-// Crear Rol
-        VBox rolField = createLabeledField.create("Tipo de personal", new ChoiceBox<>(), "crearPersonal_Rol");
-        ChoiceBox<?> rolChoiceBox = (ChoiceBox<?>) rolField.getChildren().get(1);
-        controller.crearPersonal_Rol = rolChoiceBox;
+        // Crear Rol
+        ChoiceBox<String> rolChoiceBox = new ChoiceBox<>();
+        if (!DataBaseConection.getCurrentRole().contains("SUPERUSUARIO")) {
+            List<String> listRoles = rol.getLista().stream().map(i -> i.getRol()).distinct().collect(Collectors.toList());
+            rolChoiceBox.getItems().setAll(listRoles);
+            rolChoiceBox.setValue(listRoles.get(0));
+            VBox rolField = createLabeledField.create("Tipo de personal", rolChoiceBox, "crearPersonal_Rol");
+            controller.crearPersonal_Rol = rolChoiceBox;
 
-        rolChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            controller.crearPersonal_Rol.getSelectionModel().select(newValue);
-        });
-        rolChoiceBox.setPrefWidth(150);
-        GridPane.setHalignment(rolField, HPos.CENTER);
-        gridPane.add(rolField, 1, 2);
+            rolChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                controller.crearPersonal_Rol.getSelectionModel().select(newValue);
+            });
+            rolChoiceBox.setPrefWidth(150);
+            GridPane.setHalignment(rolField, HPos.CENTER);
+            gridPane.add(rolField, 1, 2);
+        }
+        
 
-// Crear Usuario (si no es SUPERVISOR)
-        if (!DataBaseConection.getCurrentRole().equals("SUPERVISOR")) {
-            VBox usuarioField = createLabeledField.create("Usuario de acceso", new TextField(), "crearPersonal_Usuario");
-            TextField usuarioTextField = (TextField) usuarioField.getChildren().get(1);
+        // Crear Usuario (si no es SUPERVISOR)
+        TextField usuarioTextField = new TextField();
+        if (DataBaseConection.getCurrentRole().equals("SUPERVISOR") || DataBaseConection.getCurrentRole().contains("SUPERUSUARIO")) {
+            VBox usuarioField = createLabeledField.create("Usuario de acceso", usuarioTextField,
+                    "crearPersonal_Usuario");
             controller.crearPersonal_Usuario = usuarioTextField;
-
             usuarioTextField.setPromptText("Usuario del sistema existente");
             usuarioTextField.textProperty().addListener((observable, oldValue, newValue) -> {
                 controller.crearPersonal_Usuario.setText(newValue);
@@ -130,8 +152,26 @@ public class RegistrarPersonalTab implements TabBuilder{
         // Crear el botón "Guardar"
         Button guardarButton = new Button("Guardar");
         guardarButton.setId("crearPersonal_button");
-        guardarButton.setOnAction(e -> controller.procedimiento(controller.registrarPersonal_Inputs,() -> {
-            AlertaTab.Test();}));
+        guardarButton.setOnAction(e -> controller.procedimiento(controller.registrarPersonal_Inputs, () -> {
+            if (DataBaseConection.getCurrentRole().contains("SUPERUSUARIO")) {
+                pRol = "3";
+            } else {
+                pRol = rol.getLista().stream().filter(i -> i.getRol().equals(rolChoiceBox.getValue())).map(i -> i.getId())
+                    .collect(Collectors.toList()).get(0).toString();
+            }
+            if (DataBaseConection.getCurrentRole().equals("SUPERVISOR")) {
+                pUsuario = usuarioTextField.getText();
+            } else {
+                pUsuario = null;
+            }    
+            pIdentificacion = identificacionTextField.getText();
+            pNombre = nombreTextField.getText();
+            pDireccion = direccionTextField.getText();
+            pContacto = contactoTextField.getText();
+            personalO = new PersonalO(Integer.parseInt(pIdentificacion), pNombre, pDireccion, pContacto, true, pUsuario,
+                    Integer.parseInt(pRol));
+            personal.guardar(personalO);
+        }));
         controller.crearPersonal_button = guardarButton;
         guardarButton.setDefaultButton(true);
         guardarButton.setMnemonicParsing(false);

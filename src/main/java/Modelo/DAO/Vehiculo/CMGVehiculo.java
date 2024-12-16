@@ -32,26 +32,28 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
 
     @Override
     public List<VehiculoM> getLista() {
-        try {
-            ResultSet res = conexionBD.createStatement().executeQuery("CALL getvehiculos;");
-            while (res.next()) {
-                listaVehiculos.add(
-                    new VehiculoM(
-                        res.getString("Placa"),
-                        new PersonalM(
-                            res.getLong("ID"),
-                            res.getString("Nombre"),
-                            res.getString("Direccion"),
-                            res.getString("Contacto"),
-                            res.getBoolean("Estado"),
-                            res.getString("Usuario_Sistema"),
-                            res.getString("Rol")
-                        )
-                    ) 
-                );
+        if (listaVehiculos.size() < 1) {
+            try {
+                ResultSet res = conexionBD.createStatement().executeQuery("CALL getvehiculos;");
+                while (res.next()) {
+                    listaVehiculos.add(
+                        new VehiculoM(
+                            res.getString("Placa"),
+                            new PersonalM(
+                                res.getLong("ID"),
+                                res.getString("Nombre"),
+                                res.getString("Direccion"),
+                                res.getString("Contacto"),
+                                res.getBoolean("Estado"),
+                                res.getString("Usuario_Sistema"),
+                                res.getString("Rol")
+                            )
+                        ) 
+                    );
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al recuperar los datos de la tabla vehiculo: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error al recuperar los datos de la tabla vehiculo: " + e.getMessage());
         }
         return listaVehiculos;
     }
@@ -80,10 +82,10 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
             pst.setString(1, vehiculo.getPlaca());
             pst.setLong( 2, vehiculo.getIdDueño());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla vehiculo: " + e.getMessage());
         }
-        reiniciarP();
     }
 
     public void actualizar(VehiculoO vehiculo) {
@@ -94,9 +96,9 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
             pst.setLong(1, vehiculo.getIdDueño());
             pst.setString( 2, vehiculo.getPlaca());
             pst.execute();
+            reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla vehiculo: " + e.getMessage());
         }
-        reiniciarP();
     }
 }
