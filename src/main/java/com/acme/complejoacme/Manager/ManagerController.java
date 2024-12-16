@@ -249,20 +249,19 @@ public class ManagerController {
         for (Control input : inputs) {
 
             if (input instanceof TextInputControl) {
-                System.out.println(((TextInputControl) input).getText());
                 if (((TextInputControl) input).getText() == null || ((TextInputControl) input).getText().trim().isEmpty()) {
                     Ok = false;
-//                    break;
+                    break;
                 }
             } else if (input instanceof ChoiceBox) {
                 if (((ChoiceBox<?>) input).getSelectionModel().getSelectedItem() == null) {
                     Ok = false;
-//                    break;
+                    break;
                 }
             } else if (input instanceof DatePicker) {
                 if (((DatePicker) input).getValue() == null) {
                     Ok = false;
-//                    break;
+                    break;
                 }
             }
         }
@@ -280,10 +279,8 @@ public class ManagerController {
     };
 
     public void procedimiento(Control[] inputs,Runnable callback) {
-        callback.run();
-        System.out.println("[boton].setOnAction(e -> controller.procedimiento(controller.crearUsuario_Inputs,() -> {\n" +
-                "            AlertaTab.Test();}));\nBuscar las lineas con esta funcion lambda\nEn el sitio de 'AlertaTab.Test()' debe ir la logica que ejecute la razon de ser de la pestaña.");
         if (!respuestaValidacion(validarInputs(inputs))) return;
+        callback.run();
     }
 
     public void exit() {

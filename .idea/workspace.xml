@@ -4,50 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac459ab8-30a5-44c0-8b4f-0672a4491ec5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerTesting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/Alerts/AlertaTab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerController.java" afterDir="false" />
+    <list default="true" id="ac459ab8-30a5-44c0-8b4f-0672a4491ec5" name="Changes" comment="feat: Vistas manager + controlador completado">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/DatePickerObserver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/TableViewConfigurator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DataBaseConection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DataBaseConection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerFuncionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerFuncionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerGuarda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerGuarda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerSuperUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerSuperUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerSupervisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Builds/ManagerSupervisor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/ManagerInvoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/ManagerInvoker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesoPersonalTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesoPersonalTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesoVehiculoTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesoVehiculoTab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesosTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesosTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AplicarRestriccionTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AplicarRestriccionTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ControlIngresosTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ControlIngresosTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ControlSalidasTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ControlSalidasTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/CrearUsuarioTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/CrearUsuarioTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/DisciplinarioTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/DisciplinarioTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/EstadoPersonalTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/EstadoPersonalTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/IncidentesTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/IncidentesTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/LevantarRestriccionTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/LevantarRestriccionTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/MonitorTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/MonitorTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/NuevoRegistroTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/NuevoRegistroTab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/PermisoTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/PermisoTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/PersonalEmpresasTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/PersonalEmpresasTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RegistrarPersonalTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RegistrarPersonalTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RegistrarVehiculoTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RegistrarVehiculoTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ReportesTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/ReportesTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RestriccionesTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/RestriccionesTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/SalidaPersonalTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/SalidaPersonalTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/SalidaVehiculoTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/SalidaVehiculoTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/TabBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/TabBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/utils/createLabeledField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/createLabeledField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/AbstractManagerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerFuncionarioController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerGuardaController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerSuperusuarioController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerSupervisorController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/creatorRole.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/acme/complejoacme/creatorRole.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,24 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.MainApplication.executor": "Run",
-    "Maven.ComplejoACME [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "JavaFX",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/soyel/Repos/ComplejoACME",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ComplejoACME [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;JavaFX&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/soyel/Repos/ComplejoACME&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/com/acme/complejoacme" />
@@ -168,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734215944390</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: Vistas manager + controlador completado">
+      <option name="closed" value="true" />
+      <created>1734274684338</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734274684338</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,6 +158,7 @@
     <MESSAGE value="pruebas de conexion" />
     <MESSAGE value="feat: conectando Manager con Login" />
     <MESSAGE value="feat: generacion de visas segun rol exitosa" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: generacion de visas segun rol exitosa" />
+    <MESSAGE value="feat: Vistas manager + controlador completado" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Vistas manager + controlador completado" />
   </component>
 </project>

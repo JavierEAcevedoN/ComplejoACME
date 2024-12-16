@@ -1,11 +1,17 @@
 package Vista.Manager.Tab;
 
+import Modelo.DAO.Personal.CMGPersonal;
+import Vista.utils.Alerts.AlertaTab;
+import Vista.utils.DatePickerObserver;
+import Vista.utils.TableViewConfigurator;
 import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.util.List;
 
 public class AccesosTab implements TabBuilder{
 
@@ -68,7 +74,6 @@ public class AccesosTab implements TabBuilder{
 
         controller.setInputsAccesosTab(controller.getInputsAccesosTab());
 
-
         // Crear la TableView para mostrar los datos
         TableView<String> tableView = new TableView<>();
         tableView.setId("ReporteAccesos_Tabla");
@@ -76,12 +81,10 @@ public class AccesosTab implements TabBuilder{
         tableView.setPrefHeight(574.0);
         tableView.setPrefWidth(491.0);
 
-        // Crear las columnas de la tabla
-        TableColumn<String, String> column1 = new TableColumn<>("C1");
-        column1.setPrefWidth(75.0);
-        TableColumn<String, String> column2 = new TableColumn<>("C2");
-        column2.setPrefWidth(75.0);
-        tableView.getColumns().addAll(column1, column2);
+        DatePickerObserver.init(inicioDatePicker,finDatePicker, () -> {controller.procedimiento(controller.accesos_Inputs,() -> {
+//            TableViewConfigurator.init(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"), );
+            AlertaTab.Exito();
+        });});
 
         // Añadir el HBox y la TableView al VBox principal
         mainVBox.getChildren().addAll(hbox, tableView);

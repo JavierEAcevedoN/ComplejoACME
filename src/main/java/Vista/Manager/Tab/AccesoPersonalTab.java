@@ -40,9 +40,7 @@ public class AccesoPersonalTab implements TabBuilder{
             controller.accesoPersonal_Id.setText(newValue);
         });
 
-
         controller.setInputsAccesoPersonalTab(controller.getInputsAccesoPersonalTab());
-
 
         // Crear el botón "Permitir acceso"
         Button permitirAccesoButton = new Button("Permitir acceso");

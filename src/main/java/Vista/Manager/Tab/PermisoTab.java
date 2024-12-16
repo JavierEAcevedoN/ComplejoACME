@@ -1,6 +1,7 @@
 package Vista.Manager.Tab;
 
 import Vista.utils.Alerts.AlertaTab;
+import Vista.utils.DatePickerObserver;
 import Vista.utils.createLabeledField;
 import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
@@ -63,6 +64,8 @@ public class PermisoTab implements TabBuilder{
             controller.permiso_FechaFin.setValue(newValue);
         });
         fechasHBox.getChildren().addAll(fechaInicioField, fechaFinField);
+
+        DatePickerObserver.init(permisoFechaInicioPicker,permisoFechaFinPicker);
 
         controller.setInputsPermisoTab(controller.getInputsPermisoTab());
 
