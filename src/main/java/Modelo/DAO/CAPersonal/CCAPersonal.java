@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.Alerts.AlertaTab;
 
 public class CCAPersonal extends ConexionMG<CAPersonalO> {
     private static CCAPersonal instance;
@@ -85,8 +86,10 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
             pst.setTimestamp( 2, caPersonal.getFechaSalida());
             pst.setLong(3, caPersonal.getIdPersonal());
             pst.execute();
+            AlertaTab.Exito();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla controlaccesospersonal: " + e.getMessage());
+            AlertaTab.Error();
         }
         reiniciarP();
     };
@@ -94,15 +97,15 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
     public void actualizar(CAPersonalO caPersonal) {
         try {
             PreparedStatement pst = conexionBD.prepareStatement(
-                "UPDATE controlaccesospersonal SET Fecha_Entrada = ?, Fecha_Salida = ?, ID_Personal = ? WHERE ID = ?;"
+                "UPDATE controlaccesospersonal SET Fecha_Salida = ? WHERE ID_Personal = ?;"
             );
-            pst.setTimestamp(1, caPersonal.getFechaEntrada());
-            pst.setTimestamp( 2, caPersonal.getFechaSalida());
-            pst.setLong(3, caPersonal.getIdPersonal());
-            pst.setInt(4, caPersonal.getId());
+            pst.setTimestamp( 1, caPersonal.getFechaSalida());
+            pst.setLong(2, caPersonal.getIdPersonal());
             pst.execute();
+            AlertaTab.Exito();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla controlaccesospersonal: " + e.getMessage());
+            AlertaTab.Error();
         }
         reiniciarP();
     };

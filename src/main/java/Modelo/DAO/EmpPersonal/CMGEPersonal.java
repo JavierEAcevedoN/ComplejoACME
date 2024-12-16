@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import Modelo.ConexionMG;
 import Modelo.DAO.Empresas.EmpresasM;
 import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.Alerts.AlertaTab;
 
 public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
     private static CMGEPersonal instance;
@@ -88,9 +89,11 @@ public class CMGEPersonal extends ConexionMG<EmpPersonalO> {
             pst.setInt(1, empPersonal.getIdEmpresa());
             pst.setLong( 2, empPersonal.getIdPersonal());
             pst.execute();
+            AlertaTab.Exito();
             reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla empresaspersonal: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 

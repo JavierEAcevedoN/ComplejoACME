@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
 import Modelo.DAO.Vehiculo.VehiculoM;
+import Vista.utils.Alerts.AlertaTab;
 
 public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
     private static CCAVehiculo instance;
@@ -90,24 +91,26 @@ public class CCAVehiculo extends ConexionMG<CAVehiculoO> {
             pst.setString(3, CAVehiculo.getsPlaca());
             pst.execute();
             reiniciarP();
+            AlertaTab.Exito();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla controlaccesosvehicular: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 
     public void actualizar(CAVehiculoO CAVehiculo) {
         try {
             PreparedStatement pst = conexionBD.prepareStatement(
-                "UPDATE controlaccesosvehicular SET Fecha_Entrada = ?, Fecha_Salida = ?, Placa = ? WHERE ID = ?;"
+                "UPDATE controlaccesosvehicular SET Fecha_Salida = ? WHERE Placa = ?;"
             );
-            pst.setTimestamp(1, CAVehiculo.getFechaEntrada());
-            pst.setTimestamp( 2, CAVehiculo.getFechaSalida());
-            pst.setString(3, CAVehiculo.getsPlaca());
-            pst.setInt(4, CAVehiculo.getId());
+            pst.setTimestamp( 1, CAVehiculo.getFechaSalida());
+            pst.setString(2, CAVehiculo.getsPlaca());
             pst.execute();
             reiniciarP();
+            AlertaTab.Exito();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla controlaccesosvehicular: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 }

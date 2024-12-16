@@ -1,8 +1,10 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DAO.Vehiculo.CMGVehiculo;
+import Modelo.DAO.Vehiculo.VehiculoO;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -13,6 +15,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class RegistrarVehiculoTab implements TabBuilder{
+    private CMGVehiculo cmgVehiculo = CMGVehiculo.getInstance();
+    private VehiculoO vehiculoO;
+    private long idDueño;
+    private String placa;
 
     @Override
     public Tab Crear(ManagerController controller) {
@@ -31,7 +37,7 @@ public class RegistrarVehiculoTab implements TabBuilder{
         mainVBox.setPrefSize(280, 541);
         mainVBox.setSpacing(40);
 
-        VBox usuarioField = createLabeledField.create("Usuario Responsable", new TextField(), "crearVehiculo_Id");
+        VBox usuarioField = createLabeledField.create("Personal Responsable", new TextField(), "crearVehiculo_Id");
         TextField usuarioTextField = (TextField) usuarioField.getChildren().get(1);
         controller.crearVehiculo_Id = usuarioTextField;
 
@@ -53,7 +59,12 @@ public class RegistrarVehiculoTab implements TabBuilder{
         Button guardarButton = new Button("Guardar");
         guardarButton.setId("crearVehiculo_button");
         guardarButton.setOnAction(e -> controller.procedimiento(controller.registrarVehiculo_Inputs,() -> {
-            AlertaTab.Test();}));
+            placa = placaTextField.getText();
+            idDueño = Long.parseLong(usuarioTextField.getText());
+
+            vehiculoO = new VehiculoO(placa, idDueño);
+            cmgVehiculo.guardar(vehiculoO);
+        }));
         controller.crearVehiculo_button = guardarButton;
         guardarButton.setDefaultButton(true);
         guardarButton.setMnemonicParsing(false);

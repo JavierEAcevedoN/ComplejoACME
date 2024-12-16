@@ -22,8 +22,13 @@ import javafx.scene.layout.VBox;
 
 public class CrearUsuarioTab implements TabBuilder{
     private CMEmpresas empresas = CMEmpresas.getInstance();
-    private String sRol, sEmpresa, sUsuario, sPassword;
+    private String sRol, sUsuario, sPassword;
+    private static String sEmpresa;
     private static Connection conexionBD;
+
+    public static String getsEmpresa() {
+        return sEmpresa;
+    }
 
     @Override
     public Tab Crear(ManagerController controller) {

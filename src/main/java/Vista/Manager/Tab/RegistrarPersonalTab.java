@@ -1,11 +1,14 @@
 package Vista.Manager.Tab;
 
-import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import com.acme.complejoacme.Manager.ManagerController;
 
 import Modelo.DataBaseConection;
+import Modelo.DAO.EmpPersonal.CMGEPersonal;
+import Modelo.DAO.EmpPersonal.EmpPersonalO;
+import Modelo.DAO.Empresas.CMEmpresas;
 import Modelo.DAO.Personal.CMGPersonal;
 import Modelo.DAO.Personal.PersonalO;
 import Modelo.DAO.Rol.CMRol;
@@ -27,8 +30,13 @@ import javafx.scene.layout.VBox;
 public class RegistrarPersonalTab implements TabBuilder {
     private CMGPersonal personal = CMGPersonal.getInstance();
     private CMRol rol = CMRol.getInstance();
-    private String pIdentificacion, pNombre, pDireccion, pContacto, pUsuario, pRol;
+    private CMGEPersonal cmgePersonal  = CMGEPersonal.getInstance();
+    private CMEmpresas cmEmpresas = CMEmpresas.getInstance();
+    private String pNombre, pDireccion, pContacto, pUsuario;
+    private long pIdentificacion;
+    private int pRol, idEmpresa;
     private PersonalO personalO;
+    private EmpPersonalO empPersonalO;
 
     @Override
     public Tab Crear(ManagerController controller) {
@@ -118,9 +126,11 @@ public class RegistrarPersonalTab implements TabBuilder {
         // Crear Rol
         ChoiceBox<String> rolChoiceBox = new ChoiceBox<>();
         if (!DataBaseConection.getCurrentRole().contains("SUPERUSUARIO")) {
-            List<String> listRoles = rol.getLista().stream().map(i -> i.getRol()).distinct().collect(Collectors.toList());
-            rolChoiceBox.getItems().setAll(listRoles);
-            rolChoiceBox.setValue(listRoles.get(0));
+            if (DataBaseConection.getCurrentRole().equals("SUPERVISOR")) {
+                rolChoiceBox.getItems().setAll("Guarda", "Funcionario");
+            } else {
+                rolChoiceBox.getItems().setAll("Empleado", "Visitante");
+            }   
             VBox rolField = createLabeledField.create("Tipo de personal", rolChoiceBox, "crearPersonal_Rol");
             controller.crearPersonal_Rol = rolChoiceBox;
 
@@ -154,23 +164,31 @@ public class RegistrarPersonalTab implements TabBuilder {
         guardarButton.setId("crearPersonal_button");
         guardarButton.setOnAction(e -> controller.procedimiento(controller.registrarPersonal_Inputs, () -> {
             if (DataBaseConection.getCurrentRole().contains("SUPERUSUARIO")) {
-                pRol = "3";
+                pRol = 3;
             } else {
-                pRol = rol.getLista().stream().filter(i -> i.getRol().equals(rolChoiceBox.getValue())).map(i -> i.getId())
-                    .collect(Collectors.toList()).get(0).toString();
+                pRol = Integer.parseInt(rol.getLista().stream().filter(i -> i.getRol().equals(rolChoiceBox.getValue())).map(i -> i.getId())
+                    .collect(Collectors.toList()).get(0).toString());
             }
-            if (DataBaseConection.getCurrentRole().equals("SUPERVISOR")) {
+            if (DataBaseConection.getCurrentRole().equals("SUPERVISOR") || DataBaseConection.getCurrentRole().contains("SUPERUSUARIO")) {
                 pUsuario = usuarioTextField.getText();
             } else {
                 pUsuario = null;
-            }    
-            pIdentificacion = identificacionTextField.getText();
+            }
+            pIdentificacion = Integer.parseInt(identificacionTextField.getText());
             pNombre = nombreTextField.getText();
             pDireccion = direccionTextField.getText();
             pContacto = contactoTextField.getText();
-            personalO = new PersonalO(Integer.parseInt(pIdentificacion), pNombre, pDireccion, pContacto, true, pUsuario,
-                    Integer.parseInt(pRol));
+            personalO = new PersonalO(pIdentificacion, pNombre, pDireccion, pContacto, true, pUsuario, pRol);
             personal.guardar(personalO);
+            if (DataBaseConection.getCurrentRole().contains("FUNCIONARIO")) {
+                Random random = new Random();
+                idEmpresa = random.nextInt(10) + 2;
+            } else {
+                idEmpresa = cmEmpresas.getLista().stream().filter(i -> i.getNombre().equals(CrearUsuarioTab.getsEmpresa())).map(i -> i.getId())
+                .collect(Collectors.toList()).get(0);
+            }
+            empPersonalO = new EmpPersonalO(0, idEmpresa, pIdentificacion);
+            cmgePersonal.guardar(empPersonalO);
         }));
         controller.crearPersonal_button = guardarButton;
         guardarButton.setDefaultButton(true);

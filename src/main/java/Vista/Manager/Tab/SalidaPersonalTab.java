@@ -2,7 +2,14 @@ package Vista.Manager.Tab;
 
 import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DAO.CAPersonal.CAPersonalO;
+import Modelo.DAO.CAPersonal.CCAPersonal;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -13,6 +20,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class SalidaPersonalTab implements TabBuilder{
+    private CCAPersonal ccaPersonal = CCAPersonal.getInstance();
+    private CAPersonalO caPersonalO;
+    private Timestamp fechaEntrada, fechaSalida;
+    private long idPersonal;
+
     @Override
     public Tab Crear(ManagerController controller) {
         Tab salidaPersonalTab = new Tab("Salida Personal");
@@ -44,7 +56,13 @@ public class SalidaPersonalTab implements TabBuilder{
         Button registrarSalidaButton = new Button("Registrar Salida");
         registrarSalidaButton.setId("salidaPersonal_button");
         registrarSalidaButton.setOnAction(e -> controller.procedimiento(controller.salidaPersonal_Inputs,() -> {
-            AlertaTab.Test();}));
+            idPersonal = Long.parseLong(identificadorTextField.getText());
+            fechaEntrada = null;
+            fechaSalida = Timestamp.valueOf(LocalDateTime.now());
+            
+            caPersonalO = new CAPersonalO(0, fechaEntrada, fechaSalida, idPersonal);
+            ccaPersonal.actualizar(caPersonalO);
+        }));
         controller.salidaPersonal_button = registrarSalidaButton;
         registrarSalidaButton.setDefaultButton(true);
         registrarSalidaButton.setMnemonicParsing(false);

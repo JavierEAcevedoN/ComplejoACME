@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.Alerts.AlertaTab;
 
 public class CMGVehiculo extends ConexionMG<VehiculoO>{
     private static CMGVehiculo instance;
@@ -82,9 +83,11 @@ public class CMGVehiculo extends ConexionMG<VehiculoO>{
             pst.setString(1, vehiculo.getPlaca());
             pst.setLong( 2, vehiculo.getIdDueño());
             pst.execute();
+            AlertaTab.Exito();
             reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla vehiculo: " + e.getMessage());
+            AlertaTab.Error();
         }
     }
 

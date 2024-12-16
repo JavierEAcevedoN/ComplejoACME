@@ -83,6 +83,7 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             pst.setBoolean(5, personal.isEstado());
             pst.setString(6, personal.getUsuarioSistema());
             pst.setInt(7, personal.getIdRol());
+            AlertaTab.Exito();
             pst.execute();
             reiniciarP();
         } catch (SQLException e) {

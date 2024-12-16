@@ -1,8 +1,14 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DAO.CAPersonal.CAPersonalO;
+import Modelo.DAO.CAPersonal.CCAPersonal;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -13,6 +19,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class AccesoPersonalTab implements TabBuilder{
+    private CCAPersonal ccaPersonal = CCAPersonal.getInstance();
+    private static CAPersonalO caPersonalO;
+    private Timestamp fechaEntrada, fechaSalida;
+    private long idPersonal;
+
+    public static CAPersonalO getCaPersonalO() {
+        return caPersonalO;
+    }
+
     @Override
     public Tab Crear(ManagerController controller) {
         // Crear el Tab
@@ -47,7 +62,14 @@ public class AccesoPersonalTab implements TabBuilder{
         // Crear el botón "Permitir acceso"
         Button permitirAccesoButton = new Button("Permitir acceso");
         permitirAccesoButton.setId("accesoPersonal_button");
-        permitirAccesoButton.setOnAction(e -> controller.procedimiento(controller.accesoPersonal_Inputs,() -> {AlertaTab.Test();}));
+        permitirAccesoButton.setOnAction(e -> controller.procedimiento(controller.accesoPersonal_Inputs,() -> {
+            idPersonal = Long.parseLong(identificadorTextField.getText());
+            fechaEntrada = Timestamp.valueOf(LocalDateTime.now());
+            fechaSalida = null;
+            
+            caPersonalO = new CAPersonalO(0, fechaEntrada, fechaSalida, idPersonal);
+            ccaPersonal.guardar(caPersonalO);
+        }));
         controller.accesoPersonal_button = permitirAccesoButton;
 
         permitirAccesoButton.setDefaultButton(true);

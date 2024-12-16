@@ -2,7 +2,14 @@ package Vista.Manager.Tab;
 
 import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.createLabeledField;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DAO.CAVehiculo.CAVehiculoO;
+import Modelo.DAO.CAVehiculo.CCAVehiculo;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -13,6 +20,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class SalidaVehiculoTab implements TabBuilder{
+    private CCAVehiculo ccaVehiculo = CCAVehiculo.getInstance();
+    private CAVehiculoO caVehiculoO;
+    private Timestamp fechaEntrada, fechaSalida;
+    private String sPlaca;
 
     @Override
     public Tab Crear(ManagerController controller) {
@@ -45,7 +56,13 @@ public class SalidaVehiculoTab implements TabBuilder{
         Button registrarSalidaButton = new Button("Registrar Salida");
         registrarSalidaButton.setId("salidaVehiculo_button");
         registrarSalidaButton.setOnAction(e -> controller.procedimiento(controller.salidaVehicular_Inputs,() -> {
-            AlertaTab.Test();}));
+            sPlaca = placaTextField.getText();
+            fechaEntrada = null;
+            fechaSalida = Timestamp.valueOf(LocalDateTime.now());
+
+            caVehiculoO = new CAVehiculoO(0, fechaEntrada, fechaSalida, sPlaca);
+            ccaVehiculo.actualizar(caVehiculoO);
+        }));
         controller.salidaVehiculo_button = registrarSalidaButton;
         registrarSalidaButton.setDefaultButton(true);
         registrarSalidaButton.setMnemonicParsing(false);

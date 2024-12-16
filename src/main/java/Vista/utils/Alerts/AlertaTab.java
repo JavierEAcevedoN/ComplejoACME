@@ -8,7 +8,7 @@ public class AlertaTab {
     public static void Error() {
         alert.setAlertType(Alert.AlertType.ERROR);
         alert.setTitle("Fallo");
-        alert.setHeaderText("Error inesperado");
+        alert.setHeaderText("Error");
         alert.setContentText("Intente nuevamente.");
         alert.showAndWait();
     }
