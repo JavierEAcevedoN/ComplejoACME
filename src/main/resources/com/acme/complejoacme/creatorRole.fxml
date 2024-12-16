@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="70.0" prefWidth="553.0" styleClass="brand-color-right" stylesheets="@Styles/Base.css">
+         <children>
+            <TextFlow prefHeight="70.0" prefWidth="221.0" textAlignment="CENTER">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ACME" textAlignment="CENTER" wrappingWidth="186.11572265625">
+                     <font>
+                        <Font name="Arial Black" size="49.0" />
+                     </font>
+                  </Text>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="8.0" />
+               </padding>
+            </TextFlow>
+            <TextFlow layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="8.0" />
+               </padding>
+            </TextFlow>
+            <TextFlow layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
+               <children>
+                  <Text fx:id="roleDisplay" blendMode="DIFFERENCE" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SuperUsuario" textAlignment="CENTER" wrappingWidth="8.02874755859375">
+                     <font>
+                        <Font name="Inter Regular" size="23.0" />
+                     </font>
+                  </Text>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="18.0" />
+               </padding>
+            </TextFlow>
+            <VBox alignment="CENTER" prefHeight="70.0" prefWidth="97.0">
+               <children>
+                  <ImageView fx:id="logOut" fitHeight="35.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="https://static-00.iconduck.com/assets.00/logout-icon-1024x1023-qnlao50d.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children></HBox>
+      <TabPane prefHeight="532.0" prefWidth="554.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab fx:id="crearUsuario" text="Crear Usuario">
+               <content>
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="541.0" prefWidth="280.0" spacing="40.0">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="10.0" layoutY="137.0" spacing="8.0">
+                                 <children>
+                                    <Label text="Empresa" />
+                                    <ChoiceBox fx:id="crearUsuario_Empresa" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="8.0">
+                                 <children>
+                                    <Label text="Rol del usuario" />
+                                    <ChoiceBox fx:id="crearUsuario_Rol" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="8.0">
+                                 <children>
+                                    <Label text="Usuario" />
+                                    <TextField fx:id="crearUsuario_Usuario" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="8.0">
+                                 <children>
+                                    <Label text="Contraseña" />
+                                    <PasswordField fx:id="crearUsuario_Pass" />
+                                 </children>
+                              </VBox>
+                              <Button fx:id="crearUsuario_button" defaultButton="true" mnemonicParsing="false" text="Guardar">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </FlowPane>
+               </content>
+            </Tab>
+            <Tab text="Nuevo Registro">
+                <content>
+                    <FlowPane>
+                        <children>
+                            <TabPane prefHeight="536.0" prefWidth="525.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                                <tabs>
+                                    <Tab fx:id="crearPersonal" text="Registrar Personal">
+                                        <content>
+                                            <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="20.0" prefWrapLength="10.0">
+                                                <children>
+                                                    <GridPane alignment="CENTER" prefHeight="541.0" prefWidth="491.0">
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                        <children>
+                                                            <VBox alignment="CENTER" layoutX="10.0" layoutY="31.0" spacing="8.0" GridPane.halignment="CENTER">
+                                                                <children>
+                                                                    <Label text="Identificacion" />
+                                                                    <TextField fx:id="crearPersonal_Id" />
+                                                                </children>
+                                                                    <GridPane.margin>
+                                                                    <Insets />
+                                                                </GridPane.margin>
+                                                                <padding>
+                                                                    <Insets left="20.0" right="20.0" />
+                                                                </padding>
+                                                            </VBox>
+                                                            <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                                                <children>
+                                                                    <Label text="Nombre de la persona" />
+                                                                    <TextField fx:id="crearPersonal_Nombre" />
+                                                                </children>
+                                                                <GridPane.margin>
+                                                                    <Insets />
+                                                                </GridPane.margin>
+                                                                <padding>
+                                                                    <Insets left="20.0" right="20.0" />
+                                                                </padding>
+                                                            </VBox>
+                                                            <VBox alignment="CENTER" spacing="8.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                                <children>
+                                                                    <Label text="Dirección de residencia" />
+                                                                    <TextField fx:id="crearPersonal_Dir" />
+                                                                </children>
+                                                                <GridPane.margin>
+                                                                    <Insets />
+                                                                </GridPane.margin>
+                                                                <padding>
+                                                                    <Insets left="20.0" right="20.0" />
+                                                                </padding>
+                                                            </VBox>
+                                                            <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                                                <children>
+                                                                    <Label text="Contacto Telefonico" />
+                                                                    <TextField fx:id="crearPersonal_Cont" />
+                                                                </children>
+                                                                <GridPane.margin>
+                                                                    <Insets />
+                                                                </GridPane.margin>
+                                                                <padding>
+                                                                    <Insets left="20.0" right="20.0" />
+                                                                </padding>
+                                                            </VBox>
+                                                            <VBox alignment="CENTER" spacing="8.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                                <children>
+                                                                    <Label text="Tipo de personal" />
+                                                                    <ChoiceBox fx:id="crearPersonal_Rol" prefWidth="150.0" />
+                                                                </children>
+                                                                <GridPane.margin>
+                                                                    <Insets />
+                                                                </GridPane.margin>
+                                                                <padding>
+                                                                    <Insets left="20.0" right="20.0" />
+                                                                </padding>
+                                                            </VBox>
+                                                            <VBox alignment="CENTER" prefHeight="180.0" prefWidth="200.0" spacing="8.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                                <children>
+                                                                    <Label text="Usuario de acceso" />
+                                                                    <TextField fx:id="crearPersonal_Usuario" promptText="Usuario del sistema existente" />
+                                                                </children>
+                                                                <GridPane.margin>
+                                                                    <Insets />
+                                                                </GridPane.margin>
+                                                                <padding>
+                                                                    <Insets left="20.0" right="20.0" />
+                                                                </padding>
+                                                            </VBox>
+                                                            <Button fx:id="crearPersonal_button" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" text="Guardar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                                <GridPane.margin>
+                                                                    <Insets />
+                                                                </GridPane.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                        </children>
+                                                    </GridPane>
+                                                </children>
+                                            </FlowPane>
+                                        </content>
+                                    </Tab>
+                                    <Tab fx:id="crearVehiculo" text="Regristrar Vehiculo">
+                                        <content>
+                                            <FlowPane alignment="CENTER" columnHalignment="CENTER">
+                                                <children>
+                                                    <VBox alignment="CENTER_RIGHT" prefHeight="541.0" prefWidth="280.0" spacing="40.0">
+                                                        <children>
+                                                            <VBox alignment="CENTER" spacing="8.0">
+                                                                <children>
+                                                                    <Label text="Usuario Responsable" />
+                                                                    <TextField fx:id="crearVehiculo_Id" />
+                                                                </children>
+                                                            </VBox>
+                                                            <VBox alignment="CENTER" spacing="8.0">
+                                                                <children>
+                                                                    <Label text="Placa del Vehiculo" />
+                                                                    <TextField fx:id="crearVehiculo_Placa" />
+                                                                </children>
+                                                            </VBox>
+                                                            <Button fx:id="crearVehiculo_button" defaultButton="true" mnemonicParsing="false" text="Guardar">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                        </children>
+                                                    </VBox>
+                                                </children>
+                                    </FlowPane>
+                                        </content>
+                                    </Tab>
+                                </tabs>
+                            </TabPane>
+                        </children>
+                  </FlowPane>
+                </content>
+            </Tab>
+           <Tab fx:id="permiso" text="Permiso Visitante">
+              <content>
+                 <FlowPane>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="541.0" prefWidth="523.0">
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <VBox alignment="CENTER" layoutX="197.0" layoutY="10.0" spacing="8.0">
+                                    <children>
+                                       <Label text="Identificador" />
+                                       <TextField fx:id="permiso_Id" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" layoutX="10.0" layoutY="58.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                              <children>
+                                 <VBox alignment="CENTER" spacing="8.0">
+                                    <children>
+                                       <Label text="Fecha de inicio" />
+                                       <DatePicker fx:id="permiso_FechaInicio" />
+                                    </children>
+                                 </VBox>
+                                 <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="8.0">
+                                    <children>
+                                       <Label text="Fecha de fin" />
+                                       <DatePicker fx:id="permiso_FechaFin" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <Button fx:id="permiso_Button" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" text="Guardar">
+                                    <cursor>
+                                       <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                 </Button>
+                              </children>
+                           </HBox>
+                        </VBox>
+                     </children>
+                  </FlowPane>
+              </content>
+           </Tab>
+            <Tab text="Control Ingresos">
+                <content>
+                    <FlowPane>
+                        <children>
+                            <TabPane prefHeight="541.0" prefWidth="522.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                                <tabs>
+                                    <Tab fx:id="accesoPersonal" text="Acceso Personal">
+                                        <content>
+                                            <FlowPane alignment="CENTER" columnHalignment="CENTER">
+                                                <children>
+                                                    <VBox alignment="CENTER" prefHeight="540.0" prefWidth="230.0" spacing="20.0">
+                                                        <children>
+                                                            <VBox alignment="CENTER" spacing="8.0">
+                                                                <children>
+                                                                    <Label text="Identificador del personal" />
+                                                                    <TextField fx:id="accesoPersonal_Id" />
+                                                                </children>
+                                                            </VBox>
+                                                            <Button fx:id="accesoPersonal_button" defaultButton="true" mnemonicParsing="false" text="Permitir acceso">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                        </children>
+                                          </VBox>
+                                                </children>
+                                    </FlowPane>
+                                        </content>
+                                    </Tab>
+                                    <Tab fx:id="accesoVehiculo" text="Acceso Vehicular">
+                                        <content>
+                                            <FlowPane alignment="CENTER" columnHalignment="CENTER">
+                                                <children>
+                                                    <VBox alignment="CENTER" prefHeight="540.0" prefWidth="230.0" spacing="20.0">
+                                                        <children>
+                                                            <VBox alignment="CENTER" spacing="8.0">
+                                                                <children>
+                                                                    <Label text="Placa" />
+                                                                    <TextField fx:id="accesoVehiculo_Placa" />
+                                                                </children>
+                                                            </VBox>
+                                                            <Button fx:id="accesoVehiculo_button" defaultButton="true" mnemonicParsing="false" text="Permitir acceso">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                        </children>
+                                          </VBox>
+                                                </children>
+                                    </FlowPane>
+                                        </content>
+                                    </Tab>
+                                </tabs>
+                            </TabPane>
+                        </children>
+                  </FlowPane>
+                </content>
+            </Tab>
+            <Tab text="Control Salidas">
+                <content>
+                    <FlowPane>
+                        <children>
+                            <TabPane prefHeight="541.0" prefWidth="522.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                                <tabs>
+                                    <Tab fx:id="salidaPersonal" text="Salida Personal">
+                                        <content>
+                                            <FlowPane alignment="CENTER" columnHalignment="CENTER">
+                                                <children>
+                                                    <VBox alignment="CENTER" prefHeight="540.0" prefWidth="230.0" spacing="20.0">
+                                                        <children>
+                                                            <VBox alignment="CENTER" spacing="8.0">
+                                                                <children>
+                                                                    <Label text="Identificador del personal" />
+                                                                    <TextField fx:id="salidaPersonal_Id" />
+                                                                </children>
+                                                            </VBox>
+                                                            <Button fx:id="salidaPersonal_button" defaultButton="true" mnemonicParsing="false" text="Registrar Salida">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                        </children>
+                                          </VBox>
+                                                </children>
+                                    </FlowPane>
+                                        </content>
+                                    </Tab>
+                                    <Tab fx:id="salidaVehiculo" text="Salida Vehicular">
+                                        <content>
+                                            <FlowPane alignment="CENTER" columnHalignment="CENTER">
+                                                <children>
+                                                    <VBox alignment="CENTER" prefHeight="540.0" prefWidth="230.0" spacing="20.0">
+                                                        <children>
+                                                            <VBox alignment="CENTER" spacing="8.0">
+                                                                <children>
+                                                                    <Label text="Placa" />
+                                                                    <TextField fx:id="salidaVehiculo_Placa" />
+                                                                </children>
+                                                            </VBox>
+                                                            <Button fx:id="salidaVehiculo_button" defaultButton="true" mnemonicParsing="false" text="Registrar Salida">
+                                                   <cursor>
+                                                          <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                        </children>
+                                          </VBox>
+                                                </children>
+                                    </FlowPane>
+                                        </content>
+                                    </Tab>
+                                </tabs>
+                            </TabPane>
+                        </children>
+                  </FlowPane>
+                </content>
+            </Tab>
+             <Tab text="Disciplinario">
+                <content>
+                   <FlowPane>
+                     <children>
+                        <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="541.0" prefWidth="522.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                               <Tab fx:id="incidentes" text="Incidentes">
+                                  <content>
+                                     <FlowPane alignment="CENTER">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="540.0" prefWidth="450.0" spacing="20.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER" spacing="8.0">
+                                                         <children>
+                                                            <Label text="Seleccionar Incidente" wrapText="true" />
+                                                            <ChoiceBox fx:id="incidentes_Tipo" prefHeight="24.0" prefWidth="201.0" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER" prefHeight="100.0" prefWidth="176.0" spacing="8.0">
+                                                         <children>
+                                                            <Label text="Identificador del personal Implicado" textAlignment="CENTER" wrapText="true" />
+                                                            <TextField fx:id="incidentes_Id" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="175.0" prefWidth="450.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER_LEFT" prefHeight="144.0" prefWidth="450.0" spacing="8.0">
+                                                         <children>
+                                                            <Label text="Descripcion del suceso" wrapText="true" />
+                                                            <TextArea fx:id="incidentes_Desc" prefHeight="101.0" prefWidth="450.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" spacing="30.0">
+                                                   <children>
+                                                      <Button fx:id="incidentes_buttonConsulta" defaultButton="true" mnemonicParsing="false" text="Consultar Historial">
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </Button>
+                                                      <Button fx:id="incidentes_buttonRegistrar" mnemonicParsing="false" text="Registrar Incidente">
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </FlowPane>
+                                  </content>
+                               </Tab>
+                                 <Tab text="Restricciones">
+                                    <content>
+                                       <FlowPane>
+                                         <children>
+                                            <TabPane prefHeight="533.0" prefWidth="496.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                                              <tabs>
+                                                  <Tab fx:id="aplicarRest" text="Aplicar Restriccion">
+                                                      <content>
+                                                          <FlowPane alignment="CENTER">
+                                                              <children>
+                                                                  <VBox alignment="CENTER" prefHeight="540.0" prefWidth="257.0" spacing="20.0">
+                                                                      <children>
+                                                                          <VBox alignment="CENTER" spacing="8.0">
+                                                                              <children>
+                                                                                  <Label text="Seleccionar Restriccion" wrapText="true" />
+                                                                                  <ChoiceBox fx:id="aplicarRest_Tipo" prefHeight="24.0" prefWidth="327.0" />
+                                                                              </children>
+                                                                          </VBox>
+                                                                          <VBox alignment="CENTER" prefHeight="100.0" prefWidth="176.0" spacing="8.0">
+                                                                              <children>
+                                                                                  <Label text="Identificador del personal a Restringir" textAlignment="CENTER" wrapText="true" />
+                                                                                  <TextField fx:id="aplicarRest_Id" />
+                                                                              </children>
+                                                                          </VBox>
+                                                                          <HBox alignment="CENTER" spacing="30.0">
+                                                                              <children>
+                                                                                  <Button fx:id="aplicarRest_buttonConsulta" defaultButton="true" mnemonicParsing="false" text="Consultar Historial" textAlignment="CENTER" wrapText="true">
+                                                                           <cursor>
+                                                                              <Cursor fx:constant="HAND" />
+                                                                           </cursor>
+                                                                        </Button>
+                                                                                  <Button fx:id="aplicarRest_buttonRestringir" mnemonicParsing="false" text="Aplicar Restriccion" textAlignment="CENTER" wrapText="true">
+                                                                           <cursor>
+                                                                              <Cursor fx:constant="HAND" />
+                                                                           </cursor>
+                                                                        </Button>
+                                                                              </children>
+                                                                          </HBox>
+                                                                      </children>
+                                                                  </VBox>
+                                                              </children>
+                                                      </FlowPane>
+                                                      </content>
+                                                  </Tab>
+                                                  <Tab fx:id="levantarRest" text="Levantar Restriccion">
+                                                      <content>
+                                                          <FlowPane alignment="CENTER">
+                                                              <children>
+                                                                  <VBox alignment="CENTER" prefHeight="540.0" prefWidth="450.0" spacing="20.0">
+                                                                      <children>
+                                                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                                              <children>
+                                                                                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="188.0" spacing="8.0">
+                                                                                      <children>
+                                                                                          <Label text="Identificador del personal Restringido" textAlignment="CENTER" wrapText="true" />
+                                                                                          <TextField fx:id="levantarRest_Id" prefHeight="24.0" prefWidth="204.0" />
+                                                                                      </children>
+                                                                                  </VBox>
+                                                                              </children>
+                                                                          </HBox>
+                                                                          <HBox alignment="CENTER" prefHeight="175.0" prefWidth="450.0">
+                                                                              <children>
+                                                                                  <VBox alignment="CENTER_LEFT" prefHeight="144.0" prefWidth="450.0" spacing="8.0">
+                                                                                      <children>
+                                                                                          <Label text="Justificacion del levantamiento" wrapText="true" />
+                                                                                          <TextArea fx:id="levantarRest_Desc" prefHeight="101.0" prefWidth="450.0" />
+                                                                                      </children>
+                                                                                  </VBox>
+                                                                              </children>
+                                                                          </HBox>
+                                                                            <Button fx:id="levantarRest_button" defaultButton="true" mnemonicParsing="false" prefWidth="104.0" text="Levantar Restriccion" textAlignment="CENTER" wrapText="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="HAND" />
+                                                                     </cursor>
+                                                                  </Button>
+                                                                      </children>
+                                                                  </VBox>
+                                                              </children>
+                                                      </FlowPane>
+                                                      </content>
+                                                  </Tab>
+                                              </tabs>
+                                            </TabPane>
+                                         </children>
+                                    </FlowPane>
+                                    </content>
+                                 </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </FlowPane>
+                </content>
+             </Tab>
+             <Tab text="Reportes">
+                <content>
+                   <FlowPane>
+                     <children>
+                        <TabPane prefHeight="541.0" prefWidth="522.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                             <Tab fx:id="ReporteEstado" text="Estado Personal Autorizado">
+                                <content>
+                                   <FlowPane>
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefHeight="541.0" prefWidth="491.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                         <children>
+                                                            <CheckBox fx:id="ReporteEstado_Activos" mnemonicParsing="false" text="Activos" textAlignment="CENTER" />
+                                                            <CheckBox fx:id="ReporteEstado_Inactivos" mnemonicParsing="false" text="Inactivos" textAlignment="CENTER" />
+                                                         </children>
+                                                      </VBox>
+                                                      <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="8.0" prefHeight="81.0" prefWidth="377.0" rowValignment="BASELINE" vgap="8.0" HBox.hgrow="NEVER">
+                                                         <children>
+                                                            <CheckBox fx:id="ReporteEstado_Superv" mnemonicParsing="false" text="Supervisores" textAlignment="CENTER" />
+                                                            <CheckBox fx:id="ReporteEstado_Guardas" mnemonicParsing="false" text="Guardas" textAlignment="CENTER" />
+                                                            <CheckBox fx:id="ReporteEstado_Funcion" mnemonicParsing="false" text="Funcionarios" textAlignment="CENTER" />
+                                                         </children>
+                                                      </FlowPane>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <TableView fx:id="ReporteEstado_Tabla" prefHeight="574.0" prefWidth="491.0">
+                                                  <columns>
+                                                    <TableColumn prefWidth="75.0" text="C1" />
+                                                    <TableColumn prefWidth="75.0" text="C2" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </FlowPane>
+                                </content>
+                             </Tab>
+                              <Tab fx:id="ReportePersonal" text="Personal Empresas">
+                                  <content>
+                                      <FlowPane>
+                                          <children>
+                                              <VBox alignment="TOP_CENTER" prefHeight="541.0" prefWidth="491.0">
+                                                  <children>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                          <children>
+                                                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="NEVER">
+                                                         <children>
+                                                            <Label text="Empresa" />
+                                                         </children>
+                                                              </VBox>
+                                                              <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="8.0" prefHeight="81.0" prefWidth="377.0" rowValignment="BASELINE" vgap="8.0">
+                                                         <children>
+                                                            <ChoiceBox fx:id="ReportePersonal_Empresa" prefHeight="24.0" prefWidth="331.0" />
+                                                         </children>
+                                                              </FlowPane>
+                                                          </children>
+                                                          <VBox.margin>
+                                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                          </VBox.margin>
+                                                      </HBox>
+                                                      <TableView fx:id="ReportePersonal_Tabla" prefHeight="574.0" prefWidth="491.0">
+                                                          <columns>
+                                                              <TableColumn prefWidth="75.0" text="C1" />
+                                                              <TableColumn prefWidth="75.0" text="C2" />
+                                                          </columns>
+                                                      </TableView>
+                                                  </children>
+                                              </VBox>
+                                          </children>
+                                    </FlowPane>
+                                  </content>
+                              </Tab>
+                              <Tab fx:id="ReporteAccesos" text="Accesos">
+                                  <content>
+                                      <FlowPane>
+                                          <children>
+                                              <VBox alignment="TOP_CENTER" prefHeight="541.0" prefWidth="491.0">
+                                                  <children>
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                          <children>
+                                                              <VBox alignment="CENTER" spacing="8.0">
+                                                                  <children>
+                                                                      <Label text="Fecha de inicio" />
+                                                                      <DatePicker fx:id="ReporteAccesos_Inicio" />
+                                                                  </children>
+                                                              </VBox>
+                                                              <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="8.0">
+                                                                  <children>
+                                                                      <Label text="Fecha de fin" />
+                                                                      <DatePicker fx:id="ReporteAccesos_Fin" />
+                                                                  </children>
+                                                              </VBox>
+                                                          </children>
+                                                          <VBox.margin>
+                                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                          </VBox.margin>
+                                                      </HBox>
+                                                      <TableView fx:id="ReporteAccesos_Tabla" prefHeight="574.0" prefWidth="491.0">
+                                                          <columns>
+                                                              <TableColumn prefWidth="75.0" text="C1" />
+                                                              <TableColumn prefWidth="75.0" text="C2" />
+                                                          </columns>
+                                                      </TableView>
+                                                  </children>
+                                              </VBox>
+                                          </children>
+                                    </FlowPane>
+                                  </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </FlowPane>
+                </content>
+             </Tab>
+           <Tab text="Monitor">
+              <content>
+                 <FlowPane>
+                     <children>
+                        <TableView fx:id="Monitor" prefHeight="543.0" prefWidth="522.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </FlowPane>
+              </content>
+           </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</FlowPane>

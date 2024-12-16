@@ -1,0 +1,11 @@
+.brand-color {
+    -fx-background-color: linear-gradient(to top, #320177, #930D70);
+}
+.brand-color-right {
+    -fx-background-color: linear-gradient(to left, #320177, #930D70);
+}
+
+
+.close{
+    -fx-background-color: #FF0000FF;
+}

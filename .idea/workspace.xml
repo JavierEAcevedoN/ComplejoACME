@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="08f269cf-ba2a-40bb-9d8e-145a4037e108" name="Changes" comment="feat: datepicker logica + Tableconfigurator">
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/DateUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DAO/CAPersonal/CCAPersonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/CAPersonal/CCAPersonal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DAO/Personal/CMGPersonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/Personal/CMGPersonal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Modelo/DAO/Personal/PersonalM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/DAO/Personal/PersonalM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesosTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/AccesosTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/EstadoPersonalTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/EstadoPersonalTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/MonitorTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/MonitorTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/PersonalEmpresasTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/Manager/Tab/PersonalEmpresasTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Vista/utils/TableViewConfigurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Vista/utils/TableViewConfigurator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/acme/complejoacme/Manager/ManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KevinJGV&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JavierEAcevedoN/ComplejoACME.git&quot;,
+    &quot;accountId&quot;: &quot;e3c2f31a-0742-431a-b2c3-08f40ca11706&quot;
+  }
+}</component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2q8DQ1yg1IjQY2zkuA2HuVcMpez" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApplication.executor": "Debug",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "JavaFX",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/acme/complejoacme" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Vista.utils.Alerts" />
+      <recent name="com.acme.complejoacme.Manager" />
+      <recent name="Vista.Manager.Builds" />
+      <recent name="Vista.Manager" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.acme.complejoacme.MainApplication" />
+      <module name="ComplejoACME" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.acme.complejoacme.GraphicInterfaces.Login.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="08f269cf-ba2a-40bb-9d8e-145a4037e108" name="Changes" comment="feat: datepicker logica + Tableconfigurator" />
+      <created>1734035290463</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734035290463</updated>
+    </task>
+    <task id="LOCAL-00001" summary="pruebas de conexion">
+      <option name="closed" value="true" />
+      <created>1734118832980</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734118832980</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: generacion de visas segun rol exitosa">
+      <option name="closed" value="true" />
+      <created>1734215944389</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734215944390</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: Vistas manager + controlador completado">
+      <option name="closed" value="true" />
+      <created>1734274684338</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734274684338</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="pruebas de conexion" />
+    <MESSAGE value="feat: conectando Manager con Login" />
+    <MESSAGE value="feat: generacion de visas segun rol exitosa" />
+    <MESSAGE value="feat: Vistas manager + controlador completado" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Vistas manager + controlador completado" />
+  </component>
+</project>

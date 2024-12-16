@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.acme.complejoacme.Login.AbstractLoginController">
+   <children>
+      <AnchorPane prefHeight="494.0" prefWidth="309.0" styleClass="brand-color" stylesheets="@Styles/Base.css">
+         <children>
+            <TextFlow layoutY="168.0" prefHeight="74.0" prefWidth="251.0" textAlignment="CENTER">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ACM">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="72.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+            <ImageView fitHeight="152.0" fitWidth="144.0" layoutX="98.0" layoutY="67.0" preserveRatio="true">
+               <image>
+                  <Image url="https://www.giantbomb.com/a/uploads/square_small/3/34651/3461096-wile-e.-coyote.png" />
+               </image>
+            </ImageView>
+            <TextFlow layoutX="29.0" layoutY="168.0" prefHeight="84.0" prefWidth="230.0" textAlignment="RIGHT">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="E" textAlignment="RIGHT">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="72.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+            <TextFlow layoutX="29.0" layoutY="247.0" prefHeight="31.0" prefWidth="230.0" textAlignment="CENTER">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Complejo Empresarial">
+                     <font>
+                        <Font name="DejaVu Sans" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+            <TextFlow layoutX="40.0" layoutY="449.0" prefHeight="31.0" prefWidth="230.0" textAlignment="CENTER">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="v 0.1" textAlignment="CENTER" textOrigin="CENTER">
+                     <font>
+                        <Font name="DejaVu Sans" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+         </children></AnchorPane>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="309.0" orientation="VERTICAL" prefHeight="494.0" prefWidth="466.0" prefWrapLength="398.0" vgap="10.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-display: block;" text="Iniciar sistema" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets bottom="10.0" />
+               </FlowPane.margin>
+            </Text>
+            <Label layoutX="225.0" layoutY="281.0" text="Usuario" />
+            <TextField fx:id="user" layoutX="113.0" layoutY="217.0" />
+            <Label layoutX="225.0" layoutY="289.0" text="Contraseña" />
+            <PasswordField fx:id="pass" layoutX="113.0" layoutY="245.0" />
+            <FlowPane alignment="BASELINE_CENTER" hgap="20.0" prefHeight="0.0" prefWidth="200.0" rowValignment="TOP">
+               <children>
+                  <Button fx:id="cancel" cancelButton="true" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #FF0000FF;" styleClass="close" stylesheets="@Styles/Base.css" text="Cancelar" textFill="WHITE" textOverrun="CLIP" wrapText="true" />
+                  <Button fx:id="conect" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" style="-fx-Halignment: right;" text="Conectar" textAlignment="CENTER" />
+               </children>
+            </FlowPane>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </FlowPane>
+   </children>
+</AnchorPane>
