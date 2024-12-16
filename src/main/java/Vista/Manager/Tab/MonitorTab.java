@@ -24,14 +24,7 @@ public class MonitorTab implements TabBuilder{
         tableView.setPrefHeight(543.0);
         tableView.setPrefWidth(522.0);
 
-        // Crear las columnas de la tabla
-        TableColumn<String, String> column1 = new TableColumn<>("C1");
-        column1.setPrefWidth(75.0);
-        TableColumn<String, String> column2 = new TableColumn<>("C2");
-        column2.setPrefWidth(75.0);
 
-        // Añadir las columnas a la TableView
-        tableView.getColumns().addAll(column1, column2);
 
         // Añadir la TableView al FlowPane
         flowPane.getChildren().add(tableView);

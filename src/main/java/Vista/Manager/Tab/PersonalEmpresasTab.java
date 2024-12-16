@@ -1,5 +1,10 @@
 package Vista.Manager.Tab;
 
+import Modelo.DAO.CAPersonal.CAPersonalM;
+import Modelo.DAO.CAPersonal.CCAPersonal;
+import Modelo.DAO.Personal.CMGPersonal;
+import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.TableViewConfigurator;
 import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -8,6 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.util.List;
 
 public class PersonalEmpresasTab implements TabBuilder {
     @Override
@@ -57,9 +64,6 @@ public class PersonalEmpresasTab implements TabBuilder {
 
         controller.ReportePersonal_Empresa = empresaChoiceBox;
 
-        empresaChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            controller.ReportePersonal_Empresa.getSelectionModel().select(newValue);
-        });
         empresaChoiceBox.setPrefHeight(24.0);
         empresaChoiceBox.setPrefWidth(331.0);
         flowPaneChoiceBox.getChildren().add(empresaChoiceBox);
@@ -70,18 +74,18 @@ public class PersonalEmpresasTab implements TabBuilder {
         controller.setInputsPersonalEmpresasTab(controller.getInputsPersonalEmpresasTab());
 
         // Crear la TableView para mostrar los datos
-        TableView<String> tableView = new TableView<>();
+        TableView<PersonalM> tableView = new TableView<>();
         tableView.setId("ReportePersonal_Tabla");
         controller.ReportePersonal_Tabla = tableView;
         tableView.setPrefHeight(574.0);
         tableView.setPrefWidth(491.0);
 
-        // Crear las columnas de la tabla
-        TableColumn<String, String> column1 = new TableColumn<>("C1");
-        column1.setPrefWidth(75.0);
-        TableColumn<String, String> column2 = new TableColumn<>("C2");
-        column2.setPrefWidth(75.0);
-        tableView.getColumns().addAll(column1, column2);
+        empresaChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            //TODO
+            controller.ReportePersonal_Empresa.getSelectionModel().select(newValue);
+            TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"),  CMGPersonal.getInstance().getLista());
+        });
 
         // Añadir el HBox y la TableView al VBox principal
         mainVBox.getChildren().addAll(hbox, tableView);

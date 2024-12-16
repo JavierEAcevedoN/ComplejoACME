@@ -1,10 +1,16 @@
 package com.acme.complejoacme.Manager;
 
+import Modelo.DAO.Personal.CMGPersonal;
+import Modelo.DAO.Personal.PersonalM;
 import Vista.utils.Alerts.AlertaTab;
+import Vista.utils.TableViewConfigurator;
 import com.acme.complejoacme.MainApplication;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManagerController {
     // Ventana
@@ -282,6 +288,19 @@ public class ManagerController {
         callback.run();
     }
 
+    public void procedimientoCheckBox(Control[] inputs, TableView<PersonalM> tableView) {
+        List<PersonalM> base = CMGPersonal.getInstance().getLista();
+        final CheckBox activo = (CheckBox) inputs[0];
+        final CheckBox inactivo = (CheckBox) inputs[1];
+        final CheckBox supervisor = (CheckBox) inputs[2];
+        final CheckBox guarda = (CheckBox) inputs[3];
+        final CheckBox funcionario = (CheckBox) inputs[4];
+
+        // TODO
+        List<PersonalM> resultado = base;
+        TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"), resultado );
+
+    }
     public void exit() {
         Stage scene = (Stage) logOut.getScene().getWindow();
         scene.close();

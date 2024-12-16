@@ -41,7 +41,7 @@ public class PersonalM {
         return contacto;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 

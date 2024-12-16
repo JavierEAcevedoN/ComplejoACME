@@ -1,5 +1,6 @@
 package Vista.Manager.Tab;
 
+import Modelo.DAO.Personal.PersonalM;
 import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
@@ -9,6 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.util.Arrays;
 
 public class EstadoPersonalTab implements TabBuilder{
     @Override
@@ -33,7 +36,6 @@ public class EstadoPersonalTab implements TabBuilder{
         estado.setAlignment(Pos.CENTER_LEFT);
         estado.setPrefHeight(200.0);
         estado.setPrefWidth(100.0);
-
 
         CheckBox activos = new CheckBox("Activos");
         controller.ReporteEstado_Activos = activos;
@@ -87,19 +89,16 @@ public class EstadoPersonalTab implements TabBuilder{
         controller.setInputsEstadoPersonalTab(controller.getInputsEstadoPersonalTab());
 
 
-        TableView<String> tableView = new TableView<>();
+        TableView<PersonalM> tableView = new TableView<>();
         controller.ReporteEstado_Tabla = tableView;
-
         tableView.setPrefHeight(574.0);
         tableView.setPrefWidth(491.0);
 
-        TableColumn<String, String> column1 = new TableColumn<>("C1");
-        column1.setPrefWidth(75.0);
-
-        TableColumn<String, String> column2 = new TableColumn<>("C2");
-        column2.setPrefWidth(75.0);
-
-        tableView.getColumns().addAll(column1, column2);
+        Arrays.asList(activos,inactivos,funcionarios,supervisores,guardas).forEach(checkBox -> {
+            checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                controller.procedimientoCheckBox(controller.getInputsEstadoPersonalTab(), tableView);
+            });
+        });
 
         body.getChildren().addAll(header, tableView);
         flowPane.getChildren().add(body);
