@@ -4,7 +4,6 @@ import javafx.scene.control.DatePicker;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class DateUtils {
     public static Timestamp convertDatePickerToTimestamp(DatePicker datePicker) {

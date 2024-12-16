@@ -1,10 +1,7 @@
 package Vista.Manager.Tab;
 
-import Modelo.DAO.CAPersonal.CAPersonalM;
 import Modelo.DAO.CAPersonal.CCAPersonal;
-import Modelo.DAO.Personal.CMGPersonal;
 import Modelo.DAO.Personal.PersonalM;
-import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.DatePickerObserver;
 import Vista.utils.TableViewConfigurator;
 import com.acme.complejoacme.Manager.ManagerController;
@@ -17,6 +14,7 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class AccesosTab implements TabBuilder{
+    CCAPersonal ccaPersonal = CCAPersonal.getInstance();
     @Override
     public Tab Crear(ManagerController controller) {
         // Crear el Tab "ReporteAccesos"
@@ -84,8 +82,7 @@ public class AccesosTab implements TabBuilder{
         tableView.setPrefWidth(491.0);
 
         DatePickerObserver.init(inicioDatePicker,finDatePicker, () -> {controller.procedimiento(controller.accesos_Inputs,() -> {
-            // TODO
-            List<PersonalM> res = CCAPersonal.getInstance().obtenerPersonalPorRangoFechas(controller.ReporteAccesos_Inicio,controller.ReporteAccesos_Fin);
+            List<PersonalM> res = ccaPersonal.obtenerPersonalPorRangoFechas(controller.ReporteAccesos_Inicio,controller.ReporteAccesos_Fin);
             TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"),  res);
         });});
 

@@ -2,7 +2,6 @@ package Vista.Manager.Tab;
 
 import com.acme.complejoacme.Manager.ManagerController;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.FlowPane;
 
@@ -23,8 +22,6 @@ public class MonitorTab implements TabBuilder{
         controller.Monitor = tableView;
         tableView.setPrefHeight(543.0);
         tableView.setPrefWidth(522.0);
-
-
 
         // Añadir la TableView al FlowPane
         flowPane.getChildren().add(tableView);

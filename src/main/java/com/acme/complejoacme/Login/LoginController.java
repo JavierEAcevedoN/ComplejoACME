@@ -26,6 +26,6 @@ public class LoginController extends AbstractLoginController{
 
     @Override
     public void nextWindow() {
-        MainApplication.startScene(ManagerInvoker.getManager("DataBaseConection.getCurrentRole()"));
+        MainApplication.startScene(ManagerInvoker.getManager(DataBaseConection.getCurrentRole()));
     }
 }

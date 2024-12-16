@@ -296,7 +296,6 @@ public class ManagerController {
         final CheckBox guarda = (CheckBox) inputs[3];
         final CheckBox funcionario = (CheckBox) inputs[4];
 
-        // TODO
         List<PersonalM> resultado = base;
         TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"), resultado );
 

@@ -1,7 +1,5 @@
 package Vista.Manager.Tab;
 
-import Modelo.DAO.CAPersonal.CAPersonalM;
-import Modelo.DAO.CAPersonal.CCAPersonal;
 import Modelo.DAO.Personal.CMGPersonal;
 import Modelo.DAO.Personal.PersonalM;
 import Vista.utils.TableViewConfigurator;
@@ -17,6 +15,7 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class PersonalEmpresasTab implements TabBuilder {
+    CMGPersonal cmgPersonal = CMGPersonal.getInstance();
     @Override
     public Tab Crear(ManagerController controller) {
         // Crear el Tab "ReportePersonal"
@@ -84,7 +83,7 @@ public class PersonalEmpresasTab implements TabBuilder {
 
             //TODO
             controller.ReportePersonal_Empresa.getSelectionModel().select(newValue);
-            TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"),  CMGPersonal.getInstance().getLista());
+            TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"),  cmgPersonal.getLista());
         });
 
         // Añadir el HBox y la TableView al VBox principal
