@@ -1,9 +1,14 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.Alerts.AlertaTab;
+import java.sql.Date;
+
+import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DAO.PVisitantes.CMGPVisitantes;
+import Modelo.DAO.PVisitantes.PVisitantesO;
+import Modelo.DataBaseConection;
 import Vista.utils.DatePickerObserver;
 import Vista.utils.createLabeledField;
-import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -15,21 +20,27 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class PermisoTab implements TabBuilder{
+    private 
+    CMGPVisitantes cmgpVisitantes = CMGPVisitantes.getInstance();
+    PVisitantesO pVisitantesO;
+    private Date fechaInicio, fechaFin;
+    private String usuarioResponsable;
+    private long idPersonal;
 
     @Override
     public Tab Crear(ManagerController controller) {
         Tab permisoTab = new Tab("Permiso Visitante");
         permisoTab.setId("permiso");
 
-        // Crear el FlowPane principal
+        
         FlowPane flowPane = new FlowPane();
 
-        // Crear el VBox principal
+        
         VBox mainVBox = new VBox();
         mainVBox.setAlignment(Pos.CENTER);
         mainVBox.setPrefSize(523, 541);
 
-        // Crear el primer HBox para el identificador
+        
         HBox identificadorHBox = new HBox();
         identificadorHBox.setAlignment(Pos.CENTER);
         identificadorHBox.setPrefSize(200, 100);
@@ -43,7 +54,7 @@ public class PermisoTab implements TabBuilder{
 
         identificadorHBox.getChildren().add(identificadorField);
 
-        // Crear el segundo HBox para las fechas
+        
         HBox fechasHBox = new HBox();
         fechasHBox.setAlignment(Pos.CENTER);
         fechasHBox.setSpacing(25.0);
@@ -69,27 +80,34 @@ public class PermisoTab implements TabBuilder{
 
         controller.setInputsPermisoTab(controller.getInputsPermisoTab());
 
-        // Crear el tercer HBox para el botón
+        
         HBox botonHBox = new HBox();
         botonHBox.setAlignment(Pos.CENTER);
         botonHBox.setPrefSize(200, 100);
         Button guardarButton = new Button("Guardar");
         guardarButton.setId("permiso_Button");
         guardarButton.setOnAction(e -> controller.procedimiento(controller.permisoVisitante_Inputs,() -> {
-            AlertaTab.Test();}));
+            fechaInicio = Date.valueOf(permisoFechaInicioPicker.getValue());
+            fechaFin = Date.valueOf(permisoFechaFinPicker.getValue());
+            usuarioResponsable = DataBaseConection.getCurrentUser();
+            idPersonal = Long.parseLong(permisoIdTextField.getText());
+
+            pVisitantesO = new PVisitantesO(fechaInicio, fechaFin, usuarioResponsable, idPersonal);
+            cmgpVisitantes.guardar(pVisitantesO);
+        }));
         controller.permiso_Button = guardarButton;
         guardarButton.setDefaultButton(true);
         guardarButton.setMnemonicParsing(false);
         guardarButton.setCursor(Cursor.HAND);
         botonHBox.getChildren().add(guardarButton);
 
-        // Agregar los HBox al VBox principal
+        
         mainVBox.getChildren().addAll(identificadorHBox, fechasHBox, botonHBox);
 
-        // Agregar el VBox principal al FlowPane
+        
         flowPane.getChildren().add(mainVBox);
 
-        // Configurar el contenido del Tab
+        
         permisoTab.setContent(flowPane);
 
         return permisoTab;

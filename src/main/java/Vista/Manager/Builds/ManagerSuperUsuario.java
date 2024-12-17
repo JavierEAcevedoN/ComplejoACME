@@ -1,6 +1,7 @@
 package Vista.Manager.Builds;
 
 import Vista.Manager.Tab.CrearUsuarioTab;
+import Vista.Manager.Tab.DisciplinarioTab;
 import Vista.Manager.Tab.NuevoRegistroTab;
 
 import com.acme.complejoacme.Manager.ManagerController;
@@ -21,7 +22,8 @@ public class ManagerSuperUsuario extends ManagerBuilder {
     protected ArrayList<Tab> getTabs() {
         Tab tab = new CrearUsuarioTab().Crear(controller);
         Tab nuevoRegistro = new NuevoRegistroTab().Crear(controller);
+        Tab disciplinario = new DisciplinarioTab().Crear(controller);
 
-        return new ArrayList<>(List.of(tab, nuevoRegistro));
+        return new ArrayList<>(List.of(tab, nuevoRegistro, disciplinario));
     }
 }

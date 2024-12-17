@@ -1,8 +1,11 @@
 package Vista.Manager.Builds;
 
+import java.util.ArrayList;
+
+import com.acme.complejoacme.Manager.ManagerController;
+
 import Modelo.DataBaseConection;
 import Vista.utils.DraggableWindow;
-import com.acme.complejoacme.Manager.ManagerController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
@@ -14,9 +17,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.*;
-
-import java.util.ArrayList;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 
 public abstract class ManagerBuilder {
     protected final FlowPane root;
@@ -32,10 +36,10 @@ public abstract class ManagerBuilder {
         FlowPane mainLayout = new FlowPane();
         mainLayout.setPrefSize(553.0, 611.0);
 
-        // Adding the top HBox section
+        
         mainLayout.getChildren().add(buildTopBar());
 
-        // Adding the main TabPane section
+        
         mainLayout.getChildren().add(buildMainTabPane());
 
         return mainLayout;
@@ -48,7 +52,7 @@ public abstract class ManagerBuilder {
         topBar.getStyleClass().add("brand-color-right");
         topBar.getStylesheets().add(getClass().getResource("/com/acme/complejoacme/Styles/Base.css").toExternalForm());
 
-        // TextFlow for "ACME"
+        
         TextFlow acmeTextFlow = new TextFlow();
         acmeTextFlow.setPrefSize(221.0, 70.0);
         acmeTextFlow.setTextAlignment(TextAlignment.CENTER);
@@ -66,7 +70,7 @@ public abstract class ManagerBuilder {
         emptySpace.setTextAlignment(TextAlignment.CENTER);
         emptySpace.setPadding(new Insets(8, 0, 0, 0));
 
-        // TextFlow for "Role"
+        
         TextFlow roleTextFlow = new TextFlow();
         roleTextFlow.setLayoutX(210);
         roleTextFlow.setLayoutY(10);
@@ -83,7 +87,7 @@ public abstract class ManagerBuilder {
         roleTextFlow.getChildren().add(roleDisplay);
         roleTextFlow.setPadding(new Insets(18, 0, 0, 0));
 
-        // VBox for Logout Icon
+        
         VBox logOutBox = new VBox();
         logOutBox.setAlignment(Pos.CENTER);
         logOutBox.setPrefSize(97.0, 70.0);
@@ -96,7 +100,7 @@ public abstract class ManagerBuilder {
         logOutImage.setFitWidth(42);
         logOutBox.getChildren().add(logOutImage);
 
-        // Adding children to topBar
+        
         topBar.getChildren().addAll(acmeTextFlow, emptySpace, roleTextFlow, logOutBox);
 
         return topBar;

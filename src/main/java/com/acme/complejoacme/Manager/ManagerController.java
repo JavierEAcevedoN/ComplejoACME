@@ -1,22 +1,42 @@
 package com.acme.complejoacme.Manager;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.stream.Collectors;
+
+import com.acme.complejoacme.MainApplication;
+
 import Modelo.DAO.Personal.CMGPersonal;
 import Modelo.DAO.Personal.PersonalM;
 import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.TableViewConfigurator;
-import com.acme.complejoacme.MainApplication;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ManagerController {
-    // Ventana
+
+    public Timestamp now;
+
+
+    
     public VBox logOut;
 
-    // Crear Usuario
+    
 
     public ChoiceBox crearUsuario_Empresa;
     public ChoiceBox crearUsuario_Rol;
@@ -24,7 +44,7 @@ public class ManagerController {
     public PasswordField crearUsuario_Pass;
     public Button crearUsuario_button;
 
-    // Registar Personal
+    
     public TextField crearPersonal_Id;
     public TextField crearPersonal_Nombre;
     public TextField crearPersonal_Dir;
@@ -33,55 +53,55 @@ public class ManagerController {
     public ChoiceBox crearPersonal_Rol;
     public Button crearPersonal_button;
 
-    // Registar Vehiculo
+    
 
     public TextField crearVehiculo_Id;
     public TextField crearVehiculo_Placa;
     public Button crearVehiculo_button;
 
-    // Permiso Visitante
+    
 
     public TextField permiso_Id;
     public DatePicker permiso_FechaInicio;
     public DatePicker permiso_FechaFin;
     public Button permiso_Button;
 
-    // Acceso Personal
+    
     public TextField accesoPersonal_Id;
     public Button accesoPersonal_button;
 
 
-    // Acceso Vehicular
+    
     public TextField accesoVehiculo_Placa;
     public Button accesoVehiculo_button;
 
-    // Salida Personal
+    
     public TextField salidaPersonal_Id;
     public Button salidaPersonal_button;
 
-    // Salida Vehicular
+    
     public TextField salidaVehiculo_Placa;
     public Button salidaVehiculo_button;
 
-    // Incidentes
+    
     public ChoiceBox incidentes_Tipo;
     public TextField incidentes_Id;
     public TextArea incidentes_Desc;
     public Button incidentes_buttonConsulta;
     public Button incidentes_buttonRegistrar;
 
-    // Aplicar Restriccion
+    
     public ChoiceBox aplicarRest_Tipo;
     public TextField aplicarRest_Id;
     public Button aplicarRest_buttonConsulta;
     public Button aplicarRest_buttonRestringir;
 
-    // Levantar Restriccion
+    
     public TextField levantarRest_Id;
     public TextArea levantarRest_Desc;
     public Button levantarRest_button;
 
-    // Estado Personal
+    
     public CheckBox ReporteEstado_Activos;
     public CheckBox ReporteEstado_Inactivos;
     public CheckBox ReporteEstado_Superv;
@@ -89,17 +109,19 @@ public class ManagerController {
     public CheckBox ReporteEstado_Funcion;
     public TableView ReporteEstado_Tabla;
 
-    // Personal Empresa
+    
     public ChoiceBox ReportePersonal_Empresa;
     public TableView ReportePersonal_Tabla;
 
-    // Accesos
+    
     public DatePicker ReporteAccesos_Inicio;
     public DatePicker ReporteAccesos_Fin;
     public TableView ReporteAccesos_Tabla;
 
-    // Monitor
+    
+
     public TableView Monitor;
+    private ScheduledExecutorService executorService;
 
 
     public Control[] crearUsuario_Inputs;
@@ -271,7 +293,6 @@ public class ManagerController {
                 }
             }
         }
-
         return Ok;
     }
 
@@ -295,10 +316,39 @@ public class ManagerController {
         final CheckBox supervisor = (CheckBox) inputs[2];
         final CheckBox guarda = (CheckBox) inputs[3];
         final CheckBox funcionario = (CheckBox) inputs[4];
+        List<PersonalM> personal = new ArrayList<>();
+        if (activo.isSelected()) {
+            personal.addAll(base.stream().filter(i->i.getEstado() == true).collect(Collectors.toList()));
+        }
+        if (inactivo.isSelected()) {
+            personal.addAll(base.stream().filter(i->i.getEstado() == false).collect(Collectors.toList()));
+        }
+        List<PersonalM> resultado = new ArrayList<>();
+        if (supervisor.isSelected() || guarda.isSelected() || funcionario.isSelected()) {
+            if (supervisor.isSelected()) {
+                resultado.addAll(personal.stream().filter(i->i.getRol().equals("Supervisor")).collect(Collectors.toList()));
+            }
+            if (guarda.isSelected()) {
+                resultado.addAll(personal.stream().filter(i->i.getRol().equals("Guarda")).collect(Collectors.toList()));
+            }
+            if (funcionario.isSelected()) {
+                resultado.addAll(personal.stream().filter(i->i.getRol().equals("Funcionario")).collect(Collectors.toList()));
+            }
+        } else {
+            resultado = personal;
+        }
+        TableViewConfigurator.init(tableView, List.of("id_Personal","nombre","direccion","contacto","estado", "usuarioSistema","rol"), resultado );
+    }
 
-        List<PersonalM> resultado = base;
-        TableViewConfigurator.initAccesos(tableView, List.of("id","nombre","direccion","contacto","estado", "usuarioSistema","rol"), resultado );
+    public void getTime() {
+        
+        LocalDateTime localDateTime = LocalDateTime.now();
 
+        
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        
+        now = new Timestamp(date.getTime());
     }
     public void exit() {
         Stage scene = (Stage) logOut.getScene().getWindow();

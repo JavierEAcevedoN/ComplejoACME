@@ -1,40 +1,76 @@
 package Vista.Manager.Tab;
 
+import Modelo.DAO.IPersonal.IPersonalM;
+import Modelo.DAO.RPersonal.CMGRPersonal;
+import Modelo.DAO.RPersonal.RPersonalM;
 import Vista.utils.Alerts.AlertaTab;
+import Vista.utils.TableViewConfigurator;
 import Vista.utils.createLabeledField;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.acme.complejoacme.MainApplication;
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DataBaseConection;
+import Modelo.DAO.LCEstado.CMGLCEstado;
+import Modelo.DAO.LCEstado.LCEstadoO;
+import Modelo.DAO.Personal.CMGPersonal;
+import Modelo.DAO.Personal.PersonalO;
+import Modelo.DAO.RPersonal.CMGRPersonal;
+import Modelo.DAO.RPersonal.RPersonalO;
+import Modelo.DAO.Restricciones.CMRetricciones;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 public class AplicarRestriccionTab implements TabBuilder{
+    private CMRetricciones cmRetricciones = CMRetricciones.getInstance();
+    private CMGRPersonal cmgrPersonal = CMGRPersonal.getInstance();
+    private RPersonalO rPersonalO;
+    private Date fecha;
+    private String usuarioResponsable;
+    private int restriccion;
+    private long idPersonal;
+    private CMGLCEstado cmglcEstado = CMGLCEstado.getInstance();
+    private LCEstadoO lcEstadoO;
+    private CMGPersonal cmgPersonal = CMGPersonal.getInstance();
+    private PersonalO personalO;
+
     @Override
     public Tab Crear(ManagerController controller) {
         Tab aplicarRestTab = new Tab();
         aplicarRestTab.setText("Aplicar Restriccion");
 
-        // Crear el FlowPane y su contenido
+        
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
 
-        // Crear el VBox principal con las dimensiones y espaciado
+        
         VBox mainVBox = new VBox();
         mainVBox.setPrefHeight(540.0);
         mainVBox.setPrefWidth(257.0);
         mainVBox.setSpacing(20.0);
         mainVBox.setAlignment(Pos.CENTER);
 
-        // Crear el primer VBox con un ChoiceBox
-        VBox vbox1 = createLabeledField.create("Seleccionar Restriccion", new ChoiceBox<>(), "aplicarRest_Tipo");
+        
+        ChoiceBox<String> aplicarRestTipoChoiceBox = new ChoiceBox<>();
+        List<String> listIncidentes = cmRetricciones.getLista().stream().map(i -> i.getDescripcion()).collect(Collectors.toList());
+        aplicarRestTipoChoiceBox.getItems().setAll(listIncidentes);
+        aplicarRestTipoChoiceBox.setValue(listIncidentes.get(0));
+        VBox vbox1 = createLabeledField.create("Seleccionar Restriccion", aplicarRestTipoChoiceBox, "aplicarRest_Tipo");
         vbox1.setPrefHeight(100.0);
         vbox1.setPrefWidth(327.0);
-
-        ChoiceBox<?> aplicarRestTipoChoiceBox = (ChoiceBox<?>) vbox1.getChildren().get(1);
 
         controller.aplicarRest_Tipo = aplicarRestTipoChoiceBox;
 
@@ -58,14 +94,29 @@ public class AplicarRestriccionTab implements TabBuilder{
         controller.setInputsAplicarRestriccionTab(controller.getInputsAplicarRestriccionTab());
         controller.setInputsConsultarRestricciones(controller.getInputsConsultarRestricciones());
 
-        // Crear el HBox con los botones
+        
         HBox hboxButtons = new HBox();
         hboxButtons.setAlignment(Pos.CENTER);
         hboxButtons.setSpacing(30.0);
 
         Button buttonConsulta = new Button("Consultar Historial");
         buttonConsulta.setId("aplicarRest_buttonConsulta");
-        buttonConsulta.setOnAction(e -> controller.procedimiento(controller.consultarRestriccion_Inputs,() -> {AlertaTab.Test();}));
+        buttonConsulta.setOnAction(e -> controller.procedimiento(controller.consultarRestriccion_Inputs,() -> {
+            AnchorPane anchorPane = new AnchorPane();
+            anchorPane.setPrefSize(553.0, 611.0);
+            TableView tableView = new TableView<>();
+            tableView.setPrefSize(553.0, 611.0);
+
+            cmgrPersonal.reiniciarP();
+            cmgrPersonal.getLista();
+
+            List<RPersonalM> incidentesRelacionados =
+                    cmgrPersonal.filtrarPorIdPersonal(Long.valueOf(controller.aplicarRest_Id.getText()));
+            TableViewConfigurator.init(tableView, List.of("id","fecha",
+                    "restriccionS"),  incidentesRelacionados);
+            anchorPane.getChildren().add(tableView);
+            MainApplication.startNormalScene(anchorPane);
+        }));
         controller.aplicarRest_buttonConsulta = buttonConsulta;
         buttonConsulta.setDefaultButton(true);
         buttonConsulta.setMnemonicParsing(false);
@@ -76,7 +127,21 @@ public class AplicarRestriccionTab implements TabBuilder{
         Button buttonRestringir = new Button("Aplicar Restriccion");
         buttonRestringir.setId("aplicarRest_buttonRestringir");
         buttonRestringir.setOnAction(e -> controller.procedimiento(controller.aplicarRestriccion_Inputs,() -> {
-            AlertaTab.Test();}));
+            fecha = Date.valueOf(LocalDate.now());
+            usuarioResponsable = DataBaseConection.getCurrentUser();
+            restriccion = cmRetricciones.getLista().stream().filter(i->i.getDescripcion().equals(aplicarRestTipoChoiceBox.getValue())).map(i->i.getId())
+            .collect(Collectors.toList()).get(0);
+            idPersonal = Long.parseLong(aplicarRestIdTextField.getText());
+
+            personalO = new PersonalO(idPersonal, usuarioResponsable, usuarioResponsable, usuarioResponsable, false, usuarioResponsable, restriccion);
+            cmgPersonal.actualizarE(personalO);
+
+            rPersonalO = new RPersonalO(0, fecha, usuarioResponsable, restriccion, idPersonal);
+            cmgrPersonal.guardar(rPersonalO);
+
+            lcEstadoO = new LCEstadoO(0, Timestamp.valueOf(LocalDateTime.now()), false, "Se aplico una restriccion", usuarioResponsable, idPersonal);
+            cmglcEstado.guardar(lcEstadoO);
+        }));
         controller.aplicarRest_buttonRestringir = buttonRestringir;
         buttonRestringir.setMnemonicParsing(false);
         buttonRestringir.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
@@ -85,13 +150,13 @@ public class AplicarRestriccionTab implements TabBuilder{
 
         hboxButtons.getChildren().addAll(buttonConsulta, buttonRestringir);
 
-        // Agregar los VBox y HBox al VBox principal
+        
         mainVBox.getChildren().addAll(vbox1, vbox2, hboxButtons);
 
-        // Agregar el VBox al FlowPane
+        
         flowPane.getChildren().add(mainVBox);
 
-        // Establecer el contenido del Tab
+        
         aplicarRestTab.setContent(flowPane);
 
         return aplicarRestTab;

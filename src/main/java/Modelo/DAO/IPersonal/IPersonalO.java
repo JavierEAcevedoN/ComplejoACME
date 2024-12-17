@@ -3,24 +3,24 @@ package Modelo.DAO.IPersonal;
 import java.sql.Timestamp;
 
 public class IPersonalO extends IPersonalM {
-    private String usuarioResponsable;
+    private String Responsable;
     private int idIncidente;
     private long idPersonal;
     
-    public IPersonalO(int id, Timestamp fecha, String descripcion, String usuarioResponsable,
+    public IPersonalO(int id, Timestamp fecha, String descripcion, String Responsable,
             int idIncidente, long idPersonal) {
         super(id, fecha, descripcion);
-        this.usuarioResponsable = usuarioResponsable;
+        this.Responsable = Responsable;
         this.idIncidente = idIncidente;
         this.idPersonal = idPersonal;
     }
 
-    public String getUsuarioResponsable() {
-        return usuarioResponsable;
+    public String getusuarioResponsable() {
+        return Responsable;
     }
 
-    public void setUsuarioResponsable(String usuarioResponsable) {
-        this.usuarioResponsable = usuarioResponsable;
+    public void setResponsable(String responsable) {
+        this.Responsable = responsable;
     }
 
     public long getIdPersonal() {

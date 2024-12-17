@@ -5,21 +5,25 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.acme.complejoacme.MainApplication;
 import com.acme.complejoacme.Manager.ManagerController;
 
-import Modelo.DataBaseConection;
 import Modelo.DAO.IPersonal.CMGIPersonal;
+import Modelo.DAO.IPersonal.IPersonalM;
 import Modelo.DAO.IPersonal.IPersonalO;
 import Modelo.DAO.Incidentes.CMIncidentes;
+import Modelo.DataBaseConection;
+import Vista.utils.TableViewConfigurator;
 import Vista.utils.createLabeledField;
-import Vista.utils.Alerts.AlertaTab;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -38,25 +42,25 @@ public class IncidentesTab implements TabBuilder{
         Tab incidentesTab = new Tab();
         incidentesTab.setText("Incidentes");
 
-        // Crear el FlowPane y su contenido
+        
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
 
-        // Crear el VBox principal con las dimensiones y espaciado
+        
         VBox mainVBox = new VBox();
         mainVBox.setPrefHeight(540.0);
         mainVBox.setPrefWidth(450.0);
         mainVBox.setSpacing(20.0);
         mainVBox.setAlignment(Pos.CENTER);
 
-        // Crear el primer HBox con VBox dentro
+        
         HBox firstHBox = new HBox();
         firstHBox.setAlignment(Pos.CENTER);
         firstHBox.setPrefHeight(100.0);
         firstHBox.setPrefWidth(200.0);
         firstHBox.setSpacing(20.0);
 
-        // Crear el primer VBox con un ChoiceBox
+        
         ChoiceBox<String> incidentesTipoChoiceBox = new ChoiceBox<>();
         List<String> listIncidentes = cmIncidentes.getLista().stream().map(i -> i.getDescripcion()).collect(Collectors.toList());
         incidentesTipoChoiceBox.getItems().setAll(listIncidentes);
@@ -81,10 +85,10 @@ public class IncidentesTab implements TabBuilder{
         });
 
 
-        // Agregar los VBox a la primera HBox
+        
         firstHBox.getChildren().addAll(vbox1, vbox2);
 
-        // Crear el segundo HBox con un TextArea dentro
+        
         HBox secondHBox = new HBox();
         secondHBox.setAlignment(Pos.CENTER);
         secondHBox.setPrefHeight(175.0);
@@ -116,14 +120,31 @@ public class IncidentesTab implements TabBuilder{
         controller.setInputsIncidentesTab(controller.getInputsIncidentesTab());
         controller.setInputsConsultarIncidentes(controller.getInputsConsultarIncidentes());
 
-        // Crear el tercer HBox con los botones
+        
         HBox thirdHBox = new HBox();
         thirdHBox.setAlignment(Pos.CENTER);
         thirdHBox.setSpacing(30.0);
 
         Button buttonConsulta = new Button("Consultar Historial");
         buttonConsulta.setId("incidentes_buttonConsulta");
-        buttonConsulta.setOnAction(e -> controller.procedimiento(controller.consultarIncidentes_Inputs,() -> {AlertaTab.Test();}));
+        buttonConsulta.setOnAction(e -> controller.procedimiento(controller.consultarIncidentes_Inputs,() -> {
+
+            AnchorPane anchorPane = new AnchorPane();
+            anchorPane.setPrefSize(553.0, 611.0);
+            TableView tableView = new TableView<>();
+            tableView.setPrefSize(553.0, 611.0);
+
+            cmgiPersonal.reiniciarP();
+            cmgiPersonal.getLista();
+
+            List<IPersonalM> incidentesRelacionados =
+                    cmgiPersonal.filtrarPorIdPersonal(Long.valueOf(controller.incidentes_Id.getText()));
+            TableViewConfigurator.init(tableView, List.of("id","fecha","descripcion",
+                    "incidente"),  incidentesRelacionados);
+            anchorPane.getChildren().add(tableView);
+            MainApplication.startNormalScene(anchorPane);
+        }));
+
         controller.incidentes_buttonConsulta = buttonConsulta;
         buttonConsulta.setDefaultButton(true);
         buttonConsulta.setMnemonicParsing(false);

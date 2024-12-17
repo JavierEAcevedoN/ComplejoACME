@@ -16,13 +16,13 @@ public class RestriccionesTab implements TabBuilder{
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
 
-        // Crear el TabPane interno para "Aplicar Restricción" y "Levantar Restricción"
+        
         TabPane tabPane = new TabPane();
         tabPane.setPrefSize(496,533);
         tabPane.setSide(Side.RIGHT);
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        // Crear las pestañas de "Aplicar Restricción" y "Levantar Restricción"
+        
         Tab aplicarRestTab = new AplicarRestriccionTab().Crear(controller);
         Tab levantarRestTab = new LevantarRestriccionTab().Crear(controller);
 

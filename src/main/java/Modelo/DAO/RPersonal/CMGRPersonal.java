@@ -6,9 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import Modelo.ConexionMG;
+import Modelo.DAO.IPersonal.IPersonalM;
 import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.Alerts.AlertaTab;
 
 public class CMGRPersonal extends ConexionMG<RPersonalO> {
     private static CMGRPersonal instance;
@@ -25,7 +28,7 @@ public class CMGRPersonal extends ConexionMG<RPersonalO> {
         return instance;
     }
 
-    private void reiniciarP() {
+    public void reiniciarP() {
         listaRPersonal.clear();
         mostrar();
     }
@@ -95,9 +98,11 @@ public class CMGRPersonal extends ConexionMG<RPersonalO> {
             pst.setInt(3, rPersonal.getRestriccion());
             pst.setLong(4, rPersonal.getIdPersonal());
             pst.execute();
+            AlertaTab.Exito();
             reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla restriccionespersonal: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 
@@ -112,9 +117,19 @@ public class CMGRPersonal extends ConexionMG<RPersonalO> {
             pst.setLong(4, rPersonal.getIdPersonal());
             pst.setInt(5, rPersonal.getId());
             pst.execute();
+            AlertaTab.Exito();
             reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla restriccionespersonal: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
+
+    public List<RPersonalM> filtrarPorIdPersonal(long idPersonal) {
+        Predicate<RPersonalM> filtro = i -> i.getPersonal() != null && i.getPersonal().getId_Personal() == idPersonal;
+
+        return listaRPersonal.stream()
+                .filter(filtro)
+                .collect(Collectors.toList());
+    }
 }

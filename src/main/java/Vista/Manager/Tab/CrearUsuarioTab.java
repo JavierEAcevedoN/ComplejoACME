@@ -100,7 +100,7 @@ public class CrearUsuarioTab implements TabBuilder{
 
         controller.setInputsCrearUsuarioTab(controller.getInputsCrearUsuarioTab());
 
-        // Guardar Button
+        
         Button guardarButton = new Button("Guardar");
         guardarButton.setId("crearUsuario_button");
         guardarButton.setOnAction(e -> controller.procedimiento(controller.crearUsuario_Inputs,() -> {

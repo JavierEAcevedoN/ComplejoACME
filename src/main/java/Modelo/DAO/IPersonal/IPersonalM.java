@@ -51,11 +51,11 @@ public class IPersonalM {
         this.descripcion = descripcion;
     }
 
-    public PersonalM getResponsable() {
+    public PersonalM getUsuarioResponsable() {
         return usuarioResponsable;
     }
 
-    public void setResponsable(PersonalM usuarioResponsable) {
+    public void setUsuarioResponsable(PersonalM usuarioResponsable) {
         this.usuarioResponsable = usuarioResponsable;
     }
 

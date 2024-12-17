@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
@@ -26,7 +27,7 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
         return instance;
     }
 
-    private void reiniciarP() {
+    public void reiniciarP() {
         listaCaPersonal.clear();
         mostrar();
     }
@@ -79,13 +80,6 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
         listaCaPersonal.forEach(i -> System.out.println(i));
     }
 
-    public void mostrarF(Predicate<IPersonalM> filtro) {
-        if (listaCaPersonal.size() < 1) {
-            getLista();
-        }
-        listaCaPersonal.stream().filter(filtro).forEach(i -> System.out.println(i));
-    }
-
     @Override
     public void guardar(IPersonalO iPersonal) {
         try {
@@ -94,7 +88,7 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
             );
             pst.setTimestamp(1, iPersonal.getFecha());
             pst.setString(2, iPersonal.getDescripcion());
-            pst.setString(3, iPersonal.getUsuarioResponsable());
+            pst.setString(3, iPersonal.getusuarioResponsable());
             pst.setInt(4, iPersonal.getIdIncidente());
             pst.setLong(5, iPersonal.getIdPersonal());
             pst.execute();
@@ -113,7 +107,7 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
             );
             pst.setTimestamp(1, iPersonal.getFecha());
             pst.setString(2, iPersonal.getDescripcion());
-            pst.setString(3, iPersonal.getUsuarioResponsable());
+            pst.setString(3, iPersonal.getusuarioResponsable());
             pst.setInt(4, iPersonal.getIdIncidente());
             pst.setLong(5, iPersonal.getIdPersonal());
             pst.setInt(6, iPersonal.getId());
@@ -125,4 +119,12 @@ public class CMGIPersonal extends ConexionMG<IPersonalO> {
             AlertaTab.Error();
         }
     };
+
+    public List<IPersonalM> filtrarPorIdPersonal(long idPersonal) {
+        Predicate<IPersonalM> filtro = i -> i.getPersonal() != null && i.getPersonal().getId_Personal() == idPersonal;
+
+        return listaCaPersonal.stream()
+                .filter(filtro)
+                .collect(Collectors.toList());
+    }
 }

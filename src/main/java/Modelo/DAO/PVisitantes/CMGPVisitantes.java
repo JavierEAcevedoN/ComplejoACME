@@ -9,6 +9,8 @@ import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.Alerts.AlertaTab;
+import javafx.scene.control.Alert;
 
 public class CMGPVisitantes extends ConexionMG<PVisitantesO> {
     private static CMGPVisitantes instance;
@@ -96,8 +98,10 @@ public class CMGPVisitantes extends ConexionMG<PVisitantesO> {
             pst.setLong(4, pVisitantes.getIdPersonal());
             pst.execute();
             reiniciarP();
+            AlertaTab.Exito();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla permisosvisitantes: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 }

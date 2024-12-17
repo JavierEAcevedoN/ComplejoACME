@@ -13,6 +13,7 @@ import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
 import Vista.utils.Alerts.AlertaTab;
 import Vista.utils.DateUtils;
+import Vista.utils.MonitorRes;
 import javafx.scene.control.DatePicker;
 
 public class CCAPersonal extends ConexionMG<CAPersonalO> {
@@ -30,9 +31,8 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
         return instance;
     }
 
-    private void reiniciarP() {
+    public void reiniciarP() {
         listaCaPersonal.clear();
-        mostrar();
     }
 
     @Override
@@ -65,18 +65,39 @@ public class CCAPersonal extends ConexionMG<CAPersonalO> {
         return listaCaPersonal;
     }
 
+    public List<MonitorRes> obtenerMonitorRes() {
+        List<MonitorRes> listaMonitorRes = new ArrayList<>();
+
+        
+        List<CAPersonalM> lista = getLista();
+
+        
+        for (CAPersonalM capersonal : lista) {
+            PersonalM personal = capersonal.getPersonal();
+            MonitorRes monitorRes = new MonitorRes(
+                    capersonal.getId(),
+                    capersonal.getFechaEntrada(),
+                    capersonal.getFechaSalida(),
+                    personal.getId_Personal(),
+                    personal.getNombre(),
+                    personal.getDireccion(),
+                    personal.getContacto(),
+                    personal.getEstado(),
+                    personal.getUsuarioSistema(),
+                    personal.getRol()
+            );
+            listaMonitorRes.add(monitorRes);
+        }
+
+        return listaMonitorRes;
+    }
+
     public List<PersonalM> obtenerPersonalPorRangoFechas(DatePicker fechaInicio, DatePicker fechaFin) {
+        List<CAPersonalM> lista = getLista();
         Timestamp inicio = DateUtils.convertDatePickerToTimestamp(fechaInicio);
         Timestamp fin = DateUtils.convertDatePickerToTimestamp(fechaFin);
 
-        if (inicio == null || fin == null) {
-            System.err.println("Por favor, seleccione ambas fechas.");
-            return new ArrayList<>();
-        } else if (listaCaPersonal.isEmpty()) {
-            getInstance();
-        }
-
-        return listaCaPersonal.stream()
+        return lista.stream()
                 .filter(persona ->
                         (persona.getFechaEntrada().after(inicio) || persona.getFechaEntrada().equals(inicio)) &&
                                 (persona.getFechaSalida().before(fin) || persona.getFechaSalida().equals(fin))

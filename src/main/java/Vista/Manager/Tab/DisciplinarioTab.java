@@ -13,20 +13,22 @@ public class DisciplinarioTab implements TabBuilder{
         Tab disciplinarioTab = new Tab();
         disciplinarioTab.setText("Disciplinario");
 
-        // Crear el FlowPane que contiene el TabPane de la pestaña
+        
         FlowPane flowPane = new FlowPane();
 
-        // Crear TabPane interno para la pestaña "Disciplinario"
+        
         TabPane innerTabPane = new TabPane();
         innerTabPane.setPrefSize(525,536);
         innerTabPane.setSide(Side.RIGHT);
         innerTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        // Crear los tabs "Incidentes" y "Restricciones"
+        
         Tab incidentesTab = new IncidentesTab().Crear(controller);
         Tab restriccionesTab = new RestriccionesTab().Crear(controller);
 
-        if (DataBaseConection.getCurrentRole().equals("GUARDA")) {
+        if (DataBaseConection.getCurrentRole().equals("SUPERUSUARIO")) {
+            innerTabPane.getTabs().add(restriccionesTab);
+        } else if (DataBaseConection.getCurrentRole().equals("GUARDA")) {
             innerTabPane.getTabs().add(incidentesTab);
         } else {
             innerTabPane.getTabs().addAll(incidentesTab, restriccionesTab);

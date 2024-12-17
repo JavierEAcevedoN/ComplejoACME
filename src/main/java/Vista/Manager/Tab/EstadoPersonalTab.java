@@ -1,7 +1,10 @@
 package Vista.Manager.Tab;
 
-import Modelo.DAO.Personal.PersonalM;
+import java.util.Arrays;
+
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DAO.Personal.PersonalM;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
@@ -10,15 +13,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.util.Arrays;
-
 public class EstadoPersonalTab implements TabBuilder{
     @Override
     public Tab Crear(ManagerController controller) {
         Tab estadoPersonalTab = new Tab("Estado Personal Autorizado");
         estadoPersonalTab.setId("ReporteEstado");
 
-        // FlowPane que contiene el contenido del Tab
+        
         FlowPane flowPane = new FlowPane();
 
         VBox body = new VBox();

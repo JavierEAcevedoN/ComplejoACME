@@ -1,39 +1,60 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.Alerts.AlertaTab;
-import Vista.utils.createLabeledField;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import com.acme.complejoacme.Manager.ManagerController;
+
+import Modelo.DAO.LCEstado.CMGLCEstado;
+import Modelo.DAO.LCEstado.LCEstadoO;
+import Modelo.DAO.Personal.CMGPersonal;
+import Modelo.DAO.Personal.PersonalO;
+import Modelo.DataBaseConection;
+import Vista.utils.createLabeledField;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class LevantarRestriccionTab implements TabBuilder{
+    private String usuarioResponsable;
+    private int restriccion;
+    private long idPersonal;
+    private CMGLCEstado cmglcEstado = CMGLCEstado.getInstance();
+    private LCEstadoO lcEstadoO;
+    private String descripcion;
+    private CMGPersonal cmgPersonal = CMGPersonal.getInstance();
+    private PersonalO personalO;
+
     @Override
     public Tab Crear(ManagerController controller) {
         Tab levantarRestTab = new Tab();
         levantarRestTab.setText("Levantar Restriccion");
 
-        // Crear el FlowPane y su contenido
+        
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
 
-        // Crear el VBox principal con las dimensiones y espaciado
+        
         VBox mainVBox = new VBox();
         mainVBox.setPrefHeight(540.0);
         mainVBox.setPrefWidth(450.0);
         mainVBox.setSpacing(20.0);
         mainVBox.setAlignment(Pos.CENTER);
 
-        // Crear el primer HBox con VBox dentro
+        
         HBox firstHBox = new HBox();
         firstHBox.setAlignment(Pos.CENTER);
         firstHBox.setPrefHeight(100.0);
         firstHBox.setPrefWidth(200.0);
         firstHBox.setSpacing(20.0);
 
-        // Crear el VBox con un TextField para el identificador
+        
         VBox vbox1 = createLabeledField.create("Identificador del personal Restringido", new TextField(), "levantarRest_Id");
         TextField levantarRestIdTextField = (TextField) vbox1.getChildren().get(1);
         controller.levantarRest_Id = levantarRestIdTextField;
@@ -46,7 +67,7 @@ public class LevantarRestriccionTab implements TabBuilder{
 
         firstHBox.getChildren().add(vbox1);
 
-        // Crear el segundo HBox con VBox para la justificación
+        
         HBox secondHBox = new HBox();
         secondHBox.setAlignment(Pos.CENTER);
         secondHBox.setPrefHeight(175.0);
@@ -78,11 +99,20 @@ public class LevantarRestriccionTab implements TabBuilder{
 
         controller.setInputsLevantarRestriccionTab(controller.getInputsLevantarRestriccionTab());
 
-        // Crear el botón
+        
         Button buttonLevantar = new Button("Levantar Restriccion");
         buttonLevantar.setId("levantarRest_button");
         buttonLevantar.setOnAction(e -> controller.procedimiento(controller.levantarRestriccion_Inputs,() -> {
-            AlertaTab.Test();}));
+            usuarioResponsable = DataBaseConection.getCurrentUser();
+            idPersonal = Long.parseLong(levantarRestIdTextField.getText());
+            descripcion = textArea.getText();
+
+            personalO = new PersonalO(idPersonal, usuarioResponsable, usuarioResponsable, usuarioResponsable, true, usuarioResponsable, restriccion);
+            cmgPersonal.actualizarE(personalO);
+
+            lcEstadoO = new LCEstadoO(0, Timestamp.valueOf(LocalDateTime.now()), true, descripcion, usuarioResponsable, idPersonal);
+            cmglcEstado.guardar(lcEstadoO);
+        }));
         controller.levantarRest_button = buttonLevantar;
         buttonLevantar.setDefaultButton(true);
         buttonLevantar.setMnemonicParsing(false);
@@ -91,13 +121,13 @@ public class LevantarRestriccionTab implements TabBuilder{
         buttonLevantar.setWrapText(true);
         buttonLevantar.setCursor(javafx.scene.Cursor.HAND);
 
-        // Agregar los HBox y el botón al VBox principal
+        
         mainVBox.getChildren().addAll(firstHBox, secondHBox, buttonLevantar);
 
-        // Agregar el VBox al FlowPane
+        
         flowPane.getChildren().add(mainVBox);
 
-        // Establecer el contenido del Tab
+        
         levantarRestTab.setContent(flowPane);
 
         return levantarRestTab;

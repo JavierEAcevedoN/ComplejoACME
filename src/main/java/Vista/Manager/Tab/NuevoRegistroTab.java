@@ -5,8 +5,9 @@ import com.acme.complejoacme.Manager.ManagerController;
 import Modelo.DataBaseConection;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.FlowPane;
 
 public class NuevoRegistroTab implements TabBuilder {
     @Override
@@ -23,7 +24,7 @@ public class NuevoRegistroTab implements TabBuilder {
         innerTabPane.setSide(Side.RIGHT);
         innerTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        // Usar clases creadoras para agregar los tabs internos
+        
         innerTabPane.getTabs().add(new RegistrarPersonalTab().Crear(controller));
         if (!DataBaseConection.getCurrentRole().contains("SUPERUSUARIO")) {
             innerTabPane.getTabs().add(new RegistrarVehiculoTab().Crear(controller));

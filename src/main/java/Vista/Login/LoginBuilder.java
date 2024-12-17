@@ -1,10 +1,12 @@
 package Vista.Login;
-import Vista.utils.DraggableWindow;
 import com.acme.complejoacme.Login.AbstractLoginController;
+
+import Vista.utils.DraggableWindow;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -33,7 +35,7 @@ public abstract class LoginBuilder {
 
 
     public LoginBuilder withLeftPane() {
-        // Crear AnchorPane principal
+        
         AnchorPane leftPane = new AnchorPane();
         DraggableWindow.init(leftPane);
         leftPane.setPrefHeight(494.0);
@@ -41,7 +43,7 @@ public abstract class LoginBuilder {
         leftPane.getStyleClass().add("brand-color");
         leftPane.getStylesheets().add(getClass().getResource("/com/acme/complejoacme/Styles/Base.css").toExternalForm());
 
-        // Crear el primer TextFlow con el texto "ACM"
+        
         TextFlow textFlowACM = new TextFlow();
         textFlowACM.setLayoutY(168.0);
         textFlowACM.setPrefHeight(74.0);
@@ -55,7 +57,7 @@ public abstract class LoginBuilder {
         textACM.setFont(Font.font("DejaVu Sans", FontWeight.BOLD,72));
         textFlowACM.getChildren().add(textACM);
 
-        // Crear el ImageView con la imagen
+        
         ImageView logo = new ImageView(new Image("https://www.giantbomb.com/a/uploads/square_small/3/34651/3461096-wile-e.-coyote.png"));
         logo.setFitHeight(152.0);
         logo.setFitWidth(144.0);
@@ -63,7 +65,7 @@ public abstract class LoginBuilder {
         logo.setLayoutY(78.0);
         logo.setPreserveRatio(true);
 
-        // Crear el segundo TextFlow con el texto "E"
+        
         TextFlow textFlowE = new TextFlow();
         textFlowE.setLayoutX(16.0);
         textFlowE.setLayoutY(168.0);
@@ -78,7 +80,7 @@ public abstract class LoginBuilder {
         textE.setFont(Font.font("DejaVu Sans", FontWeight.BOLD,72));
         textFlowE.getChildren().add(textE);
 
-        // Crear el tercer TextFlow con el texto "Complejo Empresarial"
+        
         TextFlow textFlowSubtitle = new TextFlow();
         textFlowSubtitle.setLayoutX(29.0);
         textFlowSubtitle.setLayoutY(247.0);
@@ -93,7 +95,7 @@ public abstract class LoginBuilder {
         textSubtitle.setFont(Font.font("DejaVu Sans", 20.0));
         textFlowSubtitle.getChildren().add(textSubtitle);
 
-        // Crear el cuarto TextFlow con el texto "v 0.1"
+        
         TextFlow textFlowVersion = new TextFlow();
         textFlowVersion.setLayoutX(40.0);
         textFlowVersion.setLayoutY(449.0);
@@ -108,11 +110,11 @@ public abstract class LoginBuilder {
         textVersion.setFont(Font.font("DejaVu Sans", 12.0));
         textFlowVersion.getChildren().add(textVersion);
 
-        // Añadir todos los hijos al AnchorPane principal
+        
         leftPane.getChildren().addAll(textFlowACM, logo, textFlowE, textFlowSubtitle, textFlowVersion);
 
 
-        // Attach to root
+        
         AnchorPane.setLeftAnchor(leftPane, 0.0);
         AnchorPane.setTopAnchor(leftPane, 0.0);
         root.getChildren().add(leftPane);

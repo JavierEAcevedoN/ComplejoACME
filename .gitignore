@@ -12,6 +12,7 @@ src/configuracion.txt
 *.iws
 *.iml
 *.ipr
+*.log
 
 ### Eclipse ###
 .apt_generated

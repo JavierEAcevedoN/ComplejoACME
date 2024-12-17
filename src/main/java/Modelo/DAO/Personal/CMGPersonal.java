@@ -76,15 +76,15 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             PreparedStatement pst = conexionBD.prepareStatement(
                 "INSERT INTO personal(ID,Nombre,Direccion,Contacto,Estado,Usuario_Sistema,ID_Rol) VALUES(?,?,?,?,?,?,?);"
             );
-            pst.setLong(1, personal.getId());
+            pst.setLong(1, personal.getId_Personal());
             pst.setString(2, personal.getNombre());
             pst.setString( 3, personal.getDireccion());
             pst.setString(4, personal.getContacto());
             pst.setBoolean(5, personal.getEstado());
             pst.setString(6, personal.getUsuarioSistema());
             pst.setInt(7, personal.getIdRol());
-            AlertaTab.Exito();
             pst.execute();
+            AlertaTab.Exito();
             reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla personal: " + e.getMessage());
@@ -103,11 +103,29 @@ public class CMGPersonal extends ConexionMG<PersonalO> {
             pst.setBoolean(4, personal.getEstado());
             pst.setString(5, personal.getUsuarioSistema());
             pst.setInt(6, personal.getIdRol());
-            pst.setLong(7, personal.getId());
+            pst.setLong(7, personal.getId_Personal());
             pst.execute();
+            AlertaTab.Exito();
             reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al actualizar el dato en la tabla personal: " + e.getMessage());
+            AlertaTab.Error();
+        }
+    };
+
+    public void actualizarE(PersonalO personal) {
+        try {
+            PreparedStatement pst = conexionBD.prepareStatement(
+                "UPDATE personal SET Estado = ? WHERE ID = ?;"
+            );
+            pst.setBoolean(1, personal.getEstado());
+            pst.setLong(2, personal.getId_Personal());
+            pst.execute();
+            AlertaTab.Exito();
+            reiniciarP();
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar el dato en la tabla personal: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 }

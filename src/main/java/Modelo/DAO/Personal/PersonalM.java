@@ -1,13 +1,18 @@
 package Modelo.DAO.Personal;
 
-public class PersonalM {
-    protected long id;
+public class PersonalM implements Comparable<PersonalM> {
+    protected long id_Personal;
     protected String nombre, direccion, contacto, usuarioSistema;
     protected boolean estado;
     private String rol;
 
-    protected PersonalM(long id, String nombre, String direccion, String contacto, boolean estado, String usuarioSistema) {
-        this.id = id;
+    @Override
+    public int compareTo(PersonalM other) {
+        return Long.compare(this.id_Personal, other.id_Personal);
+    }
+
+    protected PersonalM(long id_Personal, String nombre, String direccion, String contacto, boolean estado, String usuarioSistema) {
+        this.id_Personal = id_Personal;
         this.nombre = nombre;
         this.direccion = direccion;
         this.contacto = contacto;
@@ -15,8 +20,8 @@ public class PersonalM {
         this.usuarioSistema = usuarioSistema;
     }
 
-    public PersonalM(long id, String nombre, String direccion, String contacto, boolean estado, String usuarioSistema , String rol) {
-        this.id = id;
+    public PersonalM(long id_Personal, String nombre, String direccion, String contacto, boolean estado, String usuarioSistema , String rol) {
+        this.id_Personal = id_Personal;
         this.nombre = nombre;
         this.direccion = direccion;
         this.contacto = contacto;
@@ -25,8 +30,8 @@ public class PersonalM {
         this.rol = rol;
     }
 
-    public long getId() {
-        return id;
+    public long getId_Personal() {
+        return id_Personal;
     }
 
     public String getNombre() {
@@ -53,8 +58,8 @@ public class PersonalM {
         return rol;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId_Personal(long id_Personal) {
+        this.id_Personal = id_Personal;
     }
 
     public void setNombre(String nombre) {
@@ -83,7 +88,7 @@ public class PersonalM {
 
     @Override
     public String toString() {
-        return "ID Personal: " + id + ", Nombre: " + nombre + ", Direccion: " + direccion
+        return "ID Personal: " + id_Personal + ", Nombre: " + nombre + ", Direccion: " + direccion
                         + ", Contacto: " + contacto + ", Estado: " + estado + ", Usuario Sistema: " + usuarioSistema + ", Rol: " + rol;
     }
 }

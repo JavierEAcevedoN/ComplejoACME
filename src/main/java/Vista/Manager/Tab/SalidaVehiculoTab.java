@@ -1,7 +1,5 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.createLabeledField;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -9,6 +7,7 @@ import com.acme.complejoacme.Manager.ManagerController;
 
 import Modelo.DAO.CAVehiculo.CAVehiculoO;
 import Modelo.DAO.CAVehiculo.CCAVehiculo;
+import Vista.utils.createLabeledField;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -26,16 +25,16 @@ public class SalidaVehiculoTab implements TabBuilder{
 
     @Override
     public Tab Crear(ManagerController controller) {
-        // Crear el Tab
+        
         Tab salidaVehiculoTab = new Tab("Salida Vehicular");
         salidaVehiculoTab.setId("salidaVehiculo");
 
-        // Crear el FlowPane principal
+        
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
         flowPane.setColumnHalignment(HPos.CENTER);
 
-        // Crear el VBox principal
+        
         VBox mainVBox = new VBox();
         mainVBox.setAlignment(Pos.CENTER);
         mainVBox.setPrefSize(230, 540);
@@ -51,7 +50,7 @@ public class SalidaVehiculoTab implements TabBuilder{
 
         controller.setInputsSalidaVehiculoTab(controller.getInputsSalidaVehiculoTab());
 
-        // Crear el botón "Registrar Salida"
+        
         Button registrarSalidaButton = new Button("Registrar Salida");
         registrarSalidaButton.setId("salidaVehiculo_button");
         registrarSalidaButton.setOnAction(e -> controller.procedimiento(controller.salidaVehicular_Inputs,() -> {
@@ -67,13 +66,13 @@ public class SalidaVehiculoTab implements TabBuilder{
         registrarSalidaButton.setMnemonicParsing(false);
         registrarSalidaButton.setCursor(Cursor.HAND);
 
-        // Agregar los elementos al VBox principal
+        
         mainVBox.getChildren().addAll(placaField, registrarSalidaButton);
 
-        // Agregar el VBox principal al FlowPane
+        
         flowPane.getChildren().add(mainVBox);
 
-        // Configurar el contenido del Tab
+        
         salidaVehiculoTab.setContent(flowPane);
 
         return salidaVehiculoTab;

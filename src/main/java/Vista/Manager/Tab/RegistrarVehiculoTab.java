@@ -22,16 +22,16 @@ public class RegistrarVehiculoTab implements TabBuilder{
 
     @Override
     public Tab Crear(ManagerController controller) {
-        // Crear el Tab
+        
         Tab registrarVehiculoTab = new Tab("Registrar Vehiculo");
         registrarVehiculoTab.setId("crearVehiculo");
 
-        // Crear el FlowPane principal
+        
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
         flowPane.setColumnHalignment(HPos.CENTER);
 
-        // Crear el VBox principal
+        
         VBox mainVBox = new VBox();
         mainVBox.setAlignment(Pos.CENTER_RIGHT);
         mainVBox.setPrefSize(280, 541);
@@ -55,7 +55,7 @@ public class RegistrarVehiculoTab implements TabBuilder{
 
         controller.setInputsRegistrarVehiculoTab(controller.getInputsRegistrarVehiculoTab());
 
-        // Crear el botón "Guardar"
+        
         Button guardarButton = new Button("Guardar");
         guardarButton.setId("crearVehiculo_button");
         guardarButton.setOnAction(e -> controller.procedimiento(controller.registrarVehiculo_Inputs,() -> {
@@ -70,13 +70,13 @@ public class RegistrarVehiculoTab implements TabBuilder{
         guardarButton.setMnemonicParsing(false);
         guardarButton.setCursor(Cursor.HAND);
 
-        // Agregar los elementos al VBox principal
+        
         mainVBox.getChildren().addAll(usuarioField, placaField, guardarButton);
 
-        // Agregar el VBox principal al FlowPane
+        
         flowPane.getChildren().add(mainVBox);
 
-        // Configurar el contenido del Tab
+        
         registrarVehiculoTab.setContent(flowPane);
 
         return registrarVehiculoTab;

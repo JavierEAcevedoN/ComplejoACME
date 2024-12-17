@@ -1,7 +1,5 @@
 package Vista.Manager.Tab;
 
-import Vista.utils.createLabeledField;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -9,6 +7,7 @@ import com.acme.complejoacme.Manager.ManagerController;
 
 import Modelo.DAO.CAPersonal.CAPersonalO;
 import Modelo.DAO.CAPersonal.CCAPersonal;
+import Vista.utils.createLabeledField;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -30,16 +29,16 @@ public class AccesoPersonalTab implements TabBuilder{
 
     @Override
     public Tab Crear(ManagerController controller) {
-        // Crear el Tab
+        
         Tab accesoPersonalTab = new Tab("Acceso Personal");
         accesoPersonalTab.setId("accesoPersonal");
 
-        // Crear el FlowPane principal
+        
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER);
         flowPane.setColumnHalignment(HPos.CENTER);
 
-        // Crear el VBox principal
+        
         VBox mainVBox = new VBox();
         mainVBox.setAlignment(Pos.CENTER);
         mainVBox.setPrefSize(230, 540);
@@ -57,7 +56,7 @@ public class AccesoPersonalTab implements TabBuilder{
 
         controller.setInputsAccesoPersonalTab(controller.getInputsAccesoPersonalTab());
 
-        // Crear el botón "Permitir acceso"
+        
         Button permitirAccesoButton = new Button("Permitir acceso");
         permitirAccesoButton.setId("accesoPersonal_button");
         permitirAccesoButton.setOnAction(e -> controller.procedimiento(controller.accesoPersonal_Inputs,() -> {
@@ -74,13 +73,13 @@ public class AccesoPersonalTab implements TabBuilder{
         permitirAccesoButton.setMnemonicParsing(false);
         permitirAccesoButton.setCursor(Cursor.HAND);
 
-        // Agregar los elementos al VBox principal
+        
         mainVBox.getChildren().addAll(identificadorField, permitirAccesoButton);
 
-        // Agregar el VBox principal al FlowPane
+        
         flowPane.getChildren().add(mainVBox);
 
-        // Configurar el contenido del Tab
+        
         accesoPersonalTab.setContent(flowPane);
 
         return accesoPersonalTab;

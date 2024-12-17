@@ -21,14 +21,6 @@ public class MainApplication extends Application {
         startScene(loader, stage);
     }
 
-    public static void startScene(Parent element, Stage stage) {
-        Scene scene = new Scene(element);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public static void restartApplication() {
         if (primaryStage != null) {
             primaryStage.close();
@@ -52,6 +44,38 @@ public class MainApplication extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         stage.setScene(new Scene(element));
+        stage.show();
+    }
+
+    public static void startScene(Parent element, Stage stage) {
+        Scene scene = new Scene(element);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void startNormalScene(Parent element) {
+        Scene scene = element.getScene();
+        Stage stage;
+
+        if (scene == null) {
+            stage = new Stage();
+        } else {
+            stage = (Stage) scene.getWindow();
+        }
+        stage.setTitle("Consulta");
+
+        stage.setResizable(false);
+        stage.setScene(new Scene(element));
+        stage.show();
+    }
+
+    public static void startNormalScene(Parent element, Stage stage) {
+        stage.setTitle("Consulta");
+        Scene scene = new Scene(element);
+        stage.setResizable(false);
+        stage.setScene(scene);
         stage.show();
     }
 

@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import Modelo.ConexionMG;
 import Modelo.DAO.Personal.PersonalM;
+import Vista.utils.Alerts.AlertaTab;
 
 public class CMGLCEstado extends ConexionMG<LCEstadoO> {
     private static CMGLCEstado instance;
@@ -97,9 +98,11 @@ public class CMGLCEstado extends ConexionMG<LCEstadoO> {
             pst.setString(4, lcEstado.getUsuarioResponsable());
             pst.setLong(5, lcEstado.getIdPersonal());
             pst.execute();
+            AlertaTab.Exito();
             reiniciarP();
         } catch (SQLException e) {
             System.err.println("Error al ingresar el dato en la tabla logcambioestado: " + e.getMessage());
+            AlertaTab.Error();
         }
     };
 }

@@ -12,7 +12,7 @@ public class ReportesTab implements TabBuilder{
     public Tab Crear(ManagerController controller) {
         Tab reportesTab = new Tab("Reportes");
 
-        // FlowPane que contiene el TabPane con sus Tab internos
+        
         FlowPane flowPane = new FlowPane();
 
         TabPane innerTabPane = new TabPane();
